@@ -2,6 +2,10 @@
 node_modules
 /dist
 
+# VitePress
+docs/.vitepress/cache
+docs/.vitepress/dist
+
 # local env files
 .env.local
 .env.*.local
@@ -18,4 +22,7 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# Archive of original JS files
+archive/
 *.sw?

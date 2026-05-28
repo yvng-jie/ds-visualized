@@ -1,0 +1,27 @@
+{
+  "name": "js-data-structures-tutorial",
+  "version": "1.0.0",
+  "description": "📚 Interactive JavaScript Data Structures Tutorial with visualizations and live code playground",
+  "homepage": "https://yvng-jie.github.io/ds-visualized/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yvng-jie/ds-visualized.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yvng-jie/ds-visualized/issues"
+  },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@vue/repl": "^4.7.2"
+  }
+}
