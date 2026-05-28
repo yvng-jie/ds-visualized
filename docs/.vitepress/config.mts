@@ -83,9 +83,11 @@ const zhSidebar = [
 ]
 
 export default defineConfig({
+  base: '/ds-visualized/',
+
   head: [
-    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
-    ['link', { rel: 'alternate icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/ds-visualized/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'alternate icon', href: '/ds-visualized/favicon.ico' }],
     [
       'meta',
       { name: 'keywords', content: 'data structures, javascript, visualization, tutorial, 数据结构, JS, 可视化' },
