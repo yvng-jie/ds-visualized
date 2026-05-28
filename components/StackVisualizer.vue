@@ -5,7 +5,7 @@
         <input
           v-model="inputValue"
           type="text"
-          placeholder="输入值"
+          :placeholder="isZh ? '输入值' : 'Enter value'"
           class="input"
           @keyup.enter="push"
         />
@@ -28,16 +28,16 @@
           v-model="speed"
           class="select"
         >
-          <option value="500">慢速</option>
-          <option value="300">正常</option>
-          <option value="100">快速</option>
+          <option value="500">{{ isZh ? '慢速' : 'Slow' }}</option>
+          <option value="300">{{ isZh ? '正常' : 'Normal' }}</option>
+          <option value="100">{{ isZh ? '快速' : 'Fast' }}</option>
         </select>
       </div>
       <button
         class="btn btn-secondary"
         @click="reset"
       >
-        重置
+        {{ isZh ? '重置' : 'Reset' }}
       </button>
     </div>
     <div class="canvas-wrapper">
@@ -49,12 +49,12 @@
     </div>
     <div class="status-bar">
       <span>
-        大小:
+        {{ isZh ? '大小:' : 'Size:' }}
         <strong>{{ items.length }}</strong>
       </span>
       <span>
-        栈顶:
-        <strong>{{ items.length > 0 ? items[items.length - 1] : '空' }}</strong>
+        {{ isZh ? '栈顶:' : 'Top:' }}
+        <strong>{{ items.length > 0 ? items[items.length - 1] : isZh ? '空' : 'Empty' }}</strong>
       </span>
       <span
         class="log"
@@ -67,7 +67,11 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
+  import { useRoute } from 'vitepress'
+
+  const route = useRoute()
+  const isZh = computed(() => route.path.startsWith('/zh/'))
 
   const canvas = ref(null)
   const inputValue = ref('')
@@ -104,7 +108,7 @@
     ctx.fillStyle = '#64748b'
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText('⬆ 栈顶', canvasWidth / 2, 18)
+    ctx.fillText(isZh.value ? '⬆ 栈顶' : '⬆ Top', canvasWidth / 2, 18)
 
     for (let i = 0; i < items.value.length; i++) {
       const y = startY - (items.value.length - i) * (boxHeight + 4)
@@ -139,12 +143,14 @@
   function push() {
     if (animating) return
     if (items.value.length >= MAX_ITEMS) {
-      lastOp.value = '⚠️ 栈已满（最多 ' + MAX_ITEMS + ' 个元素）'
+      lastOp.value = isZh.value
+        ? '⚠️ 栈已满（最多 ' + MAX_ITEMS + ' 个元素）'
+        : '⚠️ Stack is full (max ' + MAX_ITEMS + ' items)'
       return
     }
     const val = inputValue.value.trim()
     if (!val) {
-      lastOp.value = '⚠️ 请输入要入栈的值'
+      lastOp.value = isZh.value ? '⚠️ 请输入要入栈的值' : '⚠️ Please enter a value to push'
       return
     }
     inputValue.value = ''
@@ -156,7 +162,7 @@
   async function pop() {
     if (animating) return
     if (items.value.length === 0) {
-      lastOp.value = '⚠️ 栈为空，无法 pop'
+      lastOp.value = isZh.value ? '⚠️ 栈为空，无法 pop' : '⚠️ Stack is empty, cannot pop'
       return
     }
     animating = true
@@ -169,7 +175,7 @@
 
   function reset() {
     items.value = [...defaultData]
-    lastOp.value = '↻ 已恢复初始示例数据'
+    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
     drawStack()
   }
 
@@ -178,7 +184,7 @@
   }
 
   onMounted(() => {
-    lastOp.value = '点击 push/pop 试试'
+    lastOp.value = isZh.value ? '点击 push/pop 试试' : 'Try clicking push/pop'
     drawStack()
   })
 </script>

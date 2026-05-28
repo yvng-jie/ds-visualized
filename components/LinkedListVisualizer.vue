@@ -5,7 +5,7 @@
         <input
           v-model="inputValue"
           type="text"
-          placeholder="值"
+          :placeholder="isZh ? '值' : 'Value'"
           class="input"
           @keyup.enter="append"
         />
@@ -19,14 +19,14 @@
           class="btn btn-danger"
           @click="removeLast"
         >
-          移除末尾
+          {{ isZh ? '移除末尾' : 'Remove Last' }}
         </button>
       </div>
       <button
         class="btn btn-secondary"
         @click="reset"
       >
-        重置
+        {{ isZh ? '重置' : 'Reset' }}
       </button>
     </div>
     <div class="canvas-wrapper">
@@ -111,7 +111,7 @@
           fill="#94a3b8"
           font-size="16"
         >
-          空链表 (head → null)
+          {{ isZh ? '空链表 (head → null)' : 'Empty list (head → null)' }}
         </text>
 
         <!-- head 标记 -->
@@ -145,7 +145,7 @@
     </div>
     <div class="status-bar">
       <span>
-        长度:
+        {{ isZh ? '长度:' : 'Length:' }}
         <strong>{{ items.length }}</strong>
       </span>
       <span
@@ -159,7 +159,11 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
+  import { useRoute } from 'vitepress'
+
+  const route = useRoute()
+  const isZh = computed(() => route.path.startsWith('/zh/'))
 
   const inputValue = ref('')
   const lastOp = ref('')
@@ -177,12 +181,14 @@
 
   function append() {
     if (items.value.length >= MAX_ITEMS) {
-      lastOp.value = '⚠️ 链表已满（最多 ' + MAX_ITEMS + ' 个节点）'
+      lastOp.value = isZh.value
+        ? '⚠️ 链表已满（最多 ' + MAX_ITEMS + ' 个节点）'
+        : '⚠️ List is full (max ' + MAX_ITEMS + ' nodes)'
       return
     }
     const val = inputValue.value.trim()
     if (!val) {
-      lastOp.value = '⚠️ 请输入要添加的值'
+      lastOp.value = isZh.value ? '⚠️ 请输入要添加的值' : '⚠️ Please enter a value to append'
       return
     }
     inputValue.value = ''
@@ -190,23 +196,23 @@
     lastOp.value = `✅ append(${val})`
   }
 
+  onMounted(() => {
+    lastOp.value = isZh.value ? '点击 append/移除末尾 试试' : 'Try clicking append/remove last'
+  })
+
   function removeLast() {
     if (items.value.length === 0) {
-      lastOp.value = '⚠️ 链表为空，无法移除'
+      lastOp.value = isZh.value ? '⚠️ 链表为空，无法移除' : '⚠️ List is empty, cannot remove'
       return
     }
     const val = items.value.pop()
-    lastOp.value = `🗑️ 移除 → ${val}`
+    lastOp.value = isZh.value ? `🗑️ 移除 → ${val}` : `🗑️ Remove → ${val}`
   }
 
   function reset() {
     items.value = [...defaultData]
-    lastOp.value = '↻ 已恢复初始示例数据'
+    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
   }
-
-  onMounted(() => {
-    lastOp.value = '点击 append 添加节点'
-  })
 </script>
 
 <style scoped>

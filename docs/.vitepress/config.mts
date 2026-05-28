@@ -116,7 +116,6 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/' },
           { text: 'Structures', link: '/stack' },
-          { text: '中文', link: '/zh/' },
           { text: 'GitHub', link: 'https://github.com/yvng-jie/ds-visualized' },
         ],
         sidebar: enSidebar,
@@ -149,7 +148,6 @@ export default defineConfig({
         nav: [
           { text: '首页', link: '/zh/' },
           { text: '数据结构', link: '/zh/stack' },
-          { text: 'English', link: '/' },
           { text: 'GitHub', link: 'https://github.com/yvng-jie/ds-visualized' },
         ],
         sidebar: zhSidebar,

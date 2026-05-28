@@ -35,8 +35,16 @@
 
 ## 📸 演示
 
-> 🚧 截图待补充 —— 网站部署完成后截图放入 `docs/public/screenshots/`
-
+<p align="center">
+  <img src="docs/public/screenshots/2026-05-28_18-16-26_266.png" width="95%" alt="Queue Visualization"/>
+  <br/>
+  <em>Website Home</em>
+</p>
+<p align="center">
+  <img src="docs/public/screenshots/2026-05-28_18-28-46.gif" width="95%" alt="Queue Visualization"/>
+  <br/>
+  <em>Graph git</em>
+</p>
 ---
 
 ## 📖 About

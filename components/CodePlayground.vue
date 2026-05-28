@@ -1,25 +1,25 @@
 <template>
   <div class="code-playground">
     <div class="playground-header">
-      <span class="playground-title">🎮 在线 Playground</span>
+      <span class="playground-title">{{ isZh ? '🎮 在线 Playground' : '🎮 Online Playground' }}</span>
       <div class="playground-actions">
         <button
           class="btn btn-run"
           @click="runCode"
         >
-          ▶ 运行
+          {{ isZh ? '▶ 运行' : '▶ Run' }}
         </button>
         <button
           class="btn btn-reset"
           @click="resetCode"
         >
-          ↻ 重置
+          {{ isZh ? '↻ 重置' : '↻ Reset' }}
         </button>
         <button
           class="btn btn-copy"
           @click="copyCode"
         >
-          📋 复制
+          {{ isZh ? '📋 复制' : '📋 Copy' }}
         </button>
       </div>
     </div>
@@ -34,11 +34,11 @@
         ></textarea>
       </div>
       <div class="output-panel">
-        <div class="output-header">输出</div>
+        <div class="output-header">{{ isZh ? '输出' : 'Output' }}</div>
         <pre
           class="output-content"
           ref="output"
-          >{{ output || '点击 ▶ 运行 查看结果' }}</pre
+          >{{ output || (isZh ? '点击 ▶ 运行 查看结果' : 'Click ▶ Run to see results') }}</pre
         >
       </div>
     </div>
@@ -46,7 +46,11 @@
 </template>
 
 <script setup>
-  import { ref, watch } from 'vue'
+  import { ref, computed, watch } from 'vue'
+  import { useRoute } from 'vitepress'
+
+  const route = useRoute()
+  const isZh = computed(() => route.path.startsWith('/zh/'))
 
   const props = defineProps({
     initialCode: {
@@ -80,7 +84,7 @@
       const fn = new Function(code.value)
       fn()
     } catch (e) {
-      logs.push('❌ 错误: ' + e.message)
+      logs.push((isZh.value ? '❌ 错误: ' : '❌ Error: ') + e.message)
     }
 
     console.log = originalLog
@@ -97,7 +101,7 @@
   async function copyCode() {
     try {
       await navigator.clipboard.writeText(code.value)
-      alert('已复制到剪贴板！')
+      alert(isZh.value ? '已复制到剪贴板！' : 'Copied to clipboard!')
     } catch {
       // fallback
       const ta = document.createElement('textarea')

@@ -5,7 +5,7 @@
         <input
           v-model="inputValue"
           type="number"
-          placeholder="数字"
+          :placeholder="isZh ? '数字' : 'Number'"
           class="input"
           @keyup.enter="insert"
         />
@@ -20,7 +20,7 @@
         class="btn btn-secondary"
         @click="reset"
       >
-        重置
+        {{ isZh ? '重置' : 'Reset' }}
       </button>
     </div>
     <div class="canvas-wrapper">
@@ -32,7 +32,7 @@
     </div>
     <div class="status-bar">
       <span>
-        节点数:
+        {{ isZh ? '节点数:' : 'Nodes:' }}
         <strong>{{ nodeCount }}</strong>
       </span>
       <span
@@ -46,7 +46,11 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, nextTick } from 'vue'
+  import { ref, computed, onMounted, nextTick } from 'vue'
+  import { useRoute } from 'vitepress'
+
+  const route = useRoute()
+  const isZh = computed(() => route.path.startsWith('/zh/'))
 
   const canvas = ref(null)
   const inputValue = ref('')
@@ -63,14 +67,16 @@
   function insert() {
     const val = parseInt(inputValue.value)
     if (isNaN(val)) {
-      lastOp.value = '⚠️ 请输入有效的数字'
+      lastOp.value = isZh.value ? '⚠️ 请输入有效的数字' : '⚠️ Please enter a valid number'
       return
     }
     inputValue.value = ''
 
     // 检查是否已存在
     if (searchNode(tree.root, val)) {
-      lastOp.value = `⚠️ ${val} 已存在，BST 不存储重复值`
+      lastOp.value = isZh.value
+        ? `⚠️ ${val} 已存在，BST 不存储重复值`
+        : `⚠️ ${val} already exists, BST does not store duplicates`
       return
     }
 
@@ -174,7 +180,11 @@
       ctx.fillStyle = '#94a3b8'
       ctx.font = '16px sans-serif'
       ctx.textAlign = 'center'
-      ctx.fillText('空树 — 输入数字点击 insert 添加节点', canvasWidth / 2, canvasHeight / 2)
+      ctx.fillText(
+        isZh.value ? '空树 — 输入数字点击 insert 添加节点' : 'Empty tree — enter a number and click insert',
+        canvasWidth / 2,
+        canvasHeight / 2,
+      )
     }
   }
 
@@ -222,13 +232,13 @@
 
   function reset() {
     buildTree(defaultData)
-    lastOp.value = '↻ 已恢复初始示例数据'
+    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
     draw()
   }
 
   onMounted(() => {
     buildTree(defaultData)
-    lastOp.value = '示例 BST，点击 insert 添加更多节点'
+    lastOp.value = isZh.value ? '示例 BST，点击 insert 添加更多节点' : 'Sample BST, click insert to add more nodes'
     draw()
   })
 </script>

@@ -7,7 +7,7 @@
           :class="{ active: mode === 'add' }"
           @click="mode = 'add'"
         >
-          ✏️ 添加边
+          {{ isZh ? '✏️ 添加边' : '✏️ Add Edge' }}
         </button>
         <button
           class="btn"
@@ -28,7 +28,7 @@
         class="btn btn-secondary"
         @click="reset"
       >
-        重置
+        {{ isZh ? '重置' : 'Reset' }}
       </button>
     </div>
     <div class="canvas-wrapper">
@@ -41,11 +41,11 @@
     </div>
     <div class="status-bar">
       <span>
-        顶点:
+        {{ isZh ? '顶点:' : 'Vertices:' }}
         <strong>{{ graph.vertexes.length }}</strong>
       </span>
       <span>
-        边:
+        {{ isZh ? '边:' : 'Edges:' }}
         <strong>{{ edgeCount }}</strong>
       </span>
       <span
@@ -59,7 +59,11 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
+  import { useRoute } from 'vitepress'
+
+  const route = useRoute()
+  const isZh = computed(() => route.path.startsWith('/zh/'))
 
   const canvas = ref(null)
   const canvasWidth = 600
@@ -109,12 +113,14 @@
       if (dist < 25) {
         if (selectedVertex) {
           if (addEdge(selectedVertex, v)) {
-            lastOp.value = `✅ 添加边 ${selectedVertex} ↔ ${v}`
+            lastOp.value = isZh.value ? `✅ 添加边 ${selectedVertex} ↔ ${v}` : `✅ Added edge ${selectedVertex} ↔ ${v}`
           }
           selectedVertex = null
         } else {
           selectedVertex = v
-          lastOp.value = `选中 ${v}，点击另一个顶点以连接`
+          lastOp.value = isZh.value
+            ? `选中 ${v}，点击另一个顶点以连接`
+            : `Selected ${v}, click another vertex to connect`
         }
         draw()
         return
@@ -139,15 +145,17 @@
       // 自动连接最近的顶点
       if (nearest && minDist < 250) {
         addEdge(label, nearest)
-        lastOp.value = `✅ 添加顶点 ${label}，自动连接到 ${nearest}`
+        lastOp.value = isZh.value
+          ? `✅ 添加顶点 ${label}，自动连接到 ${nearest}`
+          : `✅ Added vertex ${label}, auto-connected to ${nearest}`
       } else {
-        lastOp.value = `✅ 添加顶点 ${label}（独立）`
+        lastOp.value = isZh.value ? `✅ 添加顶点 ${label}（独立）` : `✅ Added vertex ${label} (isolated)`
       }
     } else {
       selectedVertex = null
       const label = vertexLabels[0]
       addVertex(label, x, y)
-      lastOp.value = `✅ 添加第一个顶点 ${label}`
+      lastOp.value = isZh.value ? `✅ 添加第一个顶点 ${label}` : `✅ Added first vertex ${label}`
     }
     draw()
   }
@@ -232,11 +240,11 @@
       }
 
       draw(highlightEdges, order)
-      lastOp.value = `🌊 BFS 访问: ${v}`
+      lastOp.value = isZh.value ? `🌊 BFS 访问: ${v}` : `🌊 BFS visiting: ${v}`
       await sleep(speed)
     }
 
-    lastOp.value = `🌊 BFS 完成: 访问顺序 ${order.join(' → ')}`
+    lastOp.value = isZh.value ? `🌊 BFS 完成: 访问顺序 ${order.join(' → ')}` : `🌊 BFS completed: ${order.join(' → ')}`
     animating = false
   }
 
@@ -256,7 +264,7 @@
       visited.add(v)
       order.push(v)
       draw(highlightEdges, order)
-      lastOp.value = `🧗 DFS 访问: ${v}`
+      lastOp.value = isZh.value ? `🧗 DFS 访问: ${v}` : `🧗 DFS visiting: ${v}`
       await sleep(speed)
 
       for (const n of graph.edges[v]) {
@@ -268,7 +276,7 @@
     }
 
     await dfs(start)
-    lastOp.value = `🧗 DFS 完成: 访问顺序 ${order.join(' → ')}`
+    lastOp.value = isZh.value ? `🧗 DFS 完成: 访问顺序 ${order.join(' → ')}` : `🧗 DFS completed: ${order.join(' → ')}`
     animating = false
   }
 
@@ -304,7 +312,7 @@
     selectedVertex = null
     animating = false
     mode.value = 'add'
-    lastOp.value = '↻ 已恢复初始示例数据'
+    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
     draw()
   }
 
@@ -314,7 +322,9 @@
 
   onMounted(() => {
     buildDefaultGraph()
-    lastOp.value = '点击画布添加顶点（自动连线），或点击 BFS/DFS 遍历'
+    lastOp.value = isZh.value
+      ? '点击画布添加顶点（自动连线），或点击 BFS/DFS 遍历'
+      : 'Click canvas to add vertices (auto-connects), or click BFS/DFS to traverse'
     draw()
   })
 </script>

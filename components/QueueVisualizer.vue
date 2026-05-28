@@ -5,7 +5,7 @@
         <input
           v-model="inputValue"
           type="text"
-          placeholder="值"
+          :placeholder="isZh ? '值' : 'Value'"
           class="input"
           @keyup.enter="enqueue"
         />
@@ -28,16 +28,16 @@
           v-model="speed"
           class="select"
         >
-          <option value="500">慢速</option>
-          <option value="300">正常</option>
-          <option value="100">快速</option>
+          <option value="500">{{ isZh ? '慢速' : 'Slow' }}</option>
+          <option value="300">{{ isZh ? '正常' : 'Normal' }}</option>
+          <option value="100">{{ isZh ? '快速' : 'Fast' }}</option>
         </select>
       </div>
       <button
         class="btn btn-secondary"
         @click="reset"
       >
-        重置
+        {{ isZh ? '重置' : 'Reset' }}
       </button>
     </div>
     <div class="canvas-wrapper">
@@ -49,16 +49,16 @@
     </div>
     <div class="status-bar">
       <span>
-        大小:
+        {{ isZh ? '大小:' : 'Size:' }}
         <strong>{{ items.length }}</strong>
       </span>
       <span>
-        队首:
-        <strong>{{ items.length > 0 ? items[0] : '空' }}</strong>
+        {{ isZh ? '队首:' : 'Front:' }}
+        <strong>{{ items.length > 0 ? items[0] : isZh ? '空' : 'Empty' }}</strong>
       </span>
       <span>
-        队尾:
-        <strong>{{ items.length > 0 ? items[items.length - 1] : '空' }}</strong>
+        {{ isZh ? '队尾:' : 'Rear:' }}
+        <strong>{{ items.length > 0 ? items[items.length - 1] : isZh ? '空' : 'Empty' }}</strong>
       </span>
       <span
         class="log"
@@ -71,7 +71,11 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
+  import { useRoute } from 'vitepress'
+
+  const route = useRoute()
+  const isZh = computed(() => route.path.startsWith('/zh/'))
 
   const canvas = ref(null)
   const inputValue = ref('')
@@ -103,8 +107,8 @@
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
     if (items.value.length > 0) {
-      ctx.fillText('⬅ 队首(dequeue)', startX + boxSize / 2, 40)
-      ctx.fillText('队尾(enqueue) ➡', startX + totalWidth - boxSize / 2, 40)
+      ctx.fillText(isZh.value ? '⬅ 队首(dequeue)' : '⬅ Front (dequeue)', startX + boxSize / 2, 40)
+      ctx.fillText(isZh.value ? '队尾(enqueue) ➡' : 'Rear (enqueue) ➡', startX + totalWidth - boxSize / 2, 40)
     }
 
     for (let i = 0; i < items.value.length; i++) {
@@ -149,12 +153,14 @@
   function enqueue() {
     if (animating) return
     if (items.value.length >= MAX_ITEMS) {
-      lastOp.value = '⚠️ 队列已满（最多 ' + MAX_ITEMS + ' 个元素）'
+      lastOp.value = isZh.value
+        ? '⚠️ 队列已满（最多 ' + MAX_ITEMS + ' 个元素）'
+        : '⚠️ Queue is full (max ' + MAX_ITEMS + ' items)'
       return
     }
     const val = inputValue.value.trim()
     if (!val) {
-      lastOp.value = '⚠️ 请输入要入队的值'
+      lastOp.value = isZh.value ? '⚠️ 请输入要入队的值' : '⚠️ Please enter a value to enqueue'
       return
     }
     inputValue.value = ''
@@ -166,7 +172,7 @@
   async function dequeue() {
     if (animating) return
     if (items.value.length === 0) {
-      lastOp.value = '⚠️ 队列为空，无法 dequeue'
+      lastOp.value = isZh.value ? '⚠️ 队列为空，无法 dequeue' : '⚠️ Queue is empty, cannot dequeue'
       return
     }
     animating = true
@@ -179,7 +185,7 @@
 
   function reset() {
     items.value = [...defaultData]
-    lastOp.value = '↻ 已恢复初始示例数据'
+    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
     drawQueue()
   }
 
@@ -188,7 +194,7 @@
   }
 
   onMounted(() => {
-    lastOp.value = '点击 enqueue/dequeue 试试'
+    lastOp.value = isZh.value ? '点击 enqueue/dequeue 试试' : 'Try clicking enqueue/dequeue'
     drawQueue()
   })
 </script>
