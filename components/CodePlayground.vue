@@ -63,7 +63,7 @@
     },
   })
 
-  const code = ref(props.initialCode + (props.testCode ? '\n\n// --- 测试代码 ---\n' + props.testCode : ''))
+  const code = ref(props.initialCode + (props.testCode ? '\n\n// --- Test code ---\n' + props.testCode : ''))
   const output = ref('')
   const editor = ref(null)
   const outputEl = ref(null)
@@ -94,7 +94,7 @@
   }
 
   function resetCode() {
-    code.value = props.initialCode + (props.testCode ? '\n\n// --- 测试代码 ---\n' + props.testCode : '')
+    code.value = props.initialCode + (props.testCode ? '\n\n// --- Test code ---\n' + props.testCode : '')
     output.value = ''
   }
 

@@ -102,7 +102,7 @@
     const totalWidth = items.value.length * (boxSize + gap)
     const startX = Math.max(20, (canvasWidth - totalWidth) / 2)
 
-    // 标注
+    // Labels
     ctx.fillStyle = '#64748b'
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
@@ -114,7 +114,7 @@
     for (let i = 0; i < items.value.length; i++) {
       const x = startX + i * (boxSize + gap)
 
-      // 盒子
+      // Draw box
       const gradient = ctx.createLinearGradient(x, startY, x + boxSize, startY + boxSize)
       gradient.addColorStop(0, '#8b5cf6')
       gradient.addColorStop(1, '#7c3aed')
@@ -123,7 +123,7 @@
       ctx.roundRect(x, startY, boxSize, boxSize, 8)
       ctx.fill()
 
-      // 箭头
+      // Draw arrow
       if (i < items.value.length - 1) {
         ctx.fillStyle = '#94a3b8'
         ctx.font = '16px sans-serif'
@@ -132,7 +132,7 @@
         ctx.fillText('→', x + boxSize + gap / 2, startY + boxSize / 2)
       }
 
-      // 值
+      // Draw value
       ctx.fillStyle = '#ffffff'
       ctx.font = 'bold 16px monospace'
       ctx.textAlign = 'center'
@@ -140,7 +140,7 @@
       ctx.fillText(String(items.value[i]), x + boxSize / 2, startY + boxSize / 2)
     }
 
-    // 下标
+    // Draw indices
     ctx.fillStyle = '#94a3b8'
     ctx.font = '11px sans-serif'
     ctx.textAlign = 'center'

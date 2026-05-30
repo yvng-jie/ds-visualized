@@ -81,7 +81,7 @@
   const canvasHeight = 380
   const MAX_ITEMS = 12
 
-  // 初始示例数据（重置时恢复到此状态）
+  // Default sample data (restored on reset)
   const defaultData = [5, 10, 15]
   const items = ref([...defaultData])
 
@@ -98,13 +98,13 @@
     const startX = (canvasWidth - boxWidth) / 2
     const startY = canvasHeight - 40
 
-    // 画底座
+    // Draw base
     ctx.fillStyle = '#94a3b8'
     ctx.fillRect(startX - 10, startY + 5, boxWidth + 20, 6)
     ctx.fillRect(startX - 10, startY + 5, 6, 12)
     ctx.fillRect(startX + boxWidth + 4, startY + 5, 6, 12)
 
-    // 标注栈顶方向
+    // Label: stack top direction
     ctx.fillStyle = '#64748b'
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
@@ -113,7 +113,7 @@
     for (let i = 0; i < items.value.length; i++) {
       const y = startY - (items.value.length - i) * (boxHeight + 4)
 
-      // 盒子
+      // Draw box
       const gradient = ctx.createLinearGradient(startX, y, startX, y + boxHeight)
       gradient.addColorStop(0, '#3b82f6')
       gradient.addColorStop(1, '#2563eb')
@@ -122,7 +122,7 @@
       ctx.roundRect(startX, y, boxWidth, boxHeight, 6)
       ctx.fill()
 
-      // 边框高亮 - 栈顶
+      // Highlight border - top of stack
       if (i === items.value.length - 1) {
         ctx.strokeStyle = '#f59e0b'
         ctx.lineWidth = 3
@@ -131,7 +131,7 @@
         ctx.stroke()
       }
 
-      // 文字
+      // Draw text
       ctx.fillStyle = '#ffffff'
       ctx.font = 'bold 14px monospace'
       ctx.textAlign = 'center'

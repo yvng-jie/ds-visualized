@@ -2,45 +2,31 @@
   <div class="visualizer">
     <div class="controls">
       <div class="input-group">
+        <input v-model="inputValue" type="text" :placeholder="t('Value', '值')" class="input" @keyup.enter="append" />
         <input
-          v-model="inputValue"
-          type="text"
-          :placeholder="isZh ? '值' : 'Value'"
-          class="input"
-          @keyup.enter="append"
+          v-model.number="positionValue"
+          type="number"
+          min="0"
+          :placeholder="t('Pos', '位置')"
+          class="input pos-input"
         />
-        <button
-          class="btn btn-primary"
-          @click="append"
-        >
-          append
+        <button class="btn btn-primary" @click="append">append</button>
+        <button class="btn btn-primary" @click="insert">insert</button>
+        <button class="btn btn-danger" @click="removeAt">
+          {{ t('removeAt', '移除位置') }}
         </button>
-        <button
-          class="btn btn-danger"
-          @click="removeLast"
-        >
-          {{ isZh ? '移除末尾' : 'Remove Last' }}
-        </button>
+        <button class="btn btn-secondary" @click="get">get</button>
+        <button class="btn btn-secondary" @click="indexOf">indexOf</button>
       </div>
-      <button
-        class="btn btn-secondary"
-        @click="reset"
-      >
-        {{ isZh ? '重置' : 'Reset' }}
+      <button class="btn btn-secondary" @click="reset">
+        {{ t('Reset', '重置') }}
       </button>
     </div>
     <div class="canvas-wrapper">
-      <svg
-        :width="svgWidth"
-        :height="svgHeight"
-        class="linked-list-svg"
-      >
-        <!-- 箭头和节点 -->
-        <template
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <!-- 箭头 -->
+      <svg :width="svgWidth" :height="svgHeight" class="linked-list-svg">
+        <!-- Arrows and nodes -->
+        <template v-for="(item, i) in items" :key="i">
+          <!-- Arrow -->
           <line
             v-if="i < items.length - 1"
             :x1="startX + i * (nodeW + arrowW)"
@@ -52,7 +38,7 @@
             marker-end="url(#arrowhead)"
           />
 
-          <!-- 节点矩形 -->
+          <!-- Node rect -->
           <rect
             :x="startX + i * (nodeW + arrowW)"
             :y="centerY - nodeH / 2"
@@ -64,7 +50,7 @@
             stroke-width="2"
           />
 
-          <!-- 值 -->
+          <!-- Value -->
           <text
             :x="startX + i * (nodeW + arrowW) + nodeW / 2"
             :y="centerY + 1"
@@ -78,7 +64,7 @@
           </text>
         </template>
 
-        <!-- null 结束标志 -->
+        <!-- null terminator -->
         <template v-if="items.length > 0">
           <line
             :x1="startX + items.length * (nodeW + arrowW) - arrowW"
@@ -114,7 +100,7 @@
           {{ isZh ? '空链表 (head → null)' : 'Empty list (head → null)' }}
         </text>
 
-        <!-- head 标记 -->
+        <!-- Head marker -->
         <text
           v-if="items.length > 0"
           :x="startX + nodeW / 2"
@@ -127,18 +113,8 @@
         </text>
 
         <defs>
-          <marker
-            id="arrowhead"
-            markerWidth="10"
-            markerHeight="7"
-            refX="10"
-            refY="3.5"
-            orient="auto"
-          >
-            <polygon
-              points="0 0, 10 3.5, 0 7"
-              fill="#94a3b8"
-            />
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
           </marker>
         </defs>
       </svg>
@@ -148,10 +124,7 @@
         {{ isZh ? '长度:' : 'Length:' }}
         <strong>{{ items.length }}</strong>
       </span>
-      <span
-        class="log"
-        v-if="lastOp"
-      >
+      <span class="log" v-if="lastOp">
         {{ lastOp }}
       </span>
     </div>
@@ -159,141 +132,194 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
-  import { useRoute } from 'vitepress'
+import { ref, onMounted } from 'vue'
+import { useI18n } from './composables/useI18n.js'
 
-  const route = useRoute()
-  const isZh = computed(() => route.path.startsWith('/zh/'))
+const { t } = useI18n()
 
-  const inputValue = ref('')
-  const lastOp = ref('')
-  const nodeW = 60
-  const arrowW = 40
-  const nodeH = 44
-  const centerY = 70
-  const startX = 40
-  const svgWidth = 800
-  const svgHeight = 140
-  const MAX_ITEMS = 12
+const inputValue = ref('')
+const positionValue = ref(0)
+const lastOp = ref('')
+const nodeW = 60
+const arrowW = 40
+const nodeH = 44
+const centerY = 70
+const startX = 40
+const svgWidth = 800
+const svgHeight = 140
+const MAX_ITEMS = 12
 
-  const defaultData = [10, 20, 30]
-  const items = ref([...defaultData])
+const defaultData = [10, 20, 30]
+const items = ref([...defaultData])
 
-  function append() {
-    if (items.value.length >= MAX_ITEMS) {
-      lastOp.value = isZh.value
-        ? '⚠️ 链表已满（最多 ' + MAX_ITEMS + ' 个节点）'
-        : '⚠️ List is full (max ' + MAX_ITEMS + ' nodes)'
-      return
-    }
-    const val = inputValue.value.trim()
-    if (!val) {
-      lastOp.value = isZh.value ? '⚠️ 请输入要添加的值' : '⚠️ Please enter a value to append'
-      return
-    }
-    inputValue.value = ''
-    items.value.push(val)
-    lastOp.value = `✅ append(${val})`
+function append() {
+  if (items.value.length >= MAX_ITEMS) {
+    lastOp.value = t(`⚠️ List is full (max ${MAX_ITEMS} nodes)`, `⚠️ 链表已满（最多 ${MAX_ITEMS} 个节点）`)
+    return
+  }
+  const val = inputValue.value.trim()
+  if (!val) {
+    lastOp.value = t('⚠️ Please enter a value to append', '⚠️ 请输入要添加的值')
+    return
+  }
+  inputValue.value = ''
+  items.value.push(val)
+  lastOp.value = `✅ append(${val})`
+}
+
+function insert() {
+  const val = inputValue.value.trim()
+  const pos = positionValue.value
+
+  if (!val) {
+    lastOp.value = t('⚠️ Please enter a value', '⚠️ 请输入要添加的值')
+    return
+  }
+  if (pos < 0 || pos > items.value.length) {
+    lastOp.value = t(`⚠️ Position out of range (0-${items.value.length})`, `⚠️ 位置超出范围 (0-${items.value.length})`)
+    return
+  }
+  if (items.value.length >= MAX_ITEMS) {
+    lastOp.value = t(`⚠️ List is full (max ${MAX_ITEMS} nodes)`, `⚠️ 链表已满（最多 ${MAX_ITEMS} 个节点）`)
+    return
   }
 
-  onMounted(() => {
-    lastOp.value = isZh.value ? '点击 append/移除末尾 试试' : 'Try clicking append/remove last'
-  })
+  inputValue.value = ''
+  items.value.splice(pos, 0, val)
+  lastOp.value = `✅ insert(${val}, pos=${pos})`
+}
 
-  function removeLast() {
-    if (items.value.length === 0) {
-      lastOp.value = isZh.value ? '⚠️ 链表为空，无法移除' : '⚠️ List is empty, cannot remove'
-      return
-    }
-    const val = items.value.pop()
-    lastOp.value = isZh.value ? `🗑️ 移除 → ${val}` : `🗑️ Remove → ${val}`
+function get() {
+  const pos = positionValue.value
+  if (pos < 0 || pos >= items.value.length) {
+    lastOp.value = t(
+      `⚠️ Position out of range (0-${items.value.length - 1})`,
+      `⚠️ 位置超出范围 (0-${items.value.length - 1})`,
+    )
+    return
   }
+  lastOp.value = `🔍 get(${pos}) → ${items.value[pos]}`
+}
 
-  function reset() {
-    items.value = [...defaultData]
-    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
+function indexOf() {
+  const val = inputValue.value.trim()
+  if (!val) {
+    lastOp.value = t('⚠️ Enter value to search', '⚠️ 请输入要搜索的值')
+    return
   }
+  const idx = items.value.indexOf(val)
+  if (idx === -1) {
+    lastOp.value = t(`🔍 "${val}" → not found (-1)`, `🔍 "${val}" → 未找到 (-1)`)
+  } else {
+    lastOp.value = `🔍 "${val}" → index ${idx}`
+  }
+}
+
+function removeAt() {
+  const pos = positionValue.value
+  if (pos < 0 || pos >= items.value.length) {
+    lastOp.value = t(
+      `⚠️ Position out of range (0-${items.value.length - 1})`,
+      `⚠️ 位置超出范围 (0-${items.value.length - 1})`,
+    )
+    return
+  }
+  const val = items.value.splice(pos, 1)[0]
+  lastOp.value = `🗑️ removeAt(${pos}) → ${val}`
+}
+
+function reset() {
+  items.value = [...defaultData]
+  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+}
+
+onMounted(() => {
+  lastOp.value = t('Try append/insert/removeAt/get/indexOf operations', '尝试 append/insert/removeAt/get/indexOf 操作')
+})
 </script>
 
 <style scoped>
-  .visualizer {
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 12px;
-    padding: 16px;
-    background: var(--vp-c-bg-soft);
-    margin: 24px 0;
-  }
-  .controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-  .input-group {
-    display: flex;
-    gap: 6px;
-  }
-  .input {
-    width: 100px;
-    padding: 6px 10px;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 6px;
-    font-size: 14px;
-    background: var(--vp-c-bg);
-    color: var(--vp-c-text);
-  }
-  .btn {
-    padding: 6px 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-primary {
-    background: #6366f1;
-    color: white;
-  }
-  .btn-primary:hover {
-    background: #4f46e5;
-  }
-  .btn-danger {
-    background: #ef4444;
-    color: white;
-  }
-  .btn-danger:hover {
-    background: #dc2626;
-  }
-  .btn-secondary {
-    background: var(--vp-c-divider);
-    color: var(--vp-c-text);
-  }
-  .btn-secondary:hover {
-    background: var(--vp-c-bg);
-  }
-  .canvas-wrapper {
-    display: flex;
-    justify-content: center;
-    background: var(--vp-c-bg);
-    border-radius: 8px;
-    padding: 10px;
-    overflow-x: auto;
-    min-height: 140px;
-  }
-  .linked-list-svg {
-    min-width: 400px;
-  }
-  .status-bar {
-    display: flex;
-    gap: 20px;
-    margin-top: 12px;
-    font-size: 13px;
-    color: var(--vp-c-text-2);
-  }
-  .log {
-    color: var(--vp-c-brand-1);
-    font-weight: 500;
-    margin-left: auto;
-  }
+.pos-input {
+  width: 65px !important;
+}
+.visualizer {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--vp-c-bg-soft);
+  margin: 24px 0;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.input-group {
+  display: flex;
+  gap: 6px;
+}
+.input {
+  width: 100px;
+  padding: 6px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text);
+}
+.btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: #6366f1;
+  color: white;
+}
+.btn-primary:hover {
+  background: #4f46e5;
+}
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+.btn-danger:hover {
+  background: #dc2626;
+}
+.btn-secondary {
+  background: var(--vp-c-divider);
+  color: var(--vp-c-text);
+}
+.btn-secondary:hover {
+  background: var(--vp-c-bg);
+}
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  background: var(--vp-c-bg);
+  border-radius: 8px;
+  padding: 10px;
+  overflow-x: auto;
+  min-height: 140px;
+}
+.linked-list-svg {
+  min-width: 400px;
+}
+.status-bar {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+.log {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+  margin-left: auto;
+}
 </style>
