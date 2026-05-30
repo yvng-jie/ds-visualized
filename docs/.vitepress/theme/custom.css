@@ -1,4 +1,4 @@
-/* 自定义样式 */
+/* Custom styles */
 
 :root {
   --vp-c-brand-1: #3b82f6;
@@ -12,12 +12,12 @@
   --vp-home-hero-image-filter: blur(80px);
 }
 
-/* 代码块优化 */
+/* Code block optimizations */
 .vp-doc .vp-code-group .tabs {
   border-radius: 8px 8px 0 0;
 }
 
-/* 卡片式布局 */
+/* Card grid layout */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -55,7 +55,7 @@
   font-size: 14px;
 }
 
-/* Playground 容器 */
+/* Playground container */
 .playground-container {
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
@@ -69,7 +69,7 @@
   border: none;
 }
 
-/* 可视化容器 */
+/* Visualizer container */
 .visualizer-container {
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
@@ -79,7 +79,7 @@
   min-height: 400px;
 }
 
-/* 复杂度表格 */
+/* Complexity table */
 .complexity-table {
   width: 100%;
   border-collapse: collapse;
@@ -119,7 +119,7 @@
   color: #1e40af;
 }
 
-/* 学习进度条 */
+/* Learning progress bar */
 .learning-progress {
   display: flex;
   align-items: center;
@@ -145,7 +145,7 @@
   transition: width 0.5s ease;
 }
 
-/* 现实类比框 */
+/* Analogy box */
 .analogy-box {
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   border-left: 4px solid #3b82f6;
@@ -158,7 +158,7 @@
   background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
 }
 
-/* Tip 提示框 */
+/* Tip box */
 .tip-box {
   background: #f0fdf4;
   border-left: 4px solid #22c55e;
