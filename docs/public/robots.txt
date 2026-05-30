@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yvng-jie.github.io/ds-visualized/sitemap.xml

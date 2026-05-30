@@ -1,0 +1,17 @@
+{
+  "name": "JS Data Structures Visualized",
+  "short_name": "DS Visualized",
+  "description": "Interactive data structures tutorial with visual animations and live code playground",
+  "start_url": "/ds-visualized/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/ds-visualized/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
