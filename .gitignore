@@ -26,3 +26,6 @@ yarn-error.log*
 # Archive of original JS files
 archive/
 *.sw?
+
+# Private local docs (not for commit)
+.local/
