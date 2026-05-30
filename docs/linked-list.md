@@ -1,3 +1,8 @@
+---
+title: Linked List — Linear Data Structure
+description: Learn Singly Linked List in JavaScript with visual animations. Complete guide with code, complexity analysis, and interview questions.
+---
+
 # 🔗 Linked List
 
 > **A chain of nodes, each pointing to the next one** — Like train cars connected together

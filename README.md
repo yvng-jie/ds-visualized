@@ -36,14 +36,19 @@
 ## 📸 演示
 
 <p align="center">
-  <img src="docs/public/screenshots/2026-05-28_18-16-26_266.png" width="95%" alt="Queue Visualization"/>
+  <picture>
+    <source srcset="docs/public/screenshots/2026-05-28_18-16-26_266.webp" type="image/webp">
+    <img src="docs/public/screenshots/2026-05-28_18-16-26_266.png" width="95%" alt="Queue Visualization" loading="lazy"/>
+  </picture>
   <br/>
   <em>Website Home</em>
 </p>
 <p align="center">
-  <img src="docs/public/screenshots/2026-05-28_18-28-46.gif" width="95%" alt="Queue Visualization"/>
+  <video width="95%" autoplay muted loop playsinline poster="docs/public/screenshots/2026-05-28_18-16-26_266.webp">
+    <source src="docs/public/screenshots/2026-05-28_18-28-46.mp4" type="video/mp4">
+  </video>
   <br/>
-  <em>Graph git</em>
+  <em>Graph BFS traversal</em>
 </p>
 ---
 

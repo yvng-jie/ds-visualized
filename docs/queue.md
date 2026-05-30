@@ -1,3 +1,8 @@
+---
+title: Queue — FIFO Data Structure
+description: Learn Queue data structure in JavaScript with visual animations. Complete guide with code, complexity analysis, and interview questions.
+---
+
 # 📋 Queue
 
 > **First-In-First-Out (FIFO)** — The first item you put in is the first one you take out

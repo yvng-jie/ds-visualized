@@ -1,3 +1,8 @@
+---
+title: Stack — LIFO Data Structure
+description: Learn Stack data structure in JavaScript with visual animations. Complete guide with code, complexity analysis, and interview questions.
+---
+
 # 📦 Stack
 
 > **Last-In-First-Out (LIFO)** — The last item you put in is the first one you take out

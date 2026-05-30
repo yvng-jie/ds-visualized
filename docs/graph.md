@@ -1,3 +1,8 @@
+---
+title: Graph — BFS & DFS Traversal
+description: Learn Graph data structure in JavaScript with interactive BFS/DFS visualizer. Complete guide with code, complexity analysis, and interview questions.
+---
+
 # 🕸️ Graph
 
 > **A network of vertices (nodes) connected by edges** — Like a social network of friends

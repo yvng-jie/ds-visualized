@@ -1,3 +1,8 @@
+---
+title: Binary Search Tree (BST) — Data Structure
+description: Learn BST in JavaScript with interactive visualizer. Complete guide with insert, delete, traversal operations, complexity, and interview questions.
+---
+
 # 🌳 Binary Search Tree (BST)
 
 > **Left child < parent < right child** — Like binary search, but as a tree

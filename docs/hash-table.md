@@ -1,3 +1,8 @@
+---
+title: Hash Table — O(1) Lookups
+description: Learn Hash Table in JavaScript with collision resolution visualization. Complete guide with code, complexity analysis, and interview questions.
+---
+
 # 🔑 Hash Table
 
 > **Use a hash function to map keys to array positions** — Makes lookups nearly O(1)
@@ -203,10 +208,10 @@ console.log(firstUniqChar('aabb')) // -1
 
 ### LeetCode Practice
 
-| # | Problem | Difficulty |
-| --- | --- | --- |
-| [1](https://leetcode.com/problems/two-sum/) | Two Sum | 🟢 Easy |
-| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating | 🟡 Medium |
+| #                                                                                  | Problem                             | Difficulty |
+| ---------------------------------------------------------------------------------- | ----------------------------------- | ---------- |
+| [1](https://leetcode.com/problems/two-sum/)                                        | Two Sum                             | 🟢 Easy    |
+| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating | 🟡 Medium  |
 
 ---
 
