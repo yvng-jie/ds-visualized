@@ -3,6 +3,7 @@ import js from '@eslint/js'
 import globals from 'globals'
 
 export default [
+  { ignores: ['archive/', '.local/', 'docs/.vitepress/', 'dist/', 'node_modules/'] },
   js.configs.recommended,
   {
     languageOptions: {
@@ -18,8 +19,5 @@ export default [
       'no-console': 'off',
       'prefer-const': 'warn',
     },
-  },
-  {
-    ignores: ['node_modules/', 'dist/', 'docs/.vitepress/dist/', 'docs/.vitepress/cache/', '.local/'],
   },
 ]
