@@ -93,10 +93,10 @@ An interactive tutorial website for learning data structures in JavaScript. Ever
 ```bash
 git clone https://github.com/yvng-jie/ds-visualized.git
 cd ds-visualized
-npm install
-npm run docs:dev     # Start dev server
-npm run docs:build   # Build static files
-npm run docs:preview # Preview built site
+pnpm install
+pnpm run docs:dev     # Start dev server
+pnpm run docs:build   # Build static files
+pnpm run docs:preview # Preview built site
 ```
 
 ---

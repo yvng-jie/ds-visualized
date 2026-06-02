@@ -31,8 +31,8 @@
 ## 本地开发 / Local Development
 
 ```bash
-npm install
-npm run docs:dev
+pnpm install
+pnpm run docs:dev
 ```
 
 ## 代码规范 / Code Style

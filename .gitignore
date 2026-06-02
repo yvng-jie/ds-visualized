@@ -23,6 +23,11 @@ yarn-error.log*
 *.njsproj
 *.sln
 
+# OS files
+Thumbs.db
+*.swp
+*.swo
+
 # Archive of original JS files
 archive/
 *.sw?
