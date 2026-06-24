@@ -1,16 +1,16 @@
-# 🔑 哈希表 HashTable
+#  哈希表 HashTable
 
 > **通过散列函数将 key 映射到数组的某个位置** — 让查找接近 O(1)
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**📮 信箱**：一栋楼有很多信箱，每个信箱都有编号。你根据收件人名字算出编号（散列），直接走到对应信箱前取信，不需要逐个翻找。
+** 信箱**：一栋楼有很多信箱，每个信箱都有编号。你根据收件人名字算出编号（散列），直接走到对应信箱前取信，不需要逐个翻找。
 
 其他例子：
 
@@ -32,7 +32,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class HashTable {
@@ -42,7 +42,7 @@ class HashTable {
     this.limit = 7 // 当前数组长度（初始为质数）
   }
 
-  // 🔑 散列函数：key → 数组下标
+  //  散列函数：key → 数组下标
   hashFunc(str, size) {
     let hashCode = 0
 
@@ -55,7 +55,7 @@ class HashTable {
     return hashCode % size
   }
 
-  // 🔑 插入/更新
+  //  插入/更新
   put(key, value) {
     const index = this.hashFunc(key, this.limit)
 
@@ -85,7 +85,7 @@ class HashTable {
     }
   }
 
-  // 🔍 获取
+  //  获取
   get(key) {
     const index = this.hashFunc(key, this.limit)
     const bucket = this.storage[index]
@@ -101,7 +101,7 @@ class HashTable {
     return null
   }
 
-  // 🗑️ 移除
+  //  移除
   remove(key) {
     const index = this.hashFunc(key, this.limit)
     const bucket = this.storage[index]
@@ -126,17 +126,17 @@ class HashTable {
     return null
   }
 
-  // ❓ 是否为空
+  //  是否为空
   isEmpty() {
     return this.count === 0
   }
 
-  // 📏 元素个数
+  //  元素个数
   size() {
     return this.count
   }
 
-  // 🔄 动态扩容/缩容
+  //  动态扩容/缩容
   _resize(newLimit) {
     const oldStorage = this.storage
 
@@ -157,7 +157,7 @@ class HashTable {
     }
   }
 
-  // 🔢 判断是否为质数
+  //  判断是否为质数
   _isPrime(num) {
     if (num < 2) return false
     if (num === 2) return true
@@ -170,7 +170,7 @@ class HashTable {
     return true
   }
 
-  // 🔢 获取不小于 num 的最小质数
+  //  获取不小于 num 的最小质数
   _getPrime(num) {
     while (!this._isPrime(num)) {
       num++
@@ -192,18 +192,18 @@ class HashTable {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作       | 平均        | 最坏 | 说明                         |
 | ---------- | ----------- | ---- | ---------------------------- |
-| `put()`    | **O(1)** ✅ | O(n) | 哈希冲突严重时退化为链表查找 |
-| `get()`    | **O(1)** ✅ | O(n) | 同上                         |
-| `remove()` | **O(1)** ✅ | O(n) | 同上                         |
-| 扩容/缩容  | **O(n)** ⚠️ | O(n) | 需要重新散列所有元素         |
+| `put()`    | **O(1)**  | O(n) | 哈希冲突严重时退化为链表查找 |
+| `get()`    | **O(1)**  | O(n) | 同上                         |
+| `remove()` | **O(1)**  | O(n) | 同上                         |
+| 扩容/缩容  | **O(n)**  | O(n) | 需要重新散列所有元素         |
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 第一个只出现一次的字符
 
@@ -255,7 +255,7 @@ console.log(isAnagram('rat', 'car')) // false
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                              |
 | ---------- | ------------------------------------------------- |
@@ -263,7 +263,7 @@ console.log(isAnagram('rat', 'car')) // false
 | 关键操作   | put / get / remove，平均 O(1)                     |
 | 三个关键点 | 散列函数、冲突解决、动态扩容                      |
 | 与字典关系 | 字典是哈希表的简化版（基于 JS 对象）              |
-| 下一步学习 | 👉 [二叉搜索树 — 有序树结构](/binary-search-tree) |
+| 下一步学习 |  [二叉搜索树 — 有序树结构](/binary-search-tree) |
 
 ---
 
@@ -271,8 +271,8 @@ console.log(isAnagram('rat', 'car')) // false
 
 | 题号                                                                              | 题目                 | 难度    |
 | --------------------------------------------------------------------------------- | -------------------- | ------- |
-| [1](https://leetcode.cn/problems/two-sum/)                                        | 两数之和             | 🟢 简单 |
-| [3](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) | 无重复字符的最长子串 | 🟡 中等 |
-| [36](https://leetcode.cn/problems/valid-sudoku/)                                  | 有效的数独           | 🟡 中等 |
+| [1](https://leetcode.cn/problems/two-sum/)                                        | 两数之和             |  简单 |
+| [3](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) | 无重复字符的最长子串 |  中等 |
+| [36](https://leetcode.cn/problems/valid-sudoku/)                                  | 有效的数独           |  中等 |
 
-[⬅️ 返回集合](/set) · [返回首页](/)
+[ 返回集合](/set) · [返回首页](/)

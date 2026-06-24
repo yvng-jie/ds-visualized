@@ -128,7 +128,7 @@
           fill="#94a3b8"
           font-size="16"
         >
-          {{ t('Empty list (head → null)', '空链表 (head → null)') }}
+          {{ t('Empty list (head null)', '空链表 (head null)') }}
         </text>
 
         <!-- head marker -->
@@ -194,31 +194,31 @@ const items = ref([...defaultData])
 function append() {
   if (animating) return
   if (items.value.length >= MAX_ITEMS) {
-    lastOp.value = t(`⚠️ List is full (max ${MAX_ITEMS} nodes)`, `⚠️ 链表已满（最多 ${MAX_ITEMS} 个节点）`)
+    lastOp.value = t( `List is full (max ${MAX_ITEMS} nodes)`, `链表已满（最多 ${MAX_ITEMS} 个节点）`)
     return
   }
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value to append', '⚠️ 请输入要添加的值')
+    lastOp.value = t('Please enter a value to append', '请输入要添加的值')
     return
   }
   inputValue.value = ''
   items.value.push(val)
-  lastOp.value = `✅ append(${val})`
+  lastOp.value = ` append(${val})`
 }
 
 function removeLast() {
   if (items.value.length === 0) {
-    lastOp.value = t('⚠️ List is empty, cannot remove', '⚠️ 链表为空，无法移除')
+    lastOp.value = t('List is empty, cannot remove', '链表为空，无法移除')
     return
   }
   const val = items.value.pop()
-  lastOp.value = `⏏️ removeLast() → ${val}`
+  lastOp.value = `removeLast() ${val}`
 }
 
 function reset() {
   items.value = [...defaultData]
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
 }
 
 onMounted(() => {

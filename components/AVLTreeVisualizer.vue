@@ -33,7 +33,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from './composables/useI18n.js'
-import { COLORS, drawText } from './visualizer-utils.js'
+import { COLORS, drawText, drawEmptyMessage } from './visualizer-utils.js'
 import { NODE_R, LEVEL_H, CANVAS_W, CANVAS_H } from '../lib/constants.js'
 
 const { t } = useI18n()
@@ -178,10 +178,7 @@ function draw() {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 
   if (!root) {
-    ctx.fillStyle = COLORS.muted
-    ctx.font = '16px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.fillText(t('Empty AVL tree', '空 AVL 树'), canvasWidth / 2, canvasHeight / 2)
+    drawEmptyMessage(ctx, t('Empty AVL tree', '空 AVL 树'), canvasWidth, canvasHeight)
     return
   }
 
@@ -232,13 +229,13 @@ function draw() {
 function insert() {
   const val = parseInt(inputValue.value)
   if (isNaN(val)) {
-    lastOp.value = t('⚠️ Enter a number', '⚠️ 请输入数字')
+    lastOp.value = t('Enter a number', '请输入数字')
     return
   }
   inputValue.value = ''
 
   if (search(root, val)) {
-    lastOp.value = t(`⚠️ ${val} already exists`, `⚠️ ${val} 已存在`)
+    lastOp.value = t(`${val} already exists`, `${val} 已存在`)
     draw()
     return
   }
@@ -247,8 +244,8 @@ function insert() {
   layout(root, 0, canvasWidth, 50)
   count.value = countNodes(root)
   height.value = treeHeight(root)
-  lastRotation.value = rot ? `🔄 Rotation: ${rot}` : ''
-  lastOp.value = `✅ insert(${val})`
+    lastRotation.value = rot ? `Rotation: ${rot}` : ''
+  lastOp.value = ` insert(${val})`
   draw()
 }
 
@@ -256,12 +253,12 @@ function removeNode() {
   if (animating) return
   const val = parseInt(inputValue.value)
   if (isNaN(val)) {
-    lastOp.value = t('⚠️ Enter a number', '⚠️ 请输入数字')
+    lastOp.value = t('Enter a number', '请输入数字')
     return
   }
   inputValue.value = ''
   if (!search(root, val)) {
-    lastOp.value = t(`⚠️ ${val} not found`, `⚠️ ${val} 不存在`)
+    lastOp.value = t(`${val} not found`, `${val} 不存在`)
     draw()
     return
   }
@@ -270,7 +267,7 @@ function removeNode() {
   count.value = countNodes(root)
   height.value = treeHeight(root)
   lastRotation.value = ''
-  lastOp.value = `🗑️ delete(${val})`
+  lastOp.value = `delete(${val})`
   draw()
 }
 
@@ -312,7 +309,7 @@ function reset() {
   count.value = countNodes(root)
   height.value = treeHeight(root)
   lastRotation.value = ''
-  lastOp.value = t('↻ Reset to balanced AVL tree', '↻ 已重置为平衡的 AVL 树')
+  lastOp.value = t('Reset to balanced AVL tree', '已重置为平衡的 AVL 树')
   draw()
 }
 

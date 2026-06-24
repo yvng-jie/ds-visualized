@@ -1,16 +1,16 @@
-# 🔢 Priority Queue
+#  Priority Queue
 
 > **Every element has a priority. Higher priority elements get served first.** — Like an emergency room treating critical patients before minor ones.
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🏥 Emergency Room**: Heart attack patients (high priority) get treated before someone with a small cut (low priority), even if the small cut arrived earlier.
+** Emergency Room**: Heart attack patients (high priority) get treated before someone with a small cut (low priority), even if the small cut arrived earlier.
 
 More examples:
 
@@ -30,7 +30,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 // Wrapper class: holds data + priority
@@ -103,28 +103,28 @@ class PriorityQueue {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation   | Time        | Notes                            |
 | ----------- | ----------- | -------------------------------- |
-| `enqueue()` | **O(n)** ⚠️ | Linear search for insertion spot |
-| `dequeue()` | **O(n)** ⚠️ | `shift()` shifts elements        |
+| `enqueue()` | **O(n)**  | Linear search for insertion spot |
+| `dequeue()` | **O(n)**  | `shift()` shifts elements        |
 
 <div class="tip-box">
 
-**💡 Pro tip**: For better performance, use a **Binary Heap** for priority queues. Both enqueue and dequeue become O(log n). Check out the [Heap](/heap) chapter.
+** Pro tip**: For better performance, use a **Binary Heap** for priority queues. Both enqueue and dequeue become O(log n). Check out the [Heap](/heap) chapter.
 
 </div>
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <QueueVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Kth Largest Element in an Array
 
@@ -143,7 +143,7 @@ function findKthLargest(nums, k) {
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property          | Description                                      |
 | ----------------- | ------------------------------------------------ |
@@ -151,16 +151,16 @@ function findKthLargest(nums, k) {
 | Compared to Queue | Adds priority-based ordering                     |
 | Key ops           | enqueue (sorted insert), dequeue (take first)    |
 | Optimization      | Use a Binary Heap for O(log n)                   |
-| Next              | 👉 [Dictionary — Key-Value Storage](/dictionary) |
+| Next              |  [Dictionary — Key-Value Storage](/dictionary) |
 
 ### LeetCode Practice
 
 | #                                                                     | Problem                         | Difficulty |
 | --------------------------------------------------------------------- | ------------------------------- | ---------- |
-| [215](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Kth Largest Element             | 🟡 Medium  |
-| [347](https://leetcode.com/problems/top-k-frequent-elements/)         | Top K Frequent Elements         | 🟡 Medium  |
-| [703](https://leetcode.com/problems/kth-largest-element-in-a-stream/) | Kth Largest Element in a Stream | 🟢 Easy    |
+| [215](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Kth Largest Element             |  Medium  |
+| [347](https://leetcode.com/problems/top-k-frequent-elements/)         | Top K Frequent Elements         |  Medium  |
+| [703](https://leetcode.com/problems/kth-largest-element-in-a-stream/) | Kth Largest Element in a Stream |  Easy    |
 
 ---
 
-[⬅️ Back to Queue](/queue) · [Back to Home](/)
+[ Back to Queue](/queue) · [Back to Home](/)

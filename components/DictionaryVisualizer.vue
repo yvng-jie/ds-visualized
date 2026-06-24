@@ -97,7 +97,7 @@ function draw(highlightKey = null) {
     ctx.font = '14px sans-serif'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText('→', x + cellW * 0.45, y + cellH / 2)
+    
 
     // Value box
     const valGrad = ctx.createLinearGradient(x + cellW * 0.5, y, x + cellW * 0.5, y + cellH)
@@ -126,14 +126,14 @@ function set() {
   const k = keyValue.value.trim()
   const v = valValue.value.trim()
   if (!k) {
-    lastOp.value = t('⚠️ Please enter a key', '⚠️ 请输入键')
+    lastOp.value = t('Please enter a key', '请输入键')
     return
   }
   keyValue.value = ''
   valValue.value = ''
 
   dict[k] = v || ''
-  lastOp.value = `✅ set(${k}: ${v || ''})`
+  lastOp.value = `set(${k}: ${v || ''})`
   draw(k)
 }
 
@@ -141,18 +141,18 @@ function remove() {
   if (animating) return
   const k = keyValue.value.trim()
   if (!k) {
-    lastOp.value = t('⚠️ Enter key to remove', '⚠️ 请输入要移除的键')
+    lastOp.value = t('Enter key to remove', '请输入要移除的键')
     return
   }
   keyValue.value = ''
 
   if (!(k in dict)) {
-    lastOp.value = t(`⚠️ Key "${k}" not found`, `⚠️ 键 "${k}" 不存在`)
+    lastOp.value = t(`Key "${k}" not found`, `键 "${k}" 不存在`)
     draw()
     return
   }
   delete dict[k]
-  lastOp.value = `🗑️ remove(${k})`
+  lastOp.value = `remove(${k})`
   draw()
 }
 
@@ -160,14 +160,14 @@ function get() {
   if (animating) return
   const k = keyValue.value.trim()
   if (!k) {
-    lastOp.value = t('⚠️ Enter key to get', '⚠️ 请输入要查找的键')
+    lastOp.value = t('Enter key to get', '请输入要查找的键')
     return
   }
   if (k in dict) {
-    lastOp.value = `🔍 get(${k}) → ${dict[k]}`
+    lastOp.value = `get(${k}) ${dict[k]}`
     draw(k)
   } else {
-    lastOp.value = t(`🔍 get(${k}) → undefined`, `🔍 get(${k}) → 未找到`)
+    lastOp.value = t(`get(${k}) undefined`, `get(${k}) 未找到`)
     draw()
   }
 }
@@ -177,7 +177,7 @@ function reset() {
   Object.keys(dict).forEach((k) => {
     if (!(k in defaultData)) delete dict[k]
   })
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

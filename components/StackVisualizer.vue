@@ -70,7 +70,7 @@
   import { ref, onMounted } from 'vue'
   import { useI18n } from './composables/useI18n.js'
   import { useAnimation } from './composables/useAnimation.js'
-  import { COLORS } from './visualizer-utils.js'
+  import { COLORS, drawGradientBox, drawText, createRoundedRectPath } from './visualizer-utils.js'
 
   const { isZh } = useI18n()
   const { animating, speed, sleep } = useAnimation()
@@ -106,74 +106,63 @@
     ctx.fillStyle = COLORS.text
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText(isZh.value ? '⬆ 栈顶' : '⬆ Top', canvasWidth / 2, 18)
+    ctx.fillText(isZh.value ? '栈顶' : 'Top', canvasWidth / 2, 18)
 
     for (let i = 0; i < items.value.length; i++) {
       const y = startY - (items.value.length - i) * (boxHeight + 4)
 
       // Draw box
-      const gradient = ctx.createLinearGradient(startX, y, startX, y + boxHeight)
-      gradient.addColorStop(0, COLORS.primary)
-      gradient.addColorStop(1, COLORS.primaryDark)
-      ctx.fillStyle = gradient
-      ctx.beginPath()
-      ctx.roundRect(startX, y, boxWidth, boxHeight, 6)
-      ctx.fill()
+      drawGradientBox(ctx, startX, y, boxWidth, boxHeight, 6, COLORS.primary, COLORS.primaryDark)
 
       // Highlight border - top of stack
       if (i === items.value.length - 1) {
         ctx.strokeStyle = COLORS.accent
         ctx.lineWidth = 3
-        ctx.beginPath()
-        ctx.roundRect(startX, y, boxWidth, boxHeight, 6)
+        createRoundedRectPath(ctx, startX, y, boxWidth, boxHeight, 6)
         ctx.stroke()
       }
 
       // Draw text
-      ctx.fillStyle = COLORS.white
-      ctx.font = 'bold 14px monospace'
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.fillText(String(items.value[i]), startX + boxWidth / 2, y + boxHeight / 2)
+      drawText(ctx, String(items.value[i]), startX + boxWidth / 2, y + boxHeight / 2)
     }
   }
 
   function push() {
-    if (animating) return
+    if (animating.value) return
     if (items.value.length >= MAX_ITEMS) {
       lastOp.value = isZh.value
-        ? '⚠️ 栈已满（最多 ' + MAX_ITEMS + ' 个元素）'
-        : '⚠️ Stack is full (max ' + MAX_ITEMS + ' items)'
+        ? '栈已满（最多 ' + MAX_ITEMS + ' 个元素）'
+        : 'Stack is full (max ' + MAX_ITEMS + ' items)'
       return
     }
     const val = inputValue.value.trim()
     if (!val) {
-      lastOp.value = isZh.value ? '⚠️ 请输入要入栈的值' : '⚠️ Please enter a value to push'
+      lastOp.value = isZh.value ? '请输入要入栈的值' : 'Please enter a value to push'
       return
     }
     inputValue.value = ''
     items.value.push(val)
-    lastOp.value = `✅ push(${val})`
+    lastOp.value = `push(${val})`
     drawStack()
   }
 
   async function pop() {
-    if (animating) return
+    if (animating.value) return
     if (items.value.length === 0) {
-      lastOp.value = isZh.value ? '⚠️ 栈为空，无法 pop' : '⚠️ Stack is empty, cannot pop'
+      lastOp.value = isZh.value ? '栈为空，无法 pop' : 'Stack is empty, cannot pop'
       return
     }
-    animating = true
+    animating.value = true
     const val = items.value.pop()
-    lastOp.value = `⏏️ pop() → ${val}`
+    lastOp.value = `pop() ${val}`
     drawStack()
     await sleep(speed.value)
-    animating = false
+    animating.value = false
   }
 
   function reset() {
     items.value = [...defaultData]
-    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
+    lastOp.value = isZh.value ? '已恢复初始示例数据' : 'Reset to initial data'
     drawStack()
   }
 

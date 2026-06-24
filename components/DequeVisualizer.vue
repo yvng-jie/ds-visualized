@@ -76,8 +76,8 @@ function draw() {
   ctx.font = '12px sans-serif'
   ctx.textAlign = 'center'
   if (items.value.length > 0) {
-    ctx.fillText(t('⬅ Front (removeFront)', '⬅ 前端(removeFront)'), startX + boxSize / 2, 40)
-    ctx.fillText(t('Back (removeBack) ➡', '后端(removeBack) ➡'), startX + totalWidth - boxSize / 2, 40)
+    ctx.fillText(t('Front (removeFront)', '前端(removeFront)'), startX + boxSize / 2, 40)
+    ctx.fillText(t('Back (removeBack)', '后端(removeBack)'), startX + totalWidth - boxSize / 2, 40)
   }
 
   for (let i = 0; i < items.value.length; i++) {
@@ -115,46 +115,46 @@ function draw() {
 function addFront() {
   if (animating) return
   if (items.value.length >= MAX_ITEMS) {
-    lastOp.value = t(`⚠️ Deque is full (max ${MAX_ITEMS} items)`, `⚠️ 双端队列已满（最多 ${MAX_ITEMS} 个元素）`)
+    lastOp.value = t(`Deque is full (max ${MAX_ITEMS} items)`, `双端队列已满（最多 ${MAX_ITEMS} 个元素）`)
     return
   }
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value', '⚠️ 请输入要添加的值')
+    lastOp.value = t('Please enter a value', '请输入要添加的值')
     return
   }
   inputValue.value = ''
   items.value.unshift(val)
-  lastOp.value = `✅ addFront(${val})`
+  lastOp.value = `addFront(${val})`
   draw()
 }
 
 function addBack() {
   if (animating) return
   if (items.value.length >= MAX_ITEMS) {
-    lastOp.value = t(`⚠️ Deque is full (max ${MAX_ITEMS} items)`, `⚠️ 双端队列已满（最多 ${MAX_ITEMS} 个元素）`)
+    lastOp.value = t(`Deque is full (max ${MAX_ITEMS} items)`, `双端队列已满（最多 ${MAX_ITEMS} 个元素）`)
     return
   }
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value', '⚠️ 请输入要添加的值')
+    lastOp.value = t('Please enter a value', '请输入要添加的值')
     return
   }
   inputValue.value = ''
   items.value.push(val)
-  lastOp.value = `✅ addBack(${val})`
+  lastOp.value = `addBack(${val})`
   draw()
 }
 
 async function removeFront() {
   if (animating) return
   if (items.value.length === 0) {
-    lastOp.value = t('⚠️ Deque is empty, cannot remove', '⚠️ 双端队列为空，无法移除')
+    lastOp.value = t('Deque is empty, cannot remove', '双端队列为空，无法移除')
     return
   }
   animating = true
   const val = items.value.shift()
-  lastOp.value = `⏏️ removeFront() → ${val}`
+  lastOp.value = `removeFront() ${val}`
   draw()
   await new Promise((r) => setTimeout(r, 300))
   animating = false
@@ -163,12 +163,12 @@ async function removeFront() {
 async function removeBack() {
   if (animating) return
   if (items.value.length === 0) {
-    lastOp.value = t('⚠️ Deque is empty, cannot remove', '⚠️ 双端队列为空，无法移除')
+    lastOp.value = t('Deque is empty, cannot remove', '双端队列为空，无法移除')
     return
   }
   animating = true
   const val = items.value.pop()
-  lastOp.value = `⏏️ removeBack() → ${val}`
+  lastOp.value = `removeBack() ${val}`
   draw()
   await new Promise((r) => setTimeout(r, 300))
   animating = false
@@ -176,7 +176,7 @@ async function removeBack() {
 
 function reset() {
   items.value = [...defaultData]
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

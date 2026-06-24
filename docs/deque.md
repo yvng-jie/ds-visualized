@@ -1,16 +1,16 @@
-# 🔄 Deque (Double-Ended Queue)
+#  Deque (Double-Ended Queue)
 
 > **Insert and remove from both ends** — Like a queue that's also a stack
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🎢 Roller coaster line**: The ride operator says "We need two more people!" — people from both the front AND the back of the line can jump on.
+** Roller coaster line**: The ride operator says "We need two more people!" — people from both the front AND the back of the line can jump on.
 
 More examples:
 
@@ -30,7 +30,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Deque {
@@ -93,18 +93,18 @@ class Deque {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation       | Time        | Notes               |
 | --------------- | ----------- | ------------------- |
-| `addFront()`    | **O(1)** ✅ | Property assignment |
-| `addBack()`     | **O(1)** ✅ | Property assignment |
-| `removeFront()` | **O(1)** ✅ | Delete property     |
-| `removeBack()`  | **O(1)** ✅ | Delete property     |
+| `addFront()`    | **O(1)**  | Property assignment |
+| `addBack()`     | **O(1)**  | Property assignment |
+| `removeFront()` | **O(1)**  | Delete property     |
+| `removeBack()`  | **O(1)**  | Delete property     |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Sliding Window Maximum
 
@@ -143,7 +143,7 @@ console.log(isPalindrome('hello')) // false
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property        | Description                             |
 | --------------- | --------------------------------------- |
@@ -157,9 +157,9 @@ console.log(isPalindrome('hello')) // false
 
 | #                                                            | Problem                | Difficulty |
 | ------------------------------------------------------------ | ---------------------- | ---------- |
-| [239](https://leetcode.com/problems/sliding-window-maximum/) | Sliding Window Maximum | 🔴 Hard    |
-| [641](https://leetcode.com/problems/design-circular-deque/)  | Design Circular Deque  | 🟡 Medium  |
+| [239](https://leetcode.com/problems/sliding-window-maximum/) | Sliding Window Maximum |  Hard    |
+| [641](https://leetcode.com/problems/design-circular-deque/)  | Design Circular Deque  |  Medium  |
 
 ---
 
-[⬅️ Back to Heap](/heap) · [Back to Home](/)
+[ Back to Heap](/heap) · [Back to Home](/)

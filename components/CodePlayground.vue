@@ -1,7 +1,7 @@
 <template>
   <div class="code-playground">
     <div class="playground-header">
-      <span class="playground-title">{{ isZh ? '🎮 在线 Playground' : '🎮 Online Playground' }}</span>
+      <span class="playground-title">{{ isZh ? '在线 Playground' : 'Online Playground' }}</span>
       <div class="playground-actions">
         <button
           class="btn btn-run"
@@ -13,7 +13,7 @@
           class="btn btn-reset"
           @click="resetCode"
         >
-          {{ isZh ? '↻ 重置' : '↻ Reset' }}
+           {{ isZh ? '重置' : 'Reset' }}
         </button>
         <button
           class="btn btn-copy"
@@ -76,14 +76,14 @@
       logs.push(args.map((a) => (typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a))).join(' '))
     }
     console.error = (...args) => {
-      logs.push('❌ ' + args.join(' '))
+      logs.push(args.join(' '))
     }
 
     try {
       const fn = new Function(code.value)
       fn()
     } catch (e) {
-      logs.push((isZh.value ? '❌ 错误: ' : '❌ Error: ') + e.message)
+      logs.push((isZh.value ? '错误: ' : 'Error: ') + e.message)
     } finally {
       console.log = originalLog
       console.error = originalError
@@ -100,7 +100,7 @@
   async function copyCode() {
     try {
       await navigator.clipboard.writeText(code.value)
-      output.value = isZh.value ? '✅ 已复制到剪贴板' : '✅ Copied to clipboard'
+      output.value = isZh.value ? '已复制到剪贴板' : 'Copied to clipboard'
     } catch {
       const ta = document.createElement('textarea')
       ta.value = code.value
@@ -108,7 +108,7 @@
       ta.select()
       document.execCommand('copy')
       document.body.removeChild(ta)
-      output.value = isZh.value ? '✅ 已复制到剪贴板' : '✅ Copied to clipboard'
+      output.value = isZh.value ? '已复制到剪贴板' : 'Copied to clipboard'
     }
   }
 </script>

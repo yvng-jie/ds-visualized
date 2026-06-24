@@ -97,7 +97,7 @@
           fill="#94a3b8"
           font-size="16"
         >
-          {{ isZh ? '空链表 (head → null)' : 'Empty list (head → null)' }}
+          {{ isZh ? '空链表 (head null)' : 'Empty list (head null)' }}
         </text>
 
         <!-- Head marker -->
@@ -157,17 +157,17 @@ const items = ref([...defaultData])
 function append() {
   if (animating) return
   if (items.value.length >= MAX_ITEMS) {
-    lastOp.value = t(`⚠️ List is full (max ${MAX_ITEMS} nodes)`, `⚠️ 链表已满（最多 ${MAX_ITEMS} 个节点）`)
+    lastOp.value = t( `List is full (max ${MAX_ITEMS} nodes)`, `链表已满（最多 ${MAX_ITEMS} 个节点）`)
     return
   }
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value to append', '⚠️ 请输入要添加的值')
+    lastOp.value = t('Please enter a value to append', '请输入要添加的值')
     return
   }
   inputValue.value = ''
   items.value.push(val)
-  lastOp.value = `✅ append(${val})`
+  lastOp.value = ` append(${val})`
 }
 
 function insert() {
@@ -176,46 +176,46 @@ function insert() {
   const pos = positionValue.value
 
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value', '⚠️ 请输入要添加的值')
+    lastOp.value = t('Please enter a value', '请输入要添加的值')
     return
   }
   if (pos < 0 || pos > items.value.length) {
-    lastOp.value = t(`⚠️ Position out of range (0-${items.value.length})`, `⚠️ 位置超出范围 (0-${items.value.length})`)
+    lastOp.value = t(`Position out of range (0-${items.value.length})`, `位置超出范围 (0-${items.value.length})`)
     return
   }
   if (items.value.length >= MAX_ITEMS) {
-    lastOp.value = t(`⚠️ List is full (max ${MAX_ITEMS} nodes)`, `⚠️ 链表已满（最多 ${MAX_ITEMS} 个节点）`)
+    lastOp.value = t( `List is full (max ${MAX_ITEMS} nodes)`, `链表已满（最多 ${MAX_ITEMS} 个节点）`)
     return
   }
 
   inputValue.value = ''
   items.value.splice(pos, 0, val)
-  lastOp.value = `✅ insert(${val}, pos=${pos})`
+  lastOp.value = ` insert(${val}, pos=${pos})`
 }
 
 function get() {
   const pos = positionValue.value
   if (pos < 0 || pos >= items.value.length) {
     lastOp.value = t(
-      `⚠️ Position out of range (0-${items.value.length - 1})`,
-      `⚠️ 位置超出范围 (0-${items.value.length - 1})`,
+      `Position out of range (0-${items.value.length - 1})`,
+      `位置超出范围 (0-${items.value.length - 1})`,
     )
     return
   }
-  lastOp.value = `🔍 get(${pos}) → ${items.value[pos]}`
+  lastOp.value = `get(${pos}) ${items.value[pos]}`
 }
 
 function indexOf() {
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Enter value to search', '⚠️ 请输入要搜索的值')
+    lastOp.value = t('Enter value to search', '请输入要搜索的值')
     return
   }
   const idx = items.value.indexOf(val)
   if (idx === -1) {
-    lastOp.value = t(`🔍 "${val}" → not found (-1)`, `🔍 "${val}" → 未找到 (-1)`)
+    lastOp.value = t(`${val} not found (-1)`, `${val} 未找到 (-1)`)
   } else {
-    lastOp.value = `🔍 "${val}" → index ${idx}`
+    lastOp.value = `${val} index ${idx}`
   }
 }
 
@@ -223,18 +223,18 @@ function removeAt() {
   const pos = positionValue.value
   if (pos < 0 || pos >= items.value.length) {
     lastOp.value = t(
-      `⚠️ Position out of range (0-${items.value.length - 1})`,
-      `⚠️ 位置超出范围 (0-${items.value.length - 1})`,
+      `Position out of range (0-${items.value.length - 1})`,
+      `位置超出范围 (0-${items.value.length - 1})`,
     )
     return
   }
   const val = items.value.splice(pos, 1)[0]
-  lastOp.value = `🗑️ removeAt(${pos}) → ${val}`
+  lastOp.value = `removeAt(${pos}) ${val}`
 }
 
 function reset() {
   items.value = [...defaultData]
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
 }
 
 onMounted(() => {

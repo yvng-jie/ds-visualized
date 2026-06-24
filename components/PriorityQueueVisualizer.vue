@@ -88,8 +88,8 @@ function drawQueue(highlightIdx = -1) {
   ctx.font = '12px sans-serif'
   ctx.textAlign = 'center'
   if (items.value.length > 0) {
-    ctx.fillText(t('⬅ Front (dequeue)', '⬅ 队首(dequeue)'), startX + boxWidth / 2, 30)
-    ctx.fillText(t('Rear (enqueue) ➡', '队尾(enqueue) ➡'), startX + totalWidth - boxWidth / 2, 30)
+    ctx.fillText(t('Front (dequeue)', '队首(dequeue)'), startX + boxWidth / 2, 30)
+    ctx.fillText(t('Rear (enqueue)', '队尾(enqueue)'), startX + totalWidth - boxWidth / 2, 30)
   }
 
   for (let i = 0; i < items.value.length; i++) {
@@ -141,7 +141,7 @@ function drawQueue(highlightIdx = -1) {
       ctx.font = '16px sans-serif'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillText('→', x + boxWidth + gap / 2, startY + boxHeight / 2)
+        
     }
   }
 
@@ -155,12 +155,12 @@ function drawQueue(highlightIdx = -1) {
 function enqueue() {
   if (animating) return
   if (items.value.length >= MAX_ITEMS) {
-    lastOp.value = t(`⚠️ Queue is full (max ${MAX_ITEMS} items)`, `⚠️ 队列已满（最多 ${MAX_ITEMS} 个元素）`)
+    lastOp.value = t(`Queue is full (max ${MAX_ITEMS} items)`, `队列已满（最多 ${MAX_ITEMS} 个元素）`)
     return
   }
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value to enqueue', '⚠️ 请输入要入队的值')
+    lastOp.value = t('Please enter a value to enqueue', '请输入要入队的值')
     return
   }
   inputValue.value = ''
@@ -173,13 +173,13 @@ function enqueue() {
     if (newItem.priority < items.value[i].priority) {
       items.value.splice(i, 0, newItem)
       inserted = true
-      lastOp.value = `✅ enqueue(${val}, p=${priorityValue.value}) → position ${i}`
+      lastOp.value = `enqueue(${val}, p=${priorityValue.value}) position ${i}`
       break
     }
   }
   if (!inserted) {
     items.value.push(newItem)
-    lastOp.value = `✅ enqueue(${val}, p=${priorityValue.value}) → end`
+    lastOp.value = `enqueue(${val}, p=${priorityValue.value}) end`
   }
 
   drawQueue()
@@ -188,12 +188,12 @@ function enqueue() {
 async function dequeue() {
   if (animating) return
   if (items.value.length === 0) {
-    lastOp.value = t('⚠️ Queue is empty, cannot dequeue', '⚠️ 队列为空，无法 dequeue')
+    lastOp.value = t('Queue is empty, cannot dequeue', '队列为空，无法 dequeue')
     return
   }
   animating = true
   const item = items.value.shift()
-  lastOp.value = `⏏️ dequeue() → ${item.element} (p=${item.priority})`
+  lastOp.value = `dequeue() ${item.element} (p=${item.priority})`
   drawQueue()
   await new Promise((r) => setTimeout(r, speed.value))
   animating = false
@@ -201,7 +201,7 @@ async function dequeue() {
 
 function reset() {
   items.value = defaultData.map((d) => ({ ...d }))
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   drawQueue()
 }
 

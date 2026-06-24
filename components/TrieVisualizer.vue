@@ -160,7 +160,7 @@ function buildLayout() {
 function insert() {
   const word = inputValue.value.trim().toLowerCase()
   if (!word) {
-    lastOp.value = t('⚠️ Please enter a word', '⚠️ 请输入单词')
+    lastOp.value = t('Please enter a word', '请输入单词')
     return
   }
   inputValue.value = ''
@@ -183,14 +183,14 @@ function insert() {
   }
 
   highlightNodes.value = visited
-  lastOp.value = `✅ insert("${word}")`
+  lastOp.value = `insert("${word}")`
   buildLayout()
 }
 
 function search() {
   const word = inputValue.value.trim().toLowerCase()
   if (!word) {
-    lastOp.value = t('⚠️ Enter word to search', '⚠️ 请输入要搜索的单词')
+    lastOp.value = t('Enter word to search', '请输入要搜索的单词')
     return
   }
   inputValue.value = ''
@@ -203,7 +203,7 @@ function search() {
     if (!node.children[char]) {
       highlightNodes.value = visited
       buildLayout()
-      lastOp.value = t(`🔍 "${word}" → not found`, `🔍 "${word}" → 未找到`)
+      lastOp.value = t(`"${word}" not found`, `"${word}" 未找到`)
       return
     }
     node = node.children[char]
@@ -214,16 +214,16 @@ function search() {
   buildLayout()
 
   if (node.isEndOfWord) {
-    lastOp.value = `🔍 "${word}" → ${t('found', '已找到')} ✅`
+    lastOp.value = `"${word}" ${t('found', '已找到')}`
   } else {
-    lastOp.value = t(`🔍 "${word}" → prefix exists but not a full word`, `🔍 "${word}" → 前缀存在但不是完整单词`)
+    lastOp.value = t(`"${word}" prefix exists but not a full word`, `"${word}" 前缀存在但不是完整单词`)
   }
 }
 
 function remove() {
   const word = inputValue.value.trim().toLowerCase()
   if (!word) {
-    lastOp.value = t('⚠️ Enter word to remove', '⚠️ 请输入要移除的单词')
+    lastOp.value = t('Enter word to remove', '请输入要移除的单词')
     return
   }
   inputValue.value = ''
@@ -233,7 +233,7 @@ function remove() {
   const path = [root]
   for (const char of word) {
     if (!node.children[char]) {
-      lastOp.value = t(`⚠️ "${word}" not found`, `⚠️ "${word}" 不存在`)
+      lastOp.value = t(`${word} not found`, `${word} 不存在`)
       return
     }
     node = node.children[char]
@@ -241,7 +241,7 @@ function remove() {
   }
 
   if (!node.isEndOfWord) {
-    lastOp.value = t(`⚠️ "${word}" not found`, `⚠️ "${word}" 不存在`)
+    lastOp.value = t(` "${word}" not found`, ` "${word}" 不存在`)
     return
   }
 
@@ -262,7 +262,7 @@ function remove() {
   }
 
   highlightNodes.value = new Set()
-  lastOp.value = `🗑️ remove("${word}")`
+  lastOp.value = `remove("${word}")`
   buildLayout()
 }
 
@@ -286,7 +286,7 @@ function reset() {
     }
   }
 
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   buildLayout()
 }
 

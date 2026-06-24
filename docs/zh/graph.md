@@ -1,16 +1,16 @@
-# 🕸️ 图 Graph
+#  图 Graph
 
 > **由顶点（Vertex）和边（Edge）组成的关系网络** — 像社交网络的好友关系
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🌐 社交网络**：每个人是一个"顶点"，好友关系是一条"边"。你想知道 A 和 B 之间有多少层关系？这就是图的遍历问题。
+** 社交网络**：每个人是一个"顶点"，好友关系是一条"边"。你想知道 A 和 B 之间有多少层关系？这就是图的遍历问题。
 
 其他例子：
 
@@ -50,7 +50,7 @@ E  [0, 1, 0, 0, 0]
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class Graph {
@@ -59,19 +59,19 @@ class Graph {
     this.edges = {} // 邻接表：顶点名 → 相邻顶点列表
   }
 
-  // 🕸️ 添加顶点
+  //  添加顶点
   addVertex(v) {
     this.vertexes.push(v)
     this.edges[v] = []
   }
 
-  // 🕸️ 添加边（无向图）
+  //  添加边（无向图）
   addEdge(v1, v2) {
     this.edges[v1].push(v2)
     this.edges[v2].push(v1)
   }
 
-  // 📝 打印邻接表
+  //  打印邻接表
   toString() {
     let result = ''
     for (let i = 0; i < this.vertexes.length; i++) {
@@ -81,7 +81,7 @@ class Graph {
     return result
   }
 
-  // 🎨 初始化顶点颜色（用于遍历）
+  //  初始化顶点颜色（用于遍历）
   _initializeColor() {
     const colors = {}
     for (let i = 0; i < this.vertexes.length; i++) {
@@ -90,7 +90,7 @@ class Graph {
     return colors
   }
 
-  // 🌊 BFS - 广度优先搜索（层层扩散）
+  //  BFS - 广度优先搜索（层层扩散）
   bfs(initV, handler) {
     const colors = this._initializeColor()
     const queue = [initV] // 用数组模拟队列
@@ -115,7 +115,7 @@ class Graph {
     }
   }
 
-  // 🧗 DFS - 深度优先搜索（一条路走到底）
+  //  DFS - 深度优先搜索（一条路走到底）
   dfs(initV, handler) {
     const colors = this._initializeColor()
     this._dfsVisit(initV, colors, handler)
@@ -163,27 +163,27 @@ BFS（广度优先）:                          DFS（深度优先）:
 
 ---
 
-## 🎨 可视化演示
+##  可视化演示
 
 <GraphVisualizer />
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作          | 时间复杂度    | 说明                             |
 | ------------- | ------------- | -------------------------------- |
-| `addVertex()` | **O(1)** ✅   | 数组末尾插入                     |
-| `addEdge()`   | **O(1)** ✅   | 数组末尾插入                     |
-| `toString()`  | **O(V+E)** ⚠️ | 遍历所有顶点和边                 |
-| BFS           | **O(V+E)** ⚠️ | 每个顶点入队一次，每条边检查一次 |
-| DFS           | **O(V+E)** ⚠️ | 同上                             |
+| `addVertex()` | **O(1)**    | 数组末尾插入                     |
+| `addEdge()`   | **O(1)**    | 数组末尾插入                     |
+| `toString()`  | **O(V+E)**  | 遍历所有顶点和边                 |
+| BFS           | **O(V+E)**  | 每个顶点入队一次，每条边检查一次 |
+| DFS           | **O(V+E)**  | 同上                             |
 
 > V = 顶点数，E = 边数
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 是否存在路径（BFS）
 
@@ -236,7 +236,7 @@ function cloneGraph(graph) {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                              |
 | ---------- | ------------------------------------------------- |
@@ -245,25 +245,25 @@ function cloneGraph(graph) {
 | 两种遍历   | BFS（队列，层层扩散）和 DFS（递归，一条路走到底） |
 | 三色标记   | 白色=未访问，灰色=已发现，黑色=已探索             |
 | BFS vs DFS | BFS 适合求最短路径，DFS 适合判断连通性            |
-| 恭喜 🎉    | **你已经学完了所有 10 个数据结构！**              |
+| 恭喜     | **你已经学完了所有 10 个数据结构！**              |
 
 ---
 
-## 🎯 你已经完成了所有数据结构的学习！
+##  你已经完成了所有数据结构的学习！
 
 ### 回顾一下你的学习路线
 
 ```
-📦 栈 Stack       →  LIFO，叠盘子
-📋 队列 Queue      →  FIFO，排队
-🔢 优先级队列      →  VIP 优先
-📖 字典            →  键值对
-🧩 集合            →  元素唯一 + 集合运算
-🔗 单向链表        →  节点 + 指针
-🔗 双向链表        →  前后都能走
-🔑 哈希表          →  散列 O(1) 查找
-🌳 二叉搜索树      →  左小右大，二分查找
-🕸️ 图              →  关系网络，BFS/DFS
+ 栈 Stack       →  LIFO，叠盘子
+ 队列 Queue      →  FIFO，排队
+ 优先级队列      →  VIP 优先
+ 字典            →  键值对
+ 集合            →  元素唯一 + 集合运算
+ 单向链表        →  节点 + 指针
+ 双向链表        →  前后都能走
+ 哈希表          →  散列 O(1) 查找
+ 二叉搜索树      →  左小右大，二分查找
+ 图              →  关系网络，BFS/DFS
 ```
 
 ### 接下来可以做什么？
@@ -277,9 +277,9 @@ function cloneGraph(graph) {
 
 | 题号                                                   | 题目       | 难度    |
 | ------------------------------------------------------ | ---------- | ------- |
-| [200](https://leetcode.cn/problems/number-of-islands/) | 岛屿数量   | 🟡 中等 |
-| [207](https://leetcode.cn/problems/course-schedule/)   | 课程表     | 🟡 中等 |
-| [133](https://leetcode.cn/problems/clone-graph/)       | 克隆图     | 🟡 中等 |
-| [994](https://leetcode.cn/problems/rotting-oranges/)   | 腐烂的橘子 | 🟡 中等 |
+| [200](https://leetcode.cn/problems/number-of-islands/) | 岛屿数量   |  中等 |
+| [207](https://leetcode.cn/problems/course-schedule/)   | 课程表     |  中等 |
+| [133](https://leetcode.cn/problems/clone-graph/)       | 克隆图     |  中等 |
+| [994](https://leetcode.cn/problems/rotting-oranges/)   | 腐烂的橘子 |  中等 |
 
-[⬅️ 返回二叉搜索树](/binary-search-tree) · [🏠 返回首页](/)
+[ 返回二叉搜索树](/binary-search-tree) · [ 返回首页](/)

@@ -1,16 +1,16 @@
-# 🌲 前缀树 Trie
+#  前缀树 Trie
 
 > **一种用于快速检索字符串的数据结构** — 像字典的索引，通过前缀就能找到所有匹配的单词
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**📖 词典的标签页**：词典侧面的字母标签让你可以直接翻到某个字母的那一页。输入 "ca"，所有以 "ca" 开头的单词都在一起。
+** 词典的标签页**：词典侧面的字母标签让你可以直接翻到某个字母的那一页。输入 "ca"，所有以 "ca" 开头的单词都在一起。
 
 其他例子：
 
@@ -25,12 +25,12 @@
 | 特性     | 哈希表              | Trie                |
 | -------- | ------------------- | ------------------- |
 | 查找单词 | O(1) 平均           | O(k) — k 是单词长度 |
-| 前缀查找 | ❌ 不支持           | ✅ 天然支持         |
-| 自动补全 | ❌ 需要遍历所有 key | ✅ 高效             |
+| 前缀查找 |  不支持           |  天然支持         |
+| 自动补全 |  需要遍历所有 key |  高效             |
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class TrieNode {
@@ -45,7 +45,7 @@ class Trie {
     this.root = new TrieNode()
   }
 
-  // 🌲 插入单词
+  //  插入单词
   insert(word) {
     let node = this.root
     for (const ch of word) {
@@ -55,18 +55,18 @@ class Trie {
     node.isEnd = true
   }
 
-  // 🔍 查找单词（是否完整存在）
+  //  查找单词（是否完整存在）
   search(word) {
     const node = this._find(word)
     return node !== null && node.isEnd
   }
 
-  // 🔍 查找前缀
+  //  查找前缀
   startsWith(prefix) {
     return this._find(prefix) !== null
   }
 
-  // 🔍 自动补全
+  //  自动补全
   autoComplete(prefix) {
     const node = this._find(prefix)
     if (!node) return []
@@ -102,17 +102,17 @@ class Trie {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作           | 时间复杂度  | 说明         |
 | -------------- | ----------- | ------------ |
-| `insert()`     | **O(k)** ✅ | k 为单词长度 |
-| `search()`     | **O(k)** ✅ | k 为单词长度 |
-| `startsWith()` | **O(k)** ✅ | k 为前缀长度 |
+| `insert()`     | **O(k)**  | k 为单词长度 |
+| `search()`     | **O(k)**  | k 为单词长度 |
+| `startsWith()` | **O(k)**  | k 为前缀长度 |
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 实现 Trie
 
@@ -154,7 +154,7 @@ function findWords(board, words) {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性      | 说明                                  |
 | --------- | ------------------------------------- |
@@ -168,10 +168,10 @@ function findWords(board, words) {
 
 | 题号                                                            | 题目        | 难度    |
 | --------------------------------------------------------------- | ----------- | ------- |
-| [208](https://leetcode.cn/problems/implement-trie-prefix-tree/) | 实现 Trie   | 🟡 中等 |
-| [212](https://leetcode.cn/problems/word-search-ii/)             | 单词搜索 II | 🔴 困难 |
-| [648](https://leetcode.cn/problems/replace-words/)              | 单词替换    | 🟡 中等 |
+| [208](https://leetcode.cn/problems/implement-trie-prefix-tree/) | 实现 Trie   |  中等 |
+| [212](https://leetcode.cn/problems/word-search-ii/)             | 单词搜索 II |  困难 |
+| [648](https://leetcode.cn/problems/replace-words/)              | 单词替换    |  中等 |
 
 ---
 
-[⬅️ 返回双端队列](/deque) · [返回首页](/)
+[ 返回双端队列](/deque) · [返回首页](/)

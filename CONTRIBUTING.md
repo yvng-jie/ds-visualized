@@ -1,6 +1,6 @@
 # 贡献指南 / Contributing Guide
 
-感谢你对本项目的关注！🎉
+感谢你对本项目的关注！
 
 ## 如何贡献 / How to Contribute
 
@@ -22,11 +22,11 @@
 
 ### 可以帮什么忙？/ What Can I Help With?
 
-- ✅ 完善英文翻译（`docs/en/` 目录）
-- ✅ 新增可视化组件（`components/` 目录）
-- ✅ 修正代码错误
-- ✅ 完善文档注释
-- ✅ 新增练习题
+-  完善英文翻译（`docs/en/` 目录）
+-  新增可视化组件（`components/` 目录）
+-  修正代码错误
+-  完善文档注释
+-  新增练习题
 
 ## 本地开发 / Local Development
 

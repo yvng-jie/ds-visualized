@@ -1,16 +1,16 @@
-# 🔗 Union-Find (Disjoint Set)
+#  Union-Find (Disjoint Set)
 
 > **Track connected components efficiently** — Like grouping friends by who knows who
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**👥 Social network**: When two people become friends, their friend groups merge. Union-Find tracks which group each person belongs to, and can quickly answer "are these two people connected?"
+** Social network**: When two people become friends, their friend groups merge. Union-Find tracks which group each person belongs to, and can quickly answer "are these two people connected?"
 
 More examples:
 
@@ -37,7 +37,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class UnionFind {
@@ -85,7 +85,7 @@ class UnionFind {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation | Without Optimization | With Path Compression + Union by Rank |
 | --------- | :------------------: | :-----------------------------------: |
@@ -97,7 +97,7 @@ class UnionFind {
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Number of Provinces
 
@@ -120,7 +120,7 @@ function findCircleNum(isConnected) {
 
 ---
 
-## ⚠️ Common Pitfalls
+##  Common Pitfalls
 
 | Mistake                                    | Why                                                                 |
 | ------------------------------------------ | ------------------------------------------------------------------- |
@@ -130,10 +130,10 @@ function findCircleNum(isConnected) {
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                                | Recommendation                   |
 | --------------------------------------- | -------------------------------- |
-| Dynamic connectivity tracking           | ✅ Union-Find                    |
-| Need to merge sets and query membership | ✅ Union-Find                    |
-| Small, static dataset                   | ❌ A simple array or Set is fine |
+| Dynamic connectivity tracking           |  Union-Find                    |
+| Need to merge sets and query membership |  Union-Find                    |
+| Small, static dataset                   |  A simple array or Set is fine |

@@ -1,16 +1,16 @@
-# 🌳 二叉搜索树 BST
+#  二叉搜索树 BST
 
 > **左子节点 < 父节点 < 右子节点** — 像二分查找的树形结构
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**📂 文件目录**：文件夹里，文件名小于"中"的放左边抽屉，大于"中"的放右边抽屉。要找"大"字开头的文件？直接去左边抽屉，不用翻右边。
+** 文件目录**：文件夹里，文件名小于"中"的放左边抽屉，大于"中"的放右边抽屉。要找"大"字开头的文件？直接去左边抽屉，不用翻右边。
 
 其他例子：
 
@@ -25,14 +25,14 @@
 ```
 数组查找：   [1, 3, 5, 7, 9, 11, 13]  二分查找 O(log n)，但插入删除 O(n)
 链表查找：    1 → 3 → 5 → 7 → 9 → 11 → 13  插入 O(1)，但查找 O(n)
-BST 查找：       🌳 树结构            查找和插入都是 O(log n)！
+BST 查找：        树结构            查找和插入都是 O(log n)！
 ```
 
 BST 结合了数组的快速查找和链表的快速插入。
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class Node {
@@ -48,7 +48,7 @@ class BinarySearchTree {
     this.root = null
   }
 
-  // 🌳 插入节点
+  //  插入节点
   insert(key) {
     const node = new Node(key)
 
@@ -77,7 +77,7 @@ class BinarySearchTree {
     }
   }
 
-  // 🔍 查找
+  //  查找
   search(key) {
     return this._searchNode(this.root, key)
   }
@@ -89,9 +89,9 @@ class BinarySearchTree {
     return true // 找到了
   }
 
-  // 🌲 三种遍历方式
+  //  三种遍历方式
 
-  // 1️⃣ 先序遍历：根 → 左 → 右
+  // 1 先序遍历：根 → 左 → 右
   preOrderTraversal(handler) {
     this._preOrderTraversalNode(this.root, handler)
   }
@@ -103,7 +103,7 @@ class BinarySearchTree {
     }
   }
 
-  // 2️⃣ 中序遍历：左 → 根 → 右（输出有序序列）
+  // 2 中序遍历：左 → 根 → 右（输出有序序列）
   midOrderTraversal(handler) {
     this._midOrderTraversalNode(this.root, handler)
   }
@@ -115,7 +115,7 @@ class BinarySearchTree {
     }
   }
 
-  // 3️⃣ 后序遍历：左 → 右 → 根
+  // 3 后序遍历：左 → 右 → 根
   postOrderTraversal(handler) {
     this._postOrderTraversalNode(this.root, handler)
   }
@@ -127,7 +127,7 @@ class BinarySearchTree {
     }
   }
 
-  // ⬇️ 最小值（最左边的节点）
+  //  最小值（最左边的节点）
   min() {
     if (!this.root) return null
     let node = this.root
@@ -135,7 +135,7 @@ class BinarySearchTree {
     return node.key
   }
 
-  // ⬆️ 最大值（最右边的节点）
+  //  最大值（最右边的节点）
   max() {
     if (!this.root) return null
     let node = this.root
@@ -143,13 +143,13 @@ class BinarySearchTree {
     return node.key
   }
 
-  // 🗑️ 删除节点（最复杂的操作）
+  //  删除节点（最复杂的操作）
   remove(key) {
     let current = this.root
     let parent = null
     let isLeftChild = true
 
-    // 1️⃣ 查找要删除的节点
+    // 1 查找要删除的节点
     while (current && current.key !== key) {
       parent = current
       if (key < current.key) {
@@ -162,7 +162,7 @@ class BinarySearchTree {
     }
     if (!current) return false
 
-    // 2️⃣ 删除 - 三种情况
+    // 2 删除 - 三种情况
 
     // 情况1：叶子节点（没有子节点）
     if (!current.left && !current.right) {
@@ -223,30 +223,30 @@ class BinarySearchTree {
 
 ---
 
-## 🎨 可视化演示
+##  可视化演示
 
 <BSTVisualizer />
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作       | 平均            | 最坏 | 说明                       |
 | ---------- | --------------- | ---- | -------------------------- |
-| `insert()` | **O(log n)** ✅ | O(n) | 树退化时（如插入有序序列） |
-| `search()` | **O(log n)** ✅ | O(n) | 平衡时 log n，退化时变链表 |
-| `remove()` | **O(log n)** ✅ | O(n) | 同上                       |
-| 遍历       | **O(n)** ⚠️     | O(n) | 需要访问所有节点           |
+| `insert()` | **O(log n)**  | O(n) | 树退化时（如插入有序序列） |
+| `search()` | **O(log n)**  | O(n) | 平衡时 log n，退化时变链表 |
+| `remove()` | **O(log n)**  | O(n) | 同上                       |
+| 遍历       | **O(n)**      | O(n) | 需要访问所有节点           |
 
 <div class="tip-box">
 
-**⚠️ 退化问题**：如果按顺序插入 `[1,2,3,4,5]`，BST 会退化成链表，查找变成 O(n)。解决方案是**平衡二叉树**（AVL 树、红黑树），后续会介绍。
+** 退化问题**：如果按顺序插入 `[1,2,3,4,5]`，BST 会退化成链表，查找变成 O(n)。解决方案是**平衡二叉树**（AVL 树、红黑树），后续会介绍。
 
 </div>
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 验证二叉搜索树
 
@@ -272,7 +272,7 @@ function maxDepth(root) {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                                |
 | ---------- | --------------------------------------------------- |
@@ -280,7 +280,7 @@ function maxDepth(root) {
 | 三种遍历   | 先序（根左右）、中序（左根右=有序）、后序（左右根） |
 | 优点       | 查找和插入都是 O(log n)                             |
 | 缺点       | 可能退化为链表 O(n)                                 |
-| 下一步学习 | 👉 [图 — 更复杂的关系网络](/graph)                  |
+| 下一步学习 |  [图 — 更复杂的关系网络](/graph)                  |
 
 ---
 
@@ -288,9 +288,9 @@ function maxDepth(root) {
 
 | 题号                                                                | 题目                    | 难度    |
 | ------------------------------------------------------------------- | ----------------------- | ------- |
-| [98](https://leetcode.cn/problems/validate-binary-search-tree/)     | 验证二叉搜索树          | 🟡 中等 |
-| [104](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)   | 二叉树的最大深度        | 🟢 简单 |
-| [230](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)  | 二叉搜索树中第K小的元素 | 🟡 中等 |
-| [700](https://leetcode.cn/problems/search-in-a-binary-search-tree/) | 二叉搜索树中的搜索      | 🟢 简单 |
+| [98](https://leetcode.cn/problems/validate-binary-search-tree/)     | 验证二叉搜索树          |  中等 |
+| [104](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)   | 二叉树的最大深度        |  简单 |
+| [230](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)  | 二叉搜索树中第K小的元素 |  中等 |
+| [700](https://leetcode.cn/problems/search-in-a-binary-search-tree/) | 二叉搜索树中的搜索      |  简单 |
 
-[⬅️ 返回哈希表](/hash-table) · [返回首页](/)
+[ 返回哈希表](/hash-table) · [返回首页](/)

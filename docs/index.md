@@ -10,13 +10,13 @@ hero:
     alt: JS Data Structures
   actions:
     - theme: brand
-      text: 🚀 Get Started
+      text:  Get Started
       link: /getting-started
     - theme: alt
-      text: 📦 Start with Stack
+      text:  Start with Stack
       link: /stack
     - theme: alt
-      text: ⭐ GitHub
+      text:  GitHub
       link: https://github.com/yvng-jie/ds-visualized
 
 features:

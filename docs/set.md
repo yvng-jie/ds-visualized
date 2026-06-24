@@ -1,16 +1,16 @@
-# 🧩 Set
+#  Set
 
 > **Unique elements, no duplicates** — Like a bag of marbles where each color appears only once
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🎨 Paint set**: Each color appears once. You don't have two tubes of the exact same red.
+** Paint set**: Each color appears once. You don't have two tubes of the exact same red.
 
 More examples:
 
@@ -31,7 +31,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Set {
@@ -113,18 +113,18 @@ class Set {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation                | Time        | Notes               |
 | ------------------------ | ----------- | ------------------- |
-| `add()`                  | **O(1)** ✅ | Property assignment |
-| `remove()`               | **O(1)** ✅ | `delete` operator   |
-| `has()`                  | **O(1)** ✅ | Property check      |
-| `union()/intersection()` | **O(n)** ⚠️ | Must iterate        |
+| `add()`                  | **O(1)**  | Property assignment |
+| `remove()`               | **O(1)**  | `delete` operator   |
+| `has()`                  | **O(1)**  | Property check      |
+| `union()/intersection()` | **O(n)**  | Must iterate        |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Array Deduplication
 
@@ -140,23 +140,23 @@ console.log(unique([1, 2, 2, 3, 3, 3])) // ['1', '2', '3']
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property      | Description                                             |
 | ------------- | ------------------------------------------------------- |
 | Core idea     | Unique elements, set operations                         |
 | Key ops       | add, remove, has + union/intersection/difference/subset |
 | vs Dictionary | A Set is like a Dictionary with only keys (no values)   |
-| Next          | 👉 [Hash Table — Fast key-value storage](/hash-table)   |
+| Next          |  [Hash Table — Fast key-value storage](/hash-table)   |
 
 ### LeetCode Practice
 
 | #                                                                  | Problem                      | Difficulty |
 | ------------------------------------------------------------------ | ---------------------------- | ---------- |
-| [217](https://leetcode.com/problems/contains-duplicate/)           | Contains Duplicate           | 🟢 Easy    |
-| [349](https://leetcode.com/problems/intersection-of-two-arrays/)   | Intersection of Two Arrays   | 🟢 Easy    |
-| [128](https://leetcode.com/problems/longest-consecutive-sequence/) | Longest Consecutive Sequence | 🟡 Medium  |
+| [217](https://leetcode.com/problems/contains-duplicate/)           | Contains Duplicate           |  Easy    |
+| [349](https://leetcode.com/problems/intersection-of-two-arrays/)   | Intersection of Two Arrays   |  Easy    |
+| [128](https://leetcode.com/problems/longest-consecutive-sequence/) | Longest Consecutive Sequence |  Medium  |
 
 ---
 
-[⬅️ Back to Dictionary](/dictionary) · [Back to Home](/)
+[ Back to Dictionary](/dictionary) · [Back to Home](/)

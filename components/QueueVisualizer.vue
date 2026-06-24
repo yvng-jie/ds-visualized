@@ -105,8 +105,8 @@
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
     if (items.value.length > 0) {
-      ctx.fillText(isZh.value ? '⬅ 队首(dequeue)' : '⬅ Front (dequeue)', startX + boxSize / 2, 40)
-      ctx.fillText(isZh.value ? '队尾(enqueue) ➡' : 'Rear (enqueue) ➡', startX + totalWidth - boxSize / 2, 40)
+      ctx.fillText(isZh.value ? '队首(dequeue)' : 'Front (dequeue)', startX + boxSize / 2, 40)
+      ctx.fillText(isZh.value ? '队尾(enqueue)' : 'Rear (enqueue)', startX + totalWidth - boxSize / 2, 40)
     }
 
     for (let i = 0; i < items.value.length; i++) {
@@ -127,7 +127,7 @@
         ctx.font = '16px sans-serif'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillText('→', x + boxSize + gap / 2, startY + boxSize / 2)
+        
       }
 
       // Draw value
@@ -149,41 +149,41 @@
   }
 
   function enqueue() {
-    if (animating) return
+    if (animating.value) return
     if (items.value.length >= MAX_ITEMS) {
       lastOp.value = isZh.value
-        ? '⚠️ 队列已满（最多 ' + MAX_ITEMS + ' 个元素）'
-        : '⚠️ Queue is full (max ' + MAX_ITEMS + ' items)'
+        ? '队列已满（最多 ' + MAX_ITEMS + ' 个元素）'
+        : 'Queue is full (max ' + MAX_ITEMS + ' items)'
       return
     }
     const val = inputValue.value.trim()
     if (!val) {
-      lastOp.value = isZh.value ? '⚠️ 请输入要入队的值' : '⚠️ Please enter a value to enqueue'
+      lastOp.value = isZh.value ? '请输入要入队的值' : 'Please enter a value to enqueue'
       return
     }
     inputValue.value = ''
     items.value.push(val)
-    lastOp.value = `✅ enqueue(${val})`
+    lastOp.value = `enqueue(${val})`
     drawQueue()
   }
 
   async function dequeue() {
-    if (animating) return
+    if (animating.value) return
     if (items.value.length === 0) {
-      lastOp.value = isZh.value ? '⚠️ 队列为空，无法 dequeue' : '⚠️ Queue is empty, cannot dequeue'
+      lastOp.value = isZh.value ? '队列为空，无法 dequeue' : 'Queue is empty, cannot dequeue'
       return
     }
-    animating = true
+    animating.value = true
     const val = items.value.shift()
-    lastOp.value = `⏏️ dequeue() → ${val}`
+    lastOp.value = `dequeue() ${val}`
     drawQueue()
     await sleep(speed.value)
-    animating = false
+    animating.value = false
   }
 
   function reset() {
     items.value = [...defaultData]
-    lastOp.value = isZh.value ? '↻ 已恢复初始示例数据' : '↻ Reset to initial data'
+    lastOp.value = isZh.value ? '已恢复初始示例数据' : 'Reset to initial data'
     drawQueue()
   }
 

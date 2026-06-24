@@ -3,19 +3,19 @@ title: Queue — FIFO Data Structure
 description: Learn Queue data structure in JavaScript with visual animations. Complete guide with code, complexity analysis, and interview questions.
 ---
 
-# 📋 Queue
+#  Queue
 
 > **First-In-First-Out (FIFO)** — The first item you put in is the first one you take out
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🚶 Waiting in line**: You go to the bank, take a number, and wait. The person who arrived first gets served first. That's a queue.
+** Waiting in line**: You go to the bank, take a number, and wait. The person who arrived first gets served first. That's a queue.
 
 More examples:
 
@@ -35,7 +35,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Queue {
@@ -80,35 +80,35 @@ class Queue {
 
 1. **`enqueue()` uses `push()`** — adds to the end of the array
 2. **`dequeue()` uses `shift()`** — removes the first element
-3. **⚠️ `shift()` is O(n)** — removing the first element means all remaining elements shift down. Later we'll look at a faster implementation.
+3. ** `shift()` is O(n)** — removing the first element means all remaining elements shift down. Later we'll look at a faster implementation.
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation   | Time        | Notes                        |
 | ----------- | ----------- | ---------------------------- |
-| `enqueue()` | **O(1)** ✅ | Add to end                   |
-| `dequeue()` | **O(n)** ⚠️ | `shift()` moves all elements |
-| `front()`   | **O(1)** ✅ | Index lookup                 |
-| `isEmpty()` | **O(1)** ✅ |                              |
-| `size()`    | **O(1)** ✅ |                              |
+| `enqueue()` | **O(1)**  | Add to end                   |
+| `dequeue()` | **O(n)**  | `shift()` moves all elements |
+| `front()`   | **O(1)**  | Index lookup                 |
+| `isEmpty()` | **O(1)**  |                              |
+| `size()`    | **O(1)**  |                              |
 
 <div class="tip-box">
 
-**💡 Optimization**: We can use an object with head/tail pointers for O(1) dequeue. But for teaching purposes, the array version is easier to understand.
+** Optimization**: We can use an object with head/tail pointers for O(1) dequeue. But for teaching purposes, the array version is easier to understand.
 
 </div>
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <QueueVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Implement Stack using Queues
 
@@ -144,7 +144,7 @@ class StackUsingQueues {
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property  | Description                                          |
 | --------- | ---------------------------------------------------- |
@@ -152,16 +152,16 @@ class StackUsingQueues {
 | Key ops   | enqueue, dequeue, front                              |
 | vs Stack  | Stack is LIFO, Queue is FIFO                         |
 | Watch out | `shift()` is O(n)                                    |
-| Next      | 👉 [Priority Queue — VIPs go first](/priority-queue) |
+| Next      |  [Priority Queue — VIPs go first](/priority-queue) |
 
 ### LeetCode Practice
 
 | #                                                                  | Problem                      | Difficulty |
 | ------------------------------------------------------------------ | ---------------------------- | ---------- |
-| [933](https://leetcode.com/problems/number-of-recent-calls/)       | Number of Recent Calls       | 🟢 Easy    |
-| [622](https://leetcode.com/problems/design-circular-queue/)        | Design Circular Queue        | 🟡 Medium  |
-| [225](https://leetcode.com/problems/implement-stack-using-queues/) | Implement Stack using Queues | 🟢 Easy    |
+| [933](https://leetcode.com/problems/number-of-recent-calls/)       | Number of Recent Calls       |  Easy    |
+| [622](https://leetcode.com/problems/design-circular-queue/)        | Design Circular Queue        |  Medium  |
+| [225](https://leetcode.com/problems/implement-stack-using-queues/) | Implement Stack using Queues |  Easy    |
 
 ---
 
-[⬅️ Back to Stack](/stack) · [Back to Home](/)
+[ Back to Stack](/stack) · [Back to Home](/)

@@ -1,16 +1,16 @@
-# 🔗 双向链表 DoublyLinkedList
+#  双向链表 DoublyLinkedList
 
 > **每个节点既指向下一个节点，也指向上一个节点** — 就像双向车道，前后都能走
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🎵 音乐播放列表**：播放器可以"下一首"也可以"上一首"。每首歌都知道自己前面和后面是哪首歌。
+** 音乐播放列表**：播放器可以"下一首"也可以"上一首"。每首歌都知道自己前面和后面是哪首歌。
 
 其他例子：
 
@@ -32,7 +32,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class Node {
@@ -50,7 +50,7 @@ class DoublyLinkedList {
     this.length = 0
   }
 
-  // 🔗 在末尾追加
+  //  在末尾追加
   append(element) {
     const node = new Node(element)
 
@@ -66,7 +66,7 @@ class DoublyLinkedList {
     this.length++
   }
 
-  // 🔗 在指定位置插入
+  //  在指定位置插入
   insert(position, element) {
     if (position < 0 || position > this.length) return false
 
@@ -99,7 +99,7 @@ class DoublyLinkedList {
     return true
   }
 
-  // 🔗 移除指定位置的节点
+  //  移除指定位置的节点
   removeAt(position) {
     if (position < 0 || position >= this.length) return null
 
@@ -131,11 +131,11 @@ class DoublyLinkedList {
     return current.element
   }
 
-  // 🔍 获取指定位置的节点（内部方法）
+  //  获取指定位置的节点（内部方法）
   _getNode(position) {
     if (position < 0 || position >= this.length) return null
 
-    // 🎯 优化：判断从头还是从尾遍历更快
+    //  优化：判断从头还是从尾遍历更快
     if (position < this.length / 2) {
       // 从头开始遍历
       let current = this.head
@@ -157,13 +157,13 @@ class DoublyLinkedList {
     }
   }
 
-  // 🔍 获取指定位置的元素
+  //  获取指定位置的元素
   get(position) {
     const node = this._getNode(position)
     return node ? node.element : null
   }
 
-  // 🔍 查找元素的位置
+  //  查找元素的位置
   indexOf(element) {
     let current = this.head
     let index = 0
@@ -177,7 +177,7 @@ class DoublyLinkedList {
     return -1
   }
 
-  // 🔄 更新指定位置的元素
+  //  更新指定位置的元素
   update(position, element) {
     const node = this._getNode(position)
     if (!node) return false
@@ -185,7 +185,7 @@ class DoublyLinkedList {
     return true
   }
 
-  // ❓ 链表是空的吗？
+  //  链表是空的吗？
   isEmpty() {
     return this.length === 0
   }
@@ -193,7 +193,7 @@ class DoublyLinkedList {
     return this.length
   }
 
-  // 📝 正向输出（head → tail）
+  //  正向输出（head → tail）
   toString() {
     return this.forwardString()
   }
@@ -207,7 +207,7 @@ class DoublyLinkedList {
     return result.trim()
   }
 
-  // 📝 反向输出（tail → head）
+  //  反向输出（tail → head）
   backwardString() {
     let current = this.tail
     let result = ''
@@ -229,19 +229,19 @@ class DoublyLinkedList {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作         | 单向链表 | 双向链表      | 说明         |
 | ------------ | -------- | ------------- | ------------ |
-| `append()`   | O(n)     | **O(1) ✅**   | 有 tail 指针 |
+| `append()`   | O(n)     | **O(1) **   | 有 tail 指针 |
 | `insert()`   | O(n)     | O(n)          | 遍历查找位置 |
 | `removeAt()` | O(n)     | O(n)          | 遍历查找位置 |
-| `get()`      | O(n)     | **O(n/2) ✅** | 智能遍历优化 |
+| `get()`      | O(n)     | **O(n/2) ** | 智能遍历优化 |
 | `indexOf()`  | O(n)     | O(n)          |              |
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 在双向链表中实现 LRU 缓存的核心操作
 
@@ -290,7 +290,7 @@ class LRUCache {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性           | 说明                                |
 | -------------- | ----------------------------------- |
@@ -298,7 +298,7 @@ class LRUCache {
 | 核心优势       | 反向遍历、尾部操作 O(1)             |
 | 内存消耗       | 比单向链表多一个 `prev` 指针        |
 | 典型应用       | LRU 缓存、音乐播放列表、浏览器历史  |
-| 下一步学习     | 👉 [字典 — 键值对存储](/dictionary) |
+| 下一步学习     |  [字典 — 键值对存储](/dictionary) |
 
 ---
 
@@ -306,8 +306,8 @@ class LRUCache {
 
 | 题号 | 题目 | 难度 |
 | --- | --- | --- |
-| [146](https://leetcode.cn/problems/lru-cache/) | LRU 缓存 | 🟡 中等 |
-| [430](https://leetcode.cn/problems/flatten-a-multilevel-doubly-linked-list/) | 扁平化多级双向链表 | 🟡 中等 |
-| [426](https://leetcode.cn/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/) | 将二叉搜索树转化为排序的双向链表 | 🟡 中等 |
+| [146](https://leetcode.cn/problems/lru-cache/) | LRU 缓存 |  中等 |
+| [430](https://leetcode.cn/problems/flatten-a-multilevel-doubly-linked-list/) | 扁平化多级双向链表 |  中等 |
+| [426](https://leetcode.cn/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/) | 将二叉搜索树转化为排序的双向链表 |  中等 |
 
-[⬅️ 返回单向链表](/linked-list) · [返回首页](/)
+[ 返回单向链表](/linked-list) · [返回首页](/)

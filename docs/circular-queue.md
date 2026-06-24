@@ -1,16 +1,16 @@
-# 🔄 Circular Queue
+#  Circular Queue
 
 > **A fixed-size queue where the front and rear pointers wrap around** — Like a rotary sushi bar
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🍣 Rotary sushi bar**: Plates move around on a conveyor belt. When a plate reaches the end, it loops back to the start. The belt has a fixed number of positions — once it's full, no more plates can be added until someone takes one.
+** Rotary sushi bar**: Plates move around on a conveyor belt. When a plate reaches the end, it loops back to the start. The belt has a fixed number of positions — once it's full, no more plates can be added until someone takes one.
 
 More examples:
 
@@ -38,14 +38,14 @@ Circular Queue (efficient):
 
 ### When to Use
 
-- ✅ Fixed-size buffer scenarios
-- ✅ Streaming data processing
-- ✅ Embedded systems with limited memory
-- ✅ When you know the maximum queue size in advance
+-  Fixed-size buffer scenarios
+-  Streaming data processing
+-  Embedded systems with limited memory
+-  When you know the maximum queue size in advance
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class CircularQueue {
@@ -120,7 +120,7 @@ class CircularQueue {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation | Time | Space |
 | --------- | :--: | :---: |
@@ -135,13 +135,13 @@ class CircularQueue {
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <CircularQueueVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Design a Circular Queue
 
@@ -153,7 +153,7 @@ Implement a circular queue with `enQueue`, `deQueue`, `Front`, `Rear`, `isEmpty`
 
 ---
 
-## ⚠️ Common Pitfalls
+##  Common Pitfalls
 
 | Mistake                                | Why it's wrong                                                                  |
 | -------------------------------------- | ------------------------------------------------------------------------------- |
@@ -163,11 +163,11 @@ Implement a circular queue with `enQueue`, `deQueue`, `Front`, `Rear`, `isEmpty`
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                     | Use Case                          |
 | ---------------------------- | --------------------------------- |
-| **Fixed max size**           | ✅ Circular Queue                 |
-| **Unknown max size**         | ❌ Use a dynamic Queue instead    |
-| **Need O(1) all operations** | ✅ Circular Queue                 |
-| **Memory is constrained**    | ✅ Circular Queue (pre-allocated) |
+| **Fixed max size**           |  Circular Queue                 |
+| **Unknown max size**         |  Use a dynamic Queue instead    |
+| **Need O(1) all operations** |  Circular Queue                 |
+| **Memory is constrained**    |  Circular Queue (pre-allocated) |

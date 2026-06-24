@@ -1,16 +1,16 @@
-# 🌲 Trie (Prefix Tree)
+#  Trie (Prefix Tree)
 
 > **A tree for fast string retrieval** — Like a dictionary's index tabs, finding words by their prefix
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**📖 Dictionary tabs**: A dictionary has letter tabs on the side. To find "apple", you flip to "A", then look for "AP", then "APP"... Each letter guides you to the right section.
+** Dictionary tabs**: A dictionary has letter tabs on the side. To find "apple", you flip to "A", then look for "AP", then "APP"... Each letter guides you to the right section.
 
 More examples:
 
@@ -43,13 +43,13 @@ Each node = one character. A path from root to a node = a word.
 | Property      | Hash Table               | Trie                            |
 | ------------- | ------------------------ | ------------------------------- |
 | Word lookup   | O(1) average             | O(k) — k = word length          |
-| Prefix search | ❌ Not supported         | ✅ Natively supported           |
-| Autocomplete  | ❌ Need to scan all keys | ✅ Efficient                    |
+| Prefix search |  Not supported         |  Natively supported           |
+| Autocomplete  |  Need to scan all keys |  Efficient                    |
 | Memory        | Good (sparse)            | Can be wasteful (node per char) |
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class TrieNode {
@@ -123,17 +123,17 @@ class Trie {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation      | Time        | Notes             |
 | -------------- | ----------- | ----------------- |
-| `insert()`     | **O(k)** ✅ | k = word length   |
-| `search()`     | **O(k)** ✅ | k = word length   |
-| `startsWith()` | **O(k)** ✅ | k = prefix length |
+| `insert()`     | **O(k)**  | k = word length   |
+| `search()`     | **O(k)**  | k = word length   |
+| `startsWith()` | **O(k)**  | k = prefix length |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Implement Trie (LeetCode 208)
 
@@ -177,7 +177,7 @@ function findWords(board, words) {
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property      | Description                                   |
 | ------------- | --------------------------------------------- |
@@ -191,9 +191,9 @@ function findWords(board, words) {
 
 | #                                                                | Problem        | Difficulty |
 | ---------------------------------------------------------------- | -------------- | ---------- |
-| [208](https://leetcode.com/problems/implement-trie-prefix-tree/) | Implement Trie | 🟡 Medium  |
-| [212](https://leetcode.com/problems/word-search-ii/)             | Word Search II | 🔴 Hard    |
+| [208](https://leetcode.com/problems/implement-trie-prefix-tree/) | Implement Trie |  Medium  |
+| [212](https://leetcode.com/problems/word-search-ii/)             | Word Search II |  Hard    |
 
 ---
 
-[⬅️ Back to Deque](/deque) · [Back to Home](/)
+[ Back to Deque](/deque) · [Back to Home](/)

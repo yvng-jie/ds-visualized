@@ -1,16 +1,16 @@
-# 🧩 集合 Set
+#  集合 Set
 
 > **元素唯一、无序** — 就像一袋弹珠，每种颜色只能有一颗
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🎨 颜料盒**：一套颜料中每种颜色只有一支。红色就是红色，不会有两支相同的红色。
+** 颜料盒**：一套颜料中每种颜色只有一支。红色就是红色，不会有两支相同的红色。
 
 其他例子：
 
@@ -31,7 +31,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class Set {
@@ -39,41 +39,41 @@ class Set {
     this.items = {}
   }
 
-  // 🧩 添加元素（重复添加不会报错，但只保留一个）
+  //  添加元素（重复添加不会报错，但只保留一个）
   add(element) {
     if (this.has(element)) return false
     this.items[element] = element
     return true
   }
 
-  // 🗑️ 移除元素
+  //  移除元素
   remove(element) {
     if (!this.has(element)) return false
     delete this.items[element]
     return true
   }
 
-  // 🔍 判断元素是否存在
+  //  判断元素是否存在
   has(element) {
     return Object.prototype.hasOwnProperty.call(this.items, element)
   }
 
-  // 🧹 清空集合
+  //  清空集合
   clear() {
     this.items = {}
   }
 
-  // 📏 集合大小
+  //  集合大小
   size() {
     return Object.keys(this.items).length
   }
 
-  // 📋 获取所有元素
+  //  获取所有元素
   values() {
     return Object.keys(this.items)
   }
 
-  // 🧩 并集：A ∪ B
+  //  并集：A ∪ B
   union(otherSet) {
     const unionSet = new Set()
 
@@ -92,7 +92,7 @@ class Set {
     return unionSet
   }
 
-  // 🧩 交集：A ∩ B
+  //  交集：A ∩ B
   intersection(otherSet) {
     const intersectionSet = new Set()
 
@@ -107,7 +107,7 @@ class Set {
     return intersectionSet
   }
 
-  // 🧩 差集：A - B（在 A 中但不在 B 中的元素）
+  //  差集：A - B（在 A 中但不在 B 中的元素）
   difference(otherSet) {
     const differenceSet = new Set()
 
@@ -122,7 +122,7 @@ class Set {
     return differenceSet
   }
 
-  // 🧩 子集：A ⊆ B（A 的所有元素都在 B 中）
+  //  子集：A ⊆ B（A 的所有元素都在 B 中）
   subset(otherSet) {
     let values = this.values()
     for (let i = 0; i < values.length; i++) {
@@ -146,21 +146,21 @@ class Set {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作             | 时间复杂度    | 说明           |
 | ---------------- | ------------- | -------------- |
-| `add()`          | **O(1)** ✅   | 对象属性赋值   |
-| `remove()`       | **O(1)** ✅   | `delete` 操作  |
-| `has()`          | **O(1)** ✅   | 属性检查       |
-| `union()`        | **O(n+m)** ⚠️ | 需遍历两个集合 |
-| `intersection()` | **O(n)** ⚠️   | 需遍历一个集合 |
-| `difference()`   | **O(n)** ⚠️   | 需遍历一个集合 |
-| `subset()`       | **O(n)** ⚠️   | 需遍历一个集合 |
+| `add()`          | **O(1)**    | 对象属性赋值   |
+| `remove()`       | **O(1)**    | `delete` 操作  |
+| `has()`          | **O(1)**    | 属性检查       |
+| `union()`        | **O(n+m)**  | 需遍历两个集合 |
+| `intersection()` | **O(n)**    | 需遍历一个集合 |
+| `difference()`   | **O(n)**    | 需遍历一个集合 |
+| `subset()`       | **O(n)**    | 需遍历一个集合 |
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 数组去重
 
@@ -199,7 +199,7 @@ console.log(intersectionOfArrays([1, 2, 2, 3], [2, 2, 4])) // [2]
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                        |
 | ---------- | ------------------------------------------- |
@@ -207,7 +207,7 @@ console.log(intersectionOfArrays([1, 2, 2, 3], [2, 2, 4])) // [2]
 | 关键操作   | add / remove / has + 集合四则运算           |
 | 与字典关系 | 集合≈只有 key 没有 value 的字典             |
 | 典型应用   | 去重、权限检查、标签系统                    |
-| 下一步学习 | 👉 [哈希表 — 更高效的键值存储](/hash-table) |
+| 下一步学习 |  [哈希表 — 更高效的键值存储](/hash-table) |
 
 ---
 
@@ -215,8 +215,8 @@ console.log(intersectionOfArrays([1, 2, 2, 3], [2, 2, 4])) // [2]
 
 | 题号                                                              | 题目           | 难度    |
 | ----------------------------------------------------------------- | -------------- | ------- |
-| [217](https://leetcode.cn/problems/contains-duplicate/)           | 存在重复元素   | 🟢 简单 |
-| [349](https://leetcode.cn/problems/intersection-of-two-arrays/)   | 两个数组的交集 | 🟢 简单 |
-| [128](https://leetcode.cn/problems/longest-consecutive-sequence/) | 最长连续序列   | 🟡 中等 |
+| [217](https://leetcode.cn/problems/contains-duplicate/)           | 存在重复元素   |  简单 |
+| [349](https://leetcode.cn/problems/intersection-of-two-arrays/)   | 两个数组的交集 |  简单 |
+| [128](https://leetcode.cn/problems/longest-consecutive-sequence/) | 最长连续序列   |  中等 |
 
-[⬅️ 返回字典](/dictionary) · [返回首页](/)
+[ 返回字典](/dictionary) · [返回首页](/)

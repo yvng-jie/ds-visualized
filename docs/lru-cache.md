@@ -1,16 +1,16 @@
-# ⚡ LRU Cache
+#  LRU Cache
 
 > **Evicts the least recently used item when full** — Like a desk where you push old papers aside for new ones
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**📚 Desk workspace**: You have room for 3 books on your desk. When you need a new book, you pull it from the shelf (slow) and put it on your desk. If your desk is full, you remove the book you haven't touched in the longest time.
+** Desk workspace**: You have room for 3 books on your desk. When you need a new book, you pull it from the shelf (slow) and put it on your desk. If your desk is full, you remove the book you haven't touched in the longest time.
 
 More examples:
 
@@ -24,12 +24,12 @@ More examples:
 
 ```
          HashMap (O(1) lookup)
-         ┌─────────────────┐
-         │ key → Node*      │
-         └─────────────────┘
-                │
-                ▼
-  Head ─ [3:C] ⇄ [2:B] ⇄ [1:A] ─ Tail
+         
+          key → Node*      
+         
+                
+                
+  Head  [3:C] ⇄ [2:B] ⇄ [1:A]  Tail
   (MRU)                          (LRU)
 ```
 
@@ -40,7 +40,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class ListNode {
@@ -110,7 +110,7 @@ class LRUCache {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation | Time |
 | --------- | :--: |
@@ -121,7 +121,7 @@ class LRUCache {
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. LRU Cache (LeetCode 146)
 
@@ -131,7 +131,7 @@ class LRUCache {
 
 ---
 
-## ⚠️ Common Pitfalls
+##  Common Pitfalls
 
 | Mistake                                 | Why                            |
 | --------------------------------------- | ------------------------------ |
@@ -141,10 +141,10 @@ class LRUCache {
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                              | Recommendation                |
 | ------------------------------------- | ----------------------------- |
-| Need O(1) get/put with bounded memory | ✅ LRU Cache                  |
-| Items have different expiration times | ❌ Use LFU or TTL-based cache |
-| Simple caching, no eviction needed    | ❌ A plain Map is simpler     |
+| Need O(1) get/put with bounded memory |  LRU Cache                  |
+| Items have different expiration times |  Use LFU or TTL-based cache |
+| Simple caching, no eviction needed    |  A plain Map is simpler     |

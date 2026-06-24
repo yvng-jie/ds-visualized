@@ -3,19 +3,19 @@ title: Binary Search Tree (BST) — Data Structure
 description: Learn BST in JavaScript with interactive visualizer. Complete guide with insert, delete, traversal operations, complexity, and interview questions.
 ---
 
-# 🌳 Binary Search Tree (BST)
+#  Binary Search Tree (BST)
 
 > **Left child < parent < right child** — Like binary search, but as a tree
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**📂 File cabinet**: In a filing cabinet, files starting with A-M go in the left drawer, N-Z in the right drawer. To find "Data Structures", you go to the left drawer (before M), then look under "D" — you never need to search the right drawer.
+** File cabinet**: In a filing cabinet, files starting with A-M go in the left drawer, N-Z in the right drawer. To find "Data Structures", you go to the left drawer (before M), then look under "D" — you never need to search the right drawer.
 
 More examples:
 
@@ -30,14 +30,14 @@ More examples:
 ```
 Array:    [1, 3, 5, 7, 9, 11, 13]   Binary search O(log n), but insert/delete O(n)
 Linked List: 1 → 3 → 5 → 7 → 9 → 11 → 13  Insert O(1), but search O(n)
-BST:          🌳                          Both search AND insert are O(log n)!
+BST:                                    Both search AND insert are O(log n)!
 ```
 
 BST combines the best of both: fast search (like binary search on an array) and fast insertion (like a linked list).
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Node {
@@ -212,29 +212,29 @@ class BinarySearchTree {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation  | Average         | Worst | Notes                                  |
 | ---------- | --------------- | ----- | -------------------------------------- |
-| `insert()` | **O(log n)** ✅ | O(n)  | Degenerates when inserting sorted data |
-| `search()` | **O(log n)** ✅ | O(n)  |                                        |
-| Traversal  | **O(n)** ⚠️     | O(n)  | Visits every node                      |
+| `insert()` | **O(log n)**  | O(n)  | Degenerates when inserting sorted data |
+| `search()` | **O(log n)**  | O(n)  |                                        |
+| Traversal  | **O(n)**      | O(n)  | Visits every node                      |
 
 <div class="tip-box">
 
-**⚠️ Degeneration**: Inserting `[1,2,3,4,5]` in order makes the BST a linked list! Solution: balanced trees like AVL or Red-Black trees.
+** Degeneration**: Inserting `[1,2,3,4,5]` in order makes the BST a linked list! Solution: balanced trees like AVL or Red-Black trees.
 
 </div>
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <BSTVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Validate BST
 
@@ -258,7 +258,7 @@ function maxDepth(root) {
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property     | Description                                                                  |
 | ------------ | ---------------------------------------------------------------------------- |
@@ -266,16 +266,16 @@ function maxDepth(root) {
 | 3 traversals | Pre (root-left-right), In (left-root-right = sorted), Post (left-right-root) |
 | Pros         | Search and insert both O(log n) average                                      |
 | Cons         | Can degenerate to O(n)                                                       |
-| Next         | 👉 [Heap — Priority queue done right](/heap)                                 |
+| Next         |  [Heap — Priority queue done right](/heap)                                 |
 
 ### LeetCode Practice
 
 | #                                                                   | Problem             | Difficulty |
 | ------------------------------------------------------------------- | ------------------- | ---------- |
-| [98](https://leetcode.com/problems/validate-binary-search-tree/)    | Validate BST        | 🟡 Medium  |
-| [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/)  | Max Depth           | 🟢 Easy    |
-| [230](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | Kth Smallest in BST | 🟡 Medium  |
+| [98](https://leetcode.com/problems/validate-binary-search-tree/)    | Validate BST        |  Medium  |
+| [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/)  | Max Depth           |  Easy    |
+| [230](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | Kth Smallest in BST |  Medium  |
 
 ---
 
-[⬅️ Back to Hash Table](/hash-table) · [Back to Home](/)
+[ Back to Hash Table](/hash-table) · [Back to Home](/)

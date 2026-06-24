@@ -1,16 +1,16 @@
-# 🌳 AVL Tree
+#  AVL Tree
 
 > **A self-balancing Binary Search Tree where the height difference between left and right subtrees is at most 1** — Like a scale that always stays balanced
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**⚖️ Balance scale**: Imagine a scale with weights on both sides. If one side gets too heavy, you adjust by moving weights around. An AVL tree does the same — whenever a node makes the tree unbalanced, it "rotates" nodes to restore balance.
+** Balance scale**: Imagine a scale with weights on both sides. If one side gets too heavy, you adjust by moving weights around. An AVL tree does the same — whenever a node makes the tree unbalanced, it "rotates" nodes to restore balance.
 
 More examples:
 
@@ -55,7 +55,7 @@ A node is **balanced** if `|balance| ≤ 1`. If `|balance| > 1`, rotations are n
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class AVLNode {
@@ -146,7 +146,7 @@ class AVLTree {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation | AVL Tree | BST (worst) |
 | --------- | :------: | :---------: |
@@ -158,13 +158,13 @@ class AVLTree {
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <AVLTreeVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. AVL Tree vs Red-Black Tree
 
@@ -174,7 +174,7 @@ class AVLTree {
 
 ---
 
-## ⚠️ Common Pitfalls
+##  Common Pitfalls
 
 | Mistake                                    | Why                                                                                  |
 | ------------------------------------------ | ------------------------------------------------------------------------------------ |
@@ -184,11 +184,11 @@ class AVLTree {
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                    | Recommendation                              |
 | --------------------------- | ------------------------------------------- |
-| Read-heavy workload         | ✅ AVL Tree (more balanced, faster lookups) |
-| Write-heavy workload        | ❌ Use Red-Black Tree instead               |
-| Need guaranteed O(log n)    | ✅ AVL Tree                                 |
-| Small dataset (< 100 items) | ❌ A simple array or BST is fine            |
+| Read-heavy workload         |  AVL Tree (more balanced, faster lookups) |
+| Write-heavy workload        |  Use Red-Black Tree instead               |
+| Need guaranteed O(log n)    |  AVL Tree                                 |
+| Small dataset (< 100 items) |  A simple array or BST is fine            |

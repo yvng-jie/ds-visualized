@@ -1,16 +1,16 @@
-# 🌸 Bloom Filter
+#  Bloom Filter
 
 > **A space-efficient probabilistic data structure for set membership** — Like a checklist that sometimes says "maybe" but never says "no" when it should say "yes"
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**📋 Airport security checklist**: Security has a list of banned items. If your item is NOT on the list, you pass 100%. But if it IS "on the list"... it might be a false alarm. Bloom filters work the same way.
+** Airport security checklist**: Security has a list of banned items. If your item is NOT on the list, you pass 100%. But if it IS "on the list"... it might be a false alarm. Bloom filters work the same way.
 
 More examples:
 
@@ -35,13 +35,13 @@ More examples:
 Add "apple":     hash1("apple") → bit[3]=1, hash2("apple") → bit[7]=1, hash3("apple") → bit[2]=1
 Add "banana":    hash1 → bit[5]=1, hash2 → bit[1]=1, hash3 → bit[7]=1
 
-Check "apple":   ✓ bit[3]=1, ✓ bit[7]=1, ✓ bit[2]=1 → "Probably in set"
-Check "grape":   ✓ bit[5]=1, ✗ bit[4]=0, ... → "Definitely NOT in set"
+Check "apple":    bit[3]=1,  bit[7]=1,  bit[2]=1 → "Probably in set"
+Check "grape":    bit[5]=1,  bit[4]=0, ... → "Definitely NOT in set"
 ```
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class BloomFilter {
@@ -96,7 +96,7 @@ class BloomFilter {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation | Time | Space |
 | --------- | :--: | :---: |
@@ -107,7 +107,7 @@ class BloomFilter {
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. When would you use a Bloom Filter?
 
@@ -115,7 +115,7 @@ class BloomFilter {
 
 ---
 
-## ⚠️ Common Pitfalls
+##  Common Pitfalls
 
 | Mistake                           | Why                                           |
 | --------------------------------- | --------------------------------------------- |
@@ -126,10 +126,10 @@ class BloomFilter {
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                                         | Recommendation                         |
 | ------------------------------------------------ | -------------------------------------- |
-| Need exact answers                               | ❌ Use a HashSet instead               |
-| Memory constrained, can tolerate false positives | ✅ Bloom Filter                        |
-| Need to remove items                             | ❌ Use a Counting Bloom Filter variant |
+| Need exact answers                               |  Use a HashSet instead               |
+| Memory constrained, can tolerate false positives |  Bloom Filter                        |
+| Need to remove items                             |  Use a Counting Bloom Filter variant |

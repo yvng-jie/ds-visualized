@@ -1,16 +1,16 @@
-# ⛰️ Heap
+#  Heap
 
 > **A complete binary tree where every parent is greater (or smaller) than its children** — Like a pyramid with the biggest at the top
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🏆 Leaderboard**: The highest score is always at #1. If someone scores higher, they take the top spot and everyone else shifts down.
+** Leaderboard**: The highest score is always at #1. If someone scores higher, they take the top spot and everyone else shifts down.
 
 More examples:
 
@@ -33,7 +33,7 @@ Remember our Priority Queue from earlier? It used an array and insertion was O(n
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class MinHeap {
@@ -132,18 +132,18 @@ class MaxHeap extends MinHeap {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation       | Time            | Notes                  |
 | --------------- | --------------- | ---------------------- |
-| `insert()`      | **O(log n)** ✅ | Sift up log n levels   |
-| `extract()`     | **O(log n)** ✅ | Sift down log n levels |
-| `peek()`        | **O(1)** ✅     | First array element    |
-| Building a heap | **O(n)** ✅     | Sift down from bottom  |
+| `insert()`      | **O(log n)**  | Sift up log n levels   |
+| `extract()`     | **O(log n)**  | Sift down log n levels |
+| `peek()`        | **O(1)**      | First array element    |
+| Building a heap | **O(n)**      | Sift down from bottom  |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Kth Largest Element
 
@@ -161,7 +161,7 @@ console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)) // 5
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property  | Description                                          |
 | --------- | ---------------------------------------------------- |
@@ -170,16 +170,16 @@ console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)) // 5
 | Key ops   | Sift Up (insert), Sift Down (extract)                |
 | Time      | Both O(log n)                                        |
 | Use cases | Priority queues, Top K, Dijkstra                     |
-| Next      | 👉 [Trie — Fast string search](/trie)                |
+| Next      |  [Trie — Fast string search](/trie)                |
 
 ### LeetCode Practice
 
 | #                                                                     | Problem                      | Difficulty |
 | --------------------------------------------------------------------- | ---------------------------- | ---------- |
-| [215](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Kth Largest Element          | 🟡 Medium  |
-| [347](https://leetcode.com/problems/top-k-frequent-elements/)         | Top K Frequent Elements      | 🟡 Medium  |
-| [295](https://leetcode.com/problems/find-median-from-data-stream/)    | Find Median from Data Stream | 🔴 Hard    |
+| [215](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Kth Largest Element          |  Medium  |
+| [347](https://leetcode.com/problems/top-k-frequent-elements/)         | Top K Frequent Elements      |  Medium  |
+| [295](https://leetcode.com/problems/find-median-from-data-stream/)    | Find Median from Data Stream |  Hard    |
 
 ---
 
-[⬅️ Back to Graph](/graph) · [Back to Home](/)
+[ Back to Graph](/graph) · [Back to Home](/)

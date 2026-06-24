@@ -1,16 +1,16 @@
-# 📖 Dictionary
+#  Dictionary
 
 > **Key-Value storage** — Like a real dictionary: look up a word (key), get its definition (value)
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**📞 Phone book**: You look up a person's name (key) and find their phone number (value). You don't need to remember which page they're on — just search by name.
+** Phone book**: You look up a person's name (key) and find their phone number (value). You don't need to remember which page they're on — just search by name.
 
 More examples:
 
@@ -30,7 +30,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Dictionary {
@@ -86,22 +86,22 @@ class Dictionary {
 
 1. **Wraps a JS object** — `this.items = {}` uses JavaScript's built-in key-value feature
 2. **`key in object` checks existence** — more reliable than `obj[key] !== undefined`
-3. **⚠️ Gotcha**: Object keys are always strings. `set(1, 'a')` and `set('1', 'a')` will overwrite each other!
+3. ** Gotcha**: Object keys are always strings. `set(1, 'a')` and `set('1', 'a')` will overwrite each other!
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation  | Time        | Notes               |
 | ---------- | ----------- | ------------------- |
-| `set()`    | **O(1)** ✅ | Property assignment |
-| `get()`    | **O(1)** ✅ | Property access     |
-| `has()`    | **O(1)** ✅ | `in` operator       |
-| `remove()` | **O(1)** ✅ | `delete` operator   |
+| `set()`    | **O(1)**  | Property assignment |
+| `get()`    | **O(1)**  | Property access     |
+| `has()`    | **O(1)**  | `in` operator       |
+| `remove()` | **O(1)**  | `delete` operator   |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Two Sum
 
@@ -127,7 +127,7 @@ console.log(twoSum([2, 7, 11, 15], 9)) // [0, 1]
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property   | Description                                                      |
 | ---------- | ---------------------------------------------------------------- |
@@ -135,16 +135,16 @@ console.log(twoSum([2, 7, 11, 15], 9)) // [0, 1]
 | Key ops    | set (store), get (retrieve), has (check)                         |
 | Time       | All core ops O(1)                                                |
 | Limitation | Keys become strings automatically                                |
-| Next       | 👉 [Hash Table — A faster, hand-crafted Dictionary](/hash-table) |
+| Next       |  [Hash Table — A faster, hand-crafted Dictionary](/hash-table) |
 
 ### LeetCode Practice
 
 | #                                                   | Problem        | Difficulty |
 | --------------------------------------------------- | -------------- | ---------- |
-| [1](https://leetcode.com/problems/two-sum/)         | Two Sum        | 🟢 Easy    |
-| [242](https://leetcode.com/problems/valid-anagram/) | Valid Anagram  | 🟢 Easy    |
-| [49](https://leetcode.com/problems/group-anagrams/) | Group Anagrams | 🟡 Medium  |
+| [1](https://leetcode.com/problems/two-sum/)         | Two Sum        |  Easy    |
+| [242](https://leetcode.com/problems/valid-anagram/) | Valid Anagram  |  Easy    |
+| [49](https://leetcode.com/problems/group-anagrams/) | Group Anagrams |  Medium  |
 
 ---
 
-[⬅️ Back to Priority Queue](/priority-queue) · [Back to Home](/)
+[ Back to Priority Queue](/priority-queue) · [Back to Home](/)

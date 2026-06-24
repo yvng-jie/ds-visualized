@@ -129,7 +129,7 @@ function draw(highlightBucket = -1) {
           ctx.font = '12px sans-serif'
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
-          ctx.fillText('→', x + bucketW + 4, y + bucketH / 2)
+          
         }
 
         // Chain arrow between items
@@ -138,7 +138,7 @@ function draw(highlightBucket = -1) {
           ctx.font = '12px sans-serif'
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
-          ctx.fillText('→', itemX - 8, y + bucketH / 2)
+          
         }
 
         // Item box
@@ -166,7 +166,7 @@ function draw(highlightBucket = -1) {
     ctx.textAlign = 'left'
     ctx.textBaseline = 'top'
     ctx.fillText(
-      t('Hash(key) → bucket index. Items in same bucket = collision chain.', 'Hash(key) → 桶索引。同一桶内为冲突链。'),
+      t('Hash(key) bucket index. Items in same bucket = collision chain.', 'Hash(key) 桶索引。同一桶内为冲突链。'),
       20,
       canvasHeight - 30,
     )
@@ -178,7 +178,7 @@ function put() {
   const k = keyValue.value.trim()
   const v = valValue.value.trim()
   if (!k) {
-    lastOp.value = t('⚠️ Please enter a key', '⚠️ 请输入键')
+    lastOp.value = t('Please enter a key', '请输入键')
     return
   }
   keyValue.value = ''
@@ -191,14 +191,14 @@ function put() {
   const existing = bucket.find((item) => item.key === k)
   if (existing) {
     existing.value = v
-    lastOp.value = `🔄 update(${k}: ${v})`
+    lastOp.value = `update(${k}: ${v})`
     draw(idx)
     return
   }
 
   bucket.push({ key: k, value: v })
   itemCount.value++
-  lastOp.value = `✅ put(${k}: ${v}) → bucket[${idx}]`
+  lastOp.value = `put(${k}: ${v}) bucket[${idx}]`
   draw(idx)
 }
 
@@ -206,7 +206,7 @@ function remove() {
   if (animating) return
   const k = keyValue.value.trim()
   if (!k) {
-    lastOp.value = t('⚠️ Enter key to remove', '⚠️ 请输入要移除的键')
+    lastOp.value = t('Enter key to remove', '请输入要移除的键')
     return
   }
   keyValue.value = ''
@@ -216,14 +216,14 @@ function remove() {
   const foundIdx = bucket.findIndex((item) => item.key === k)
 
   if (foundIdx === -1) {
-    lastOp.value = t(`⚠️ Key "${k}" not found`, `⚠️ 键 "${k}" 不存在`)
+    lastOp.value = t(` Key "${k}" not found`, ` 键 "${k}" 不存在`)
     draw(idx)
     return
   }
 
   bucket.splice(foundIdx, 1)
   itemCount.value--
-  lastOp.value = `🗑️ remove(${k})`
+  lastOp.value = `remove(${k})`
   draw(idx)
 }
 
@@ -238,7 +238,7 @@ function reset() {
     storage.value[idx].push({ key: k, value: v })
     itemCount.value++
   }
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

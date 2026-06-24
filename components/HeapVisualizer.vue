@@ -52,7 +52,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from './composables/useI18n.js'
 import { useAnimation } from './composables/useAnimation.js'
-import { COLORS } from './visualizer-utils.js'
+import { COLORS, drawEmptyMessage, drawText } from './visualizer-utils.js'
 
 const { t } = useI18n()
 const { animating, speed } = useAnimation()
@@ -107,11 +107,7 @@ function draw(highlightIdx = -1) {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 
   if (heap.value.length === 0) {
-    ctx.fillStyle = COLORS.muted
-    ctx.font = '16px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-    ctx.fillText(t('Empty heap', '空堆'), canvasWidth / 2, canvasHeight / 2)
+    drawEmptyMessage(ctx, t('Empty heap', '空堆'), canvasWidth, canvasHeight)
     return
   }
 
@@ -187,10 +183,10 @@ function draw(highlightIdx = -1) {
 }
 
 function insert() {
-  if (animating) return
+  if (animating.value) return
   const val = parseInt(inputValue.value)
   if (isNaN(val)) {
-    lastOp.value = t('⚠️ Please enter a valid number', '⚠️ 请输入有效的数字')
+    lastOp.value = t('Please enter a valid number', '请输入有效的数字')
     return
   }
   inputValue.value = ''
@@ -206,19 +202,19 @@ function insert() {
     i = parent
   }
 
-  lastOp.value = `✅ insert(${val})`
+  lastOp.value = ` insert(${val})`
   draw(i)
 }
 
 async function extract() {
-  if (animating) return
+  if (animating.value) return
   if (heap.value.length === 0) {
-    lastOp.value = t('⚠️ Heap is empty', '⚠️ 堆为空')
+    lastOp.value = t('Heap is empty', '堆为空')
     draw()
     return
   }
 
-  animating = true
+  animating.value = true
   const min = heap.value[0]
   const last = heap.value.pop()
 
@@ -243,20 +239,20 @@ async function extract() {
       i = smallest
     }
 
-    lastOp.value = `⏏️ extract() → ${min}`
+    lastOp.value = `extract() ${min}`
     draw(i)
   } else {
-    lastOp.value = `⏏️ extract() → ${min}`
+    lastOp.value = `extract() ${min}`
     draw()
   }
 
   await new Promise((r) => setTimeout(r, speed.value))
-  animating = false
+  animating.value = false
 }
 
 function reset() {
   heap.value = [...defaultData]
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

@@ -1,16 +1,16 @@
-# 📦 栈 Stack
+#  栈 Stack
 
 > **后进先出（LIFO, Last-In-First-Out）** — 最后放入的元素最先被取出
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🥞 叠盘子**：你洗完盘子后，会把新盘子叠在最上面。需要用时，也是从最上面先拿。最后放上去的盘子最先被拿走——这就是栈。
+** 叠盘子**：你洗完盘子后，会把新盘子叠在最上面。需要用时，也是从最上面先拿。最后放上去的盘子最先被拿走——这就是栈。
 
 其他例子：
 
@@ -22,14 +22,14 @@
 
 ### 适用场景
 
-- ✅ 括号匹配检查（`{[]}()` 是否合法）
-- ✅ 十进制转二进制（除二取余）
-- ✅ 表达式求值（中缀转后缀）
-- ✅ 函数调用栈 / 递归
+-  括号匹配检查（`{[]}()` 是否合法）
+-  十进制转二进制（除二取余）
+-  表达式求值（中缀转后缀）
+-  函数调用栈 / 递归
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 /**
@@ -50,33 +50,33 @@ class Stack {
     this.items = []
   }
 
-  // 🥞 入栈：把元素放到最上面（数组末尾）
+  //  入栈：把元素放到最上面（数组末尾）
   push(element) {
     this.items.push(element)
   }
 
-  // 🥞 出栈：移除最上面的元素并返回
+  //  出栈：移除最上面的元素并返回
   pop() {
     return this.items.pop()
   }
 
-  // 👀 看一眼栈顶是什么
+  //  看一眼栈顶是什么
   peek() {
     if (this.isEmpty()) return undefined
     return this.items[this.items.length - 1]
   }
 
-  // ❓ 栈是空的吗？
+  //  栈是空的吗？
   isEmpty() {
     return this.items.length === 0
   }
 
-  // 📏 栈里有多少元素？
+  //  栈里有多少元素？
   size() {
     return this.items.length
   }
 
-  // 📝 输出成易读的字符串
+  //  输出成易读的字符串
   toString() {
     return this.items.join(' ')
   }
@@ -91,26 +91,26 @@ class Stack {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作         | 时间复杂度  | 说明                         |
 | ------------ | ----------- | ---------------------------- |
-| `push()`     | **O(1)** ✅ | 数组末尾插入，不涉及元素移动 |
-| `pop()`      | **O(1)** ✅ | 数组末尾删除                 |
-| `peek()`     | **O(1)** ✅ | 直接索引访问                 |
-| `isEmpty()`  | **O(1)** ✅ | 读 length 属性               |
-| `size()`     | **O(1)** ✅ | 读 length 属性               |
-| `toString()` | **O(n)** ⚠️ | 需要遍历所有元素             |
+| `push()`     | **O(1)**  | 数组末尾插入，不涉及元素移动 |
+| `pop()`      | **O(1)**  | 数组末尾删除                 |
+| `peek()`     | **O(1)**  | 直接索引访问                 |
+| `isEmpty()`  | **O(1)**  | 读 length 属性               |
+| `size()`     | **O(1)**  | 读 length 属性               |
+| `toString()` | **O(n)**  | 需要遍历所有元素             |
 
 ---
 
-## 🎨 可视化演示
+##  可视化演示
 
 <StackVisualizer />
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 有效的括号
 
@@ -167,7 +167,7 @@ console.log(dec2bin(42)) // 101010
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                    |
 | ---------- | --------------------------------------- |
@@ -175,7 +175,7 @@ console.log(dec2bin(42)) // 101010
 | 底层实现   | 数组（JS）或链表                        |
 | 关键操作   | push（入栈）、pop（出栈）、peek（查看） |
 | 时间复杂度 | 核心操作都是 O(1)                       |
-| 下一步学习 | 👉 [队列 — 先进先出](/queue)            |
+| 下一步学习 |  [队列 — 先进先出](/queue)            |
 
 ---
 
@@ -183,9 +183,9 @@ console.log(dec2bin(42)) // 101010
 
 | 题号                                                                  | 题目             | 难度    |
 | --------------------------------------------------------------------- | ---------------- | ------- |
-| [20](https://leetcode.cn/problems/valid-parentheses/)                 | 有效的括号       | 🟢 简单 |
-| [155](https://leetcode.cn/problems/min-stack/)                        | 最小栈           | 🟢 简单 |
-| [739](https://leetcode.cn/problems/daily-temperatures/)               | 每日温度         | 🟡 中等 |
-| [150](https://leetcode.cn/problems/evaluate-reverse-polish-notation/) | 逆波兰表达式求值 | 🟡 中等 |
+| [20](https://leetcode.cn/problems/valid-parentheses/)                 | 有效的括号       |  简单 |
+| [155](https://leetcode.cn/problems/min-stack/)                        | 最小栈           |  简单 |
+| [739](https://leetcode.cn/problems/daily-temperatures/)               | 每日温度         |  中等 |
+| [150](https://leetcode.cn/problems/evaluate-reverse-polish-notation/) | 逆波兰表达式求值 |  中等 |
 
-[⬅️ 返回首页](/)
+[ 返回首页](/)

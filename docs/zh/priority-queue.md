@@ -1,16 +1,16 @@
-# 🔢 优先级队列 PriorityQueue
+#  优先级队列 PriorityQueue
 
 > **每个元素都有优先级，优先级高的先出队** — 就像急诊室先处理危重病人
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🏥 急诊分诊**：医院急诊室会根据病人病情的严重程度决定救治顺序。心脏病发作（高优先级）比轻微擦伤（低优先级）先得到处理。
+** 急诊分诊**：医院急诊室会根据病人病情的严重程度决定救治顺序。心脏病发作（高优先级）比轻微擦伤（低优先级）先得到处理。
 
 其他例子：
 
@@ -30,7 +30,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 // 队列元素类：保存数据和优先级
@@ -46,7 +46,7 @@ class PriorityQueue {
     this.items = []
   }
 
-  // 🔢 入队：按优先级插入
+  //  入队：按优先级插入
   enqueue(element, priority) {
     const queueElement = new QueueElement(element, priority)
 
@@ -72,28 +72,28 @@ class PriorityQueue {
     }
   }
 
-  // 🔢 出队：移除队首（优先级最高的）元素
+  //  出队：移除队首（优先级最高的）元素
   dequeue() {
     return this.items.shift()
   }
 
-  // 👀 查看优先级最高的元素
+  //  查看优先级最高的元素
   front() {
     if (this.isEmpty()) return undefined
     return this.items[0]
   }
 
-  // ❓ 队列是空的吗？
+  //  队列是空的吗？
   isEmpty() {
     return this.items.length === 0
   }
 
-  // 📏 队列长度
+  //  队列长度
   size() {
     return this.items.length
   }
 
-  // 📝 字符串输出（元素:优先级）
+  //  字符串输出（元素:优先级）
   toString() {
     return this.items.map((item) => `${item.element}:${item.priority}`).join(' ')
   }
@@ -109,33 +109,33 @@ class PriorityQueue {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作        | 时间复杂度  | 说明                   |
 | ----------- | ----------- | ---------------------- |
-| `enqueue()` | **O(n)** ⚠️ | 需要遍历找到插入位置   |
-| `dequeue()` | **O(n)** ⚠️ | `shift()` 引起元素前移 |
-| `front()`   | **O(1)** ✅ | 直接取第一个           |
-| `isEmpty()` | **O(1)** ✅ |                        |
-| `size()`    | **O(1)** ✅ |                        |
+| `enqueue()` | **O(n)**  | 需要遍历找到插入位置   |
+| `dequeue()` | **O(n)**  | `shift()` 引起元素前移 |
+| `front()`   | **O(1)**  | 直接取第一个           |
+| `isEmpty()` | **O(1)**  |                        |
+| `size()`    | **O(1)**  |                        |
 
 <div class="tip-box">
 
-**💡 性能优化**：如果数据量大，可以用**二叉堆（Binary Heap）** 实现优先级队列，这样 enqueue 和 dequeue 都是 O(log n)。我们将在后续章节介绍堆。
+** 性能优化**：如果数据量大，可以用**二叉堆（Binary Heap）** 实现优先级队列，这样 enqueue 和 dequeue 都是 O(log n)。我们将在后续章节介绍堆。
 
 </div>
 
 ---
 
-## 🎨 可视化演示
+##  可视化演示
 
 <QueueVisualizer />
 
-> 💡 优先级队列的可视化与普通队列类似，区别在于入队时按优先级排序插入。当前用普通队列可视化作为示意。可查看 [栈的可视化](/stack#可视化演示) 了解交互式组件的工作方式。
+>  优先级队列的可视化与普通队列类似，区别在于入队时按优先级排序插入。当前用普通队列可视化作为示意。可查看 [栈的可视化](/stack#可视化演示) 了解交互式组件的工作方式。
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 合并 K 个有序数组
 
@@ -171,7 +171,7 @@ function mergeKSortedArrays(arrays) {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                               |
 | ---------- | -------------------------------------------------- |
@@ -180,7 +180,7 @@ function mergeKSortedArrays(arrays) {
 | 关键操作   | enqueue（按优先级插入）、dequeue（取优先级最高的） |
 | 时间复杂度 | enqueue 是 O(n)                                    |
 | 优化方向   | 用二叉堆实现可优化到 O(log n)                      |
-| 下一步学习 | 👉 [单向链表 — 动态数据结构](/linked-list)         |
+| 下一步学习 |  [单向链表 — 动态数据结构](/linked-list)         |
 
 ---
 
@@ -188,8 +188,8 @@ function mergeKSortedArrays(arrays) {
 
 | 题号                                                                 | 题目                  | 难度    |
 | -------------------------------------------------------------------- | --------------------- | ------- |
-| [215](https://leetcode.cn/problems/kth-largest-element-in-an-array/) | 数组中的第K个最大元素 | 🟡 中等 |
-| [347](https://leetcode.cn/problems/top-k-frequent-elements/)         | 前 K 个高频元素       | 🟡 中等 |
-| [703](https://leetcode.cn/problems/kth-largest-element-in-a-stream/) | 数据流中的第 K 大元素 | 🟢 简单 |
+| [215](https://leetcode.cn/problems/kth-largest-element-in-an-array/) | 数组中的第K个最大元素 |  中等 |
+| [347](https://leetcode.cn/problems/top-k-frequent-elements/)         | 前 K 个高频元素       |  中等 |
+| [703](https://leetcode.cn/problems/kth-largest-element-in-a-stream/) | 数据流中的第 K 大元素 |  简单 |
 
-[⬅️ 返回队列](/queue) · [返回首页](/)
+[ 返回队列](/queue) · [返回首页](/)

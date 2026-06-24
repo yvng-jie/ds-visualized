@@ -1,6 +1,6 @@
 # What are Data Structures?
 
-## 🧠 In One Sentence
+##  In One Sentence
 
 > **A data structure is just a way to organize data.**
 
@@ -13,7 +13,7 @@ Think of your closet:
 
 Each way has its pros and cons, depending on what you need to do.
 
-## 🤔 Why Bother Learning Data Structures?
+##  Why Bother Learning Data Structures?
 
 ```
 Without data structures:              With data structures:
@@ -30,25 +30,25 @@ const item3 = 'c'                     stack.push('b')
 2. **Ace your interviews** — 90% of big tech interviews ask about data structures
 3. **Understand how things work** — Arrays, objects — they're all built on these ideas
 
-## 📚 The 13 Structures We Cover
+##  The 13 Structures We Cover
 
 | Structure               | Difficulty | One-liner                                  |
 | ----------------------- | ---------- | ------------------------------------------ |
-| 📦 **Stack**            | ⭐         | Last in, first out — like stacking plates  |
-| 📋 **Queue**            | ⭐         | First in, first out — like waiting in line |
-| 🔢 **PriorityQueue**    | ⭐⭐       | VIPs get served first                      |
-| 🔄 **Deque**            | ⭐⭐       | Insert and remove from both ends           |
-| 📖 **Dictionary**       | ⭐         | Key-value storage                          |
-| 🧩 **Set**              | ⭐⭐       | Unique elements, union/intersection        |
-| 🔗 **LinkedList**       | ⭐⭐       | Dynamic nodes, connected by pointers       |
-| 🔗 **DoublyLinkedList** | ⭐⭐⭐     | Go forwards and backwards                  |
-| 🔑 **HashTable**        | ⭐⭐⭐     | Fast O(1) lookups using hash functions     |
-| 🌳 **BST**              | ⭐⭐⭐     | Sorted tree, binary search                 |
-| ⛰️ **Heap**             | ⭐⭐⭐     | Priority queue done right — O(log n)       |
-| 🌲 **Trie**             | ⭐⭐⭐     | Fast string search and prefix matching     |
-| 🕸️ **Graph**            | ⭐⭐⭐⭐   | Networks of connected nodes                |
+|  **Stack**            |          | Last in, first out — like stacking plates  |
+|  **Queue**            |          | First in, first out — like waiting in line |
+|  **PriorityQueue**    |        | VIPs get served first                      |
+|  **Deque**            |        | Insert and remove from both ends           |
+|  **Dictionary**       |          | Key-value storage                          |
+|  **Set**              |        | Unique elements, union/intersection        |
+|  **LinkedList**       |        | Dynamic nodes, connected by pointers       |
+|  **DoublyLinkedList** |      | Go forwards and backwards                  |
+|  **HashTable**        |      | Fast O(1) lookups using hash functions     |
+|  **BST**              |      | Sorted tree, binary search                 |
+|  **Heap**             |      | Priority queue done right — O(log n)       |
+|  **Trie**             |      | Fast string search and prefix matching     |
+|  **Graph**            |    | Networks of connected nodes                |
 
-## 🎯 How to Get the Most Out of This Tutorial
+##  How to Get the Most Out of This Tutorial
 
 1. **Read the concept** — Each chapter starts with a real-life analogy. Get the intuition first.
 2. **Look at the code** — Full implementation with line-by-line explanations.
@@ -58,6 +58,6 @@ const item3 = 'c'                     stack.push('b')
 
 ---
 
-Ready? Start with the first structure 👉
+Ready? Start with the first structure 
 
-[🚀 Start with Stack](/stack)
+[ Start with Stack](/stack)

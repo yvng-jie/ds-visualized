@@ -1,16 +1,16 @@
-# 🔗 单向链表 LinkedList
+#  单向链表 LinkedList
 
 > **由节点组成的线性结构，每个节点指向下一个节点** — 像火车车厢一节连一节
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🚃 火车**：火车由一节节车厢连接而成。每节车厢都只知道自己后面那节车厢是谁。要走到中间某节车厢，只能从车头开始一节节数过去。
+** 火车**：火车由一节节车厢连接而成。每节车厢都只知道自己后面那节车厢是谁。要走到中间某节车厢，只能从车头开始一节节数过去。
 
 其他例子：
 
@@ -30,7 +30,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 // 节点类
@@ -47,7 +47,7 @@ class LinkedList {
     this.length = 0 // 链表长度
   }
 
-  // 🔗 在末尾追加
+  //  在末尾追加
   append(element) {
     const node = new Node(element)
 
@@ -64,7 +64,7 @@ class LinkedList {
     this.length++
   }
 
-  // 🔗 在指定位置插入
+  //  在指定位置插入
   insert(position, element) {
     if (position < 0 || position > this.length) return false
 
@@ -95,7 +95,7 @@ class LinkedList {
     return true
   }
 
-  // 🔗 移除指定位置的节点
+  //  移除指定位置的节点
   removeAt(position) {
     if (position < 0 || position >= this.length) return null
 
@@ -122,7 +122,7 @@ class LinkedList {
     return current.element
   }
 
-  // 🔗 移除指定元素（第一次出现）
+  //  移除指定元素（第一次出现）
   remove(element) {
     const index = this.indexOf(element)
     if (index === -1) return false
@@ -130,7 +130,7 @@ class LinkedList {
     return true
   }
 
-  // 🔍 查找元素的位置
+  //  查找元素的位置
   indexOf(element) {
     let current = this.head
     let index = 0
@@ -144,7 +144,7 @@ class LinkedList {
     return -1
   }
 
-  // 🔍 获取指定位置的元素
+  //  获取指定位置的元素
   get(position) {
     if (position < 0 || position >= this.length) return null
 
@@ -159,7 +159,7 @@ class LinkedList {
     return current.element
   }
 
-  // 🔄 更新指定位置的元素
+  //  更新指定位置的元素
   update(position, element) {
     if (position < 0 || position >= this.length) return false
 
@@ -175,17 +175,17 @@ class LinkedList {
     return true
   }
 
-  // ❓ 链表是空的吗？
+  //  链表是空的吗？
   isEmpty() {
     return this.length === 0
   }
 
-  // 📏 链表长度
+  //  链表长度
   size() {
     return this.length
   }
 
-  // 📝 字符串输出
+  //  字符串输出
   toString() {
     let current = this.head
     let result = ''
@@ -209,27 +209,27 @@ class LinkedList {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作         | 时间复杂度  | 说明               |
 | ------------ | ----------- | ------------------ |
-| `append()`   | **O(n)** ⚠️ | 需要遍历到末尾     |
-| `insert()`   | **O(n)** ⚠️ | 需要遍历到插入位置 |
-| `removeAt()` | **O(n)** ⚠️ | 需要遍历到删除位置 |
-| `indexOf()`  | **O(n)** ⚠️ | 需要遍历查找       |
-| `get()`      | **O(n)** ⚠️ | 需要遍历           |
-| `isEmpty()`  | **O(1)** ✅ |                    |
-| `size()`     | **O(1)** ✅ |                    |
+| `append()`   | **O(n)**  | 需要遍历到末尾     |
+| `insert()`   | **O(n)**  | 需要遍历到插入位置 |
+| `removeAt()` | **O(n)**  | 需要遍历到删除位置 |
+| `indexOf()`  | **O(n)**  | 需要遍历查找       |
+| `get()`      | **O(n)**  | 需要遍历           |
+| `isEmpty()`  | **O(1)**  |                    |
+| `size()`     | **O(1)**  |                    |
 
 ---
 
-## 🎨 可视化演示
+##  可视化演示
 
 <LinkedListVisualizer />
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 反转链表
 
@@ -274,7 +274,7 @@ function hasCycle(head) {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                            |
 | ---------- | ----------------------------------------------- |
@@ -282,7 +282,7 @@ function hasCycle(head) {
 | 与数组对比 | 插入/删除快（O(1)），查找慢（O(n)）             |
 | 优点       | 动态大小，中间插入/删除高效                     |
 | 缺点       | 不能随机访问，需要从头遍历                      |
-| 下一步学习 | 👉 [双向链表 — 前后都能走](/doubly-linked-list) |
+| 下一步学习 |  [双向链表 — 前后都能走](/doubly-linked-list) |
 
 ---
 
@@ -290,9 +290,9 @@ function hasCycle(head) {
 
 | 题号                                                           | 题目             | 难度    |
 | -------------------------------------------------------------- | ---------------- | ------- |
-| [206](https://leetcode.cn/problems/reverse-linked-list/)       | 反转链表         | 🟢 简单 |
-| [141](https://leetcode.cn/problems/linked-list-cycle/)         | 环形链表         | 🟢 简单 |
-| [21](https://leetcode.cn/problems/merge-two-sorted-lists/)     | 合并两个有序链表 | 🟢 简单 |
-| [876](https://leetcode.cn/problems/middle-of-the-linked-list/) | 链表的中间结点   | 🟢 简单 |
+| [206](https://leetcode.cn/problems/reverse-linked-list/)       | 反转链表         |  简单 |
+| [141](https://leetcode.cn/problems/linked-list-cycle/)         | 环形链表         |  简单 |
+| [21](https://leetcode.cn/problems/merge-two-sorted-lists/)     | 合并两个有序链表 |  简单 |
+| [876](https://leetcode.cn/problems/middle-of-the-linked-list/) | 链表的中间结点   |  简单 |
 
-[⬅️ 返回优先级队列](/priority-queue) · [返回首页](/)
+[ 返回优先级队列](/priority-queue) · [返回首页](/)

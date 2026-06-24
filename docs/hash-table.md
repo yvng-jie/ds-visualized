@@ -3,19 +3,19 @@ title: Hash Table — O(1) Lookups
 description: Learn Hash Table in JavaScript with collision resolution visualization. Complete guide with code, complexity analysis, and interview questions.
 ---
 
-# 🔑 Hash Table
+#  Hash Table
 
 > **Use a hash function to map keys to array positions** — Makes lookups nearly O(1)
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**📮 Mailboxes**: An apartment building has numbered mailboxes. The mail carrier uses a formula to figure out which box gets which letter — no need to check every box.
+** Mailboxes**: An apartment building has numbered mailboxes. The mail carrier uses a formula to figure out which box gets which letter — no need to check every box.
 
 More examples:
 
@@ -35,7 +35,7 @@ In the Dictionary chapter, we used a plain JS object. With a Hash Table, we buil
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class HashTable {
@@ -162,18 +162,18 @@ class HashTable {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation  | Average     | Worst | Notes                      |
 | ---------- | ----------- | ----- | -------------------------- |
-| `put()`    | **O(1)** ✅ | O(n)  | Bad hash = many collisions |
-| `get()`    | **O(1)** ✅ | O(n)  |                            |
-| `remove()` | **O(1)** ✅ | O(n)  |                            |
-| Resize     | **O(n)** ⚠️ | O(n)  | Rehash everything          |
+| `put()`    | **O(1)**  | O(n)  | Bad hash = many collisions |
+| `get()`    | **O(1)**  | O(n)  |                            |
+| `remove()` | **O(1)**  | O(n)  |                            |
+| Resize     | **O(n)**  | O(n)  | Rehash everything          |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. First Unique Character
 
@@ -196,7 +196,7 @@ console.log(firstUniqChar('aabb')) // -1
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property      | Description                                                          |
 | ------------- | -------------------------------------------------------------------- |
@@ -204,15 +204,15 @@ console.log(firstUniqChar('aabb')) // -1
 | Key ops       | put / get / remove — O(1) average                                    |
 | 3 essentials  | Hash function, collision handling, dynamic resizing                  |
 | vs Dictionary | Dictionary wraps JS object; HashTable is built from scratch          |
-| Next          | 👉 [Binary Search Tree — Sorted tree structure](/binary-search-tree) |
+| Next          |  [Binary Search Tree — Sorted tree structure](/binary-search-tree) |
 
 ### LeetCode Practice
 
 | #                                                                                  | Problem                             | Difficulty |
 | ---------------------------------------------------------------------------------- | ----------------------------------- | ---------- |
-| [1](https://leetcode.com/problems/two-sum/)                                        | Two Sum                             | 🟢 Easy    |
-| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating | 🟡 Medium  |
+| [1](https://leetcode.com/problems/two-sum/)                                        | Two Sum                             |  Easy    |
+| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating |  Medium  |
 
 ---
 
-[⬅️ Back to Set](/set) · [Back to Home](/)
+[ Back to Set](/set) · [Back to Home](/)

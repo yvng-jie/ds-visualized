@@ -1,16 +1,16 @@
-# ⏫ Skip List
+#  Skip List
 
 > **A multi-level linked list for fast search** — Like an express highway with local roads
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🚗 Highways vs local roads**: To get across town, you take the express highway (fewer stops), then exit to local roads. Skip lists work the same way — upper levels "skip" over many nodes to reach the target area quickly, then lower levels fine-tune the search.
+** Highways vs local roads**: To get across town, you take the express highway (fewer stops), then exit to local roads. Skip lists work the same way — upper levels "skip" over many nodes to reach the target area quickly, then lower levels fine-tune the search.
 
 More examples:
 
@@ -22,9 +22,9 @@ More examples:
 ### Structure
 
 ```
-Level 3:  10 ────────────────────→ 50
-Level 2:  10 ────────→ 30 ──────→ 50
-Level 1:  10 ─→ 20 ─→ 30 ─→ 40 ─→ 50
+Level 3:  10 → 50
+Level 2:  10 → 30 → 50
+Level 1:  10 → 20 → 30 → 40 → 50
 Level 0:  10→15→20→25→30→35→40→45→50
 ```
 
@@ -40,7 +40,7 @@ Each level is a subset of the level below. Search starts at the top level and dr
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class SkipNode {
@@ -107,7 +107,7 @@ class SkipList {
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Why use Skip List over Balanced BST?
 
@@ -115,7 +115,7 @@ class SkipList {
 
 ---
 
-## ⚠️ Common Pitfalls
+##  Common Pitfalls
 
 | Mistake                              | Why                                            |
 | ------------------------------------ | ---------------------------------------------- |
@@ -125,10 +125,10 @@ class SkipList {
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                       | Recommendation                      |
 | ------------------------------ | ----------------------------------- |
-| Need O(log n) with simple code | ✅ Skip List                        |
-| Worst-case guarantees required | ❌ Use balanced BST (AVL/Red-Black) |
-| Concurrent access needed       | ✅ Skip List (lock-friendly)        |
+| Need O(log n) with simple code |  Skip List                        |
+| Worst-case guarantees required |  Use balanced BST (AVL/Red-Black) |
+| Concurrent access needed       |  Skip List (lock-friendly)        |

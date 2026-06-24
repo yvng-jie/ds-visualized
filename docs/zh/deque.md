@@ -1,16 +1,16 @@
-# 🔄 双端队列 Deque
+#  双端队列 Deque
 
 > **两端都可以插入和删除的队列** — Deque = Queue + Stack 的合体
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🎢 过山车排队**：排在最前面和最后面的人都可以上车。
+** 过山车排队**：排在最前面和最后面的人都可以上车。
 
 其他例子：浏览器前进后退、滑动窗口最大值、撤销/重做
 
@@ -26,7 +26,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class Deque {
@@ -36,19 +36,19 @@ class Deque {
     this.backIndex = 0
   }
 
-  // 🔄 在头部插入
+  //  在头部插入
   addFront(element) {
     this.frontIndex--
     this.items[this.frontIndex] = element
   }
 
-  // 🔄 在尾部插入
+  //  在尾部插入
   addBack(element) {
     this.items[this.backIndex] = element
     this.backIndex++
   }
 
-  // 🔄 移除头部元素
+  //  移除头部元素
   removeFront() {
     if (this.isEmpty()) return undefined
     const result = this.items[this.frontIndex]
@@ -57,7 +57,7 @@ class Deque {
     return result
   }
 
-  // 🔄 移除尾部元素
+  //  移除尾部元素
   removeBack() {
     if (this.isEmpty()) return undefined
     this.backIndex--
@@ -66,7 +66,7 @@ class Deque {
     return result
   }
 
-  // 👀 查看头部
+  //  查看头部
   peekFront() {
     return this.isEmpty() ? undefined : this.items[this.frontIndex]
   }
@@ -99,18 +99,18 @@ class Deque {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作            | 时间复杂度  | 说明         |
 | --------------- | ----------- | ------------ |
-| `addFront()`    | **O(1)** ✅ | 对象属性赋值 |
-| `addBack()`     | **O(1)** ✅ | 对象属性赋值 |
-| `removeFront()` | **O(1)** ✅ | 对象属性删除 |
-| `removeBack()`  | **O(1)** ✅ | 对象属性删除 |
+| `addFront()`    | **O(1)**  | 对象属性赋值 |
+| `addBack()`     | **O(1)**  | 对象属性赋值 |
+| `removeFront()` | **O(1)**  | 对象属性删除 |
+| `removeBack()`  | **O(1)**  | 对象属性删除 |
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 滑动窗口最大值
 
@@ -147,7 +147,7 @@ console.log(isPalindrome('hello')) // false
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性          | 说明                                    |
 | ------------- | --------------------------------------- |
@@ -161,9 +161,9 @@ console.log(isPalindrome('hello')) // false
 
 | 题号                                                        | 题目             | 难度    |
 | ----------------------------------------------------------- | ---------------- | ------- |
-| [239](https://leetcode.cn/problems/sliding-window-maximum/) | 滑动窗口最大值   | 🔴 困难 |
-| [641](https://leetcode.cn/problems/design-circular-deque/)  | 设计循环双端队列 | 🟡 中等 |
+| [239](https://leetcode.cn/problems/sliding-window-maximum/) | 滑动窗口最大值   |  困难 |
+| [641](https://leetcode.cn/problems/design-circular-deque/)  | 设计循环双端队列 |  中等 |
 
 ---
 
-[⬅️ 返回堆](/heap) · [返回首页](/)
+[ 返回堆](/heap) · [返回首页](/)

@@ -1,4 +1,4 @@
-# 📊 Complexity Cheatsheet
+#  Complexity Cheatsheet
 
 > Big O time & space complexity for all data structures covered in this tutorial.
 
@@ -43,7 +43,7 @@
 | **Dictionary** (Map) | O(1)⁴  | O(1)⁴  | O(1)⁴  | O(n)  |                            |
 | **Set**              | O(1)⁴  | O(1)⁴  | O(1)⁴  | O(n)  |                            |
 | **Hash Table**       | O(1)⁴  | O(1)⁴  | O(1)⁴  | O(n)  |                            |
-| **Bloom Filter**     | O(k)⁵  |  O(k)  |   ❌   | O(m)  | No delete, false positives |
+| **Bloom Filter**     | O(k)⁵  |  O(k)  |      | O(m)  | No delete, false positives |
 
 > ⁴ Average case. Worst case O(n) with many collisions.
 > ⁵ k = number of hash functions.
@@ -102,7 +102,7 @@
 
 <div class="tip-box">
 
-**💡 Quick Tips**
+** Quick Tips**
 
 - **O(1)** → Constant time. Best possible. Hash lookups, array indexing.
 - **O(log n)** → Very fast. Binary search, tree operations.

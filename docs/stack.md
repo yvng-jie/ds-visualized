@@ -3,19 +3,19 @@ title: Stack — LIFO Data Structure
 description: Learn Stack data structure in JavaScript with visual animations. Complete guide with code, complexity analysis, and interview questions.
 ---
 
-# 📦 Stack
+#  Stack
 
 > **Last-In-First-Out (LIFO)** — The last item you put in is the first one you take out
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🥞 Stack of plates**: When you wash plates, you put the clean ones on top. When you need one, you grab from the top. The last plate you put on is the first one you take off. That's a stack.
+** Stack of plates**: When you wash plates, you put the clean ones on top. When you need one, you grab from the top. The last plate you put on is the first one you take off. That's a stack.
 
 More examples:
 
@@ -27,14 +27,14 @@ More examples:
 
 ### When to Use
 
-- ✅ Validating parentheses: `{[]()}`
-- ✅ Decimal to binary conversion
-- ✅ Expression evaluation
-- ✅ Undo/redo systems
+-  Validating parentheses: `{[]()}`
+-  Decimal to binary conversion
+-  Expression evaluation
+-  Undo/redo systems
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Stack {
@@ -83,25 +83,25 @@ class Stack {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation   | Time        | Notes                |
 | ----------- | ----------- | -------------------- |
-| `push()`    | **O(1)** ✅ | Add to end of array  |
-| `pop()`     | **O(1)** ✅ | Remove from end      |
-| `peek()`    | **O(1)** ✅ | Index lookup         |
-| `isEmpty()` | **O(1)** ✅ | Check length         |
-| `size()`    | **O(1)** ✅ | Read length property |
+| `push()`    | **O(1)**  | Add to end of array  |
+| `pop()`     | **O(1)**  | Remove from end      |
+| `peek()`    | **O(1)**  | Index lookup         |
+| `isEmpty()` | **O(1)**  | Check length         |
+| `size()`    | **O(1)**  | Read length property |
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <StackVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Valid Parentheses
 
@@ -132,23 +132,23 @@ console.log(isValid('{[]}')) // true
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property  | Description                             |
 | --------- | --------------------------------------- |
 | Core idea | Last-In-First-Out (LIFO)                |
 | Key ops   | push, pop, peek                         |
 | Time      | All core ops O(1)                       |
-| Next      | 👉 [Queue — First-In-First-Out](/queue) |
+| Next      |  [Queue — First-In-First-Out](/queue) |
 
 ### LeetCode Practice
 
 | #                                                        | Problem            | Difficulty |
 | -------------------------------------------------------- | ------------------ | ---------- |
-| [20](https://leetcode.com/problems/valid-parentheses/)   | Valid Parentheses  | 🟢 Easy    |
-| [155](https://leetcode.com/problems/min-stack/)          | Min Stack          | 🟢 Easy    |
-| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | 🟡 Medium  |
+| [20](https://leetcode.com/problems/valid-parentheses/)   | Valid Parentheses  |  Easy    |
+| [155](https://leetcode.com/problems/min-stack/)          | Min Stack          |  Easy    |
+| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures |  Medium  |
 
 ---
 
-[⬅️ Back to Home](/)
+[ Back to Home](/)

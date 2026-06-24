@@ -3,10 +3,10 @@
     <div class="controls">
       <div class="btn-group">
         <button class="btn" :class="{ active: mode === 'add' }" @click="mode = 'add'">
-          {{ t('✏️ Add Edge', '✏️ 添加边') }}
+          {{ t('Add Edge', '添加边') }}
         </button>
-        <button class="btn" :class="{ active: mode === 'bfs' }" @click="startBFS">🌊 BFS</button>
-        <button class="btn" :class="{ active: mode === 'dfs' }" @click="startDFS">🧗 DFS</button>
+        <button class="btn" :class="{ active: mode === 'bfs' }" @click="startBFS">BFS</button>
+        <button class="btn" :class="{ active: mode === 'dfs' }" @click="startDFS">DFS</button>
       </div>
       <div class="btn-group">
         <button class="btn btn-sm" :class="{ active: !isDirected }" @click="setUndirected">
@@ -100,7 +100,7 @@ function addEdge(v1, v2) {
 }
 
 function handleClick(e) {
-  if (animating || mode.value !== 'add') return
+  if (animating.value || mode.value !== 'add') return
   const rect = canvas.value.getBoundingClientRect()
   const scaleX = canvasWidth / rect.width
   const scaleY = canvasHeight / rect.height
@@ -114,8 +114,8 @@ function handleClick(e) {
     if (dist < 25) {
       if (selectedVertex) {
         if (addEdge(selectedVertex, v)) {
-          const arrow = isDirected.value ? '→' : '↔'
-          lastOp.value = t(`✅ Added edge ${selectedVertex} ${arrow} ${v}`, `✅ 添加边 ${selectedVertex} ${arrow} ${v}`)
+          const arrow = isDirected.value ? '' : '↔'
+          lastOp.value = t(`Added edge ${selectedVertex} ${arrow} ${v}`, `添加边 ${selectedVertex} ${arrow} ${v}`)
         }
         selectedVertex = null
       } else {
@@ -145,16 +145,16 @@ function handleClick(e) {
     if (nearest && minDist < 250) {
       addEdge(label, nearest)
       lastOp.value = t(
-        `✅ Added vertex ${label}, auto-connected to ${nearest}`,
-        `✅ 添加顶点 ${label}，自动连接到 ${nearest}`,
+        `Added vertex ${label}, auto-connected to ${nearest}`,
+        `添加顶点 ${label}，自动连接到 ${nearest}`,
       )
     } else {
-      lastOp.value = t(`✅ Added vertex ${label} (isolated)`, `✅ 添加顶点 ${label}（独立）`)
+      lastOp.value = t(`Added vertex ${label} (isolated)`, `添加顶点 ${label}（独立）`)
     }
   } else {
     selectedVertex = null
     addVertex(vertexLabels[0], x, y)
-    lastOp.value = t(`✅ Added first vertex ${vertexLabels[0]}`, `✅ 添加第一个顶点 ${vertexLabels[0]}`)
+    lastOp.value = t(`Added first vertex ${vertexLabels[0]}`, `添加第一个顶点 ${vertexLabels[0]}`)
   }
   draw()
 }
@@ -232,7 +232,7 @@ function autoLayout() {
     }
   }
 
-  lastOp.value = t('↻ Auto layout applied', '↻ 自动布局完成')
+  lastOp.value = t('Auto layout applied', '自动布局完成')
   draw()
 }
 
@@ -323,8 +323,8 @@ function draw(highlight = [], visitOrder = []) {
 }
 
 async function startBFS() {
-  if (animating || graph.vertexes.length === 0) return
-  animating = true
+  if (animating.value || graph.vertexes.length === 0) return
+  animating.value = true
   mode.value = 'bfs'
   selectedVertex = null
 
@@ -348,17 +348,17 @@ async function startBFS() {
     }
 
     draw(highlightEdges, order)
-    lastOp.value = t(`🌊 BFS visiting: ${v}`, `🌊 BFS 访问: ${v}`)
+    lastOp.value = t(`BFS visiting: ${v}`, `BFS 访问: ${v}`)
     await sleep(speed)
   }
 
-  lastOp.value = t(`🌊 BFS completed: ${order.join(' → ')}`, `🌊 BFS 完成: 访问顺序 ${order.join(' → ')}`)
-  animating = false
+  lastOp.value = t(`BFS completed: ${order.join(' ')}`, `BFS 完成: 访问顺序 ${order.join(' ')}`)
+  animating.value = false
 }
 
 async function startDFS() {
-  if (animating || graph.vertexes.length === 0) return
-  animating = true
+  if (animating.value || graph.vertexes.length === 0) return
+  animating.value = true
   mode.value = 'dfs'
   selectedVertex = null
 
@@ -372,7 +372,7 @@ async function startDFS() {
     visited.add(v)
     order.push(v)
     draw(highlightEdges, order)
-    lastOp.value = t(`🧗 DFS visiting: ${v}`, `🧗 DFS 访问: ${v}`)
+    lastOp.value = t(`DFS visiting: ${v}`, `DFS 访问: ${v}`)
     await sleep(speed)
 
     for (const n of graph.edges[v]) {
@@ -384,8 +384,8 @@ async function startDFS() {
   }
 
   await dfs(start)
-  lastOp.value = t(`🧗 DFS completed: ${order.join(' → ')}`, `🧗 DFS 完成: 访问顺序 ${order.join(' → ')}`)
-  animating = false
+  lastOp.value = t(`DFS completed: ${order.join(' ')}`, `DFS 完成: 访问顺序 ${order.join(' ')}`)
+  animating.value = false
 }
 
 const defaultVertices = [
@@ -420,7 +420,7 @@ function reset() {
   animating = false
   mode.value = 'add'
   isDirected.value = false
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

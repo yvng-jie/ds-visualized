@@ -1,16 +1,16 @@
-# ⛰️ 堆 Heap
+#  堆 Heap
 
 > **一种特殊的完全二叉树，父节点总是大于（或小于）子节点** — 像金字塔，最大的在最上面
 
 ---
 
-## 📖 概念介绍
+##  概念介绍
 
 ### 现实类比
 
 <div class="analogy-box">
 
-**🏆 排行榜**：得分最高的永远在第一名。如果有人分数更高，他就升到第一，原来的第一名往下移。
+** 排行榜**：得分最高的永远在第一名。如果有人分数更高，他就升到第一，原来的第一名往下移。
 
 其他例子：
 
@@ -33,7 +33,7 @@
 
 ---
 
-## 💻 实现代码
+##  实现代码
 
 ```javascript
 class MinHeap {
@@ -41,25 +41,25 @@ class MinHeap {
     this.heap = []
   }
 
-  // 🔢 获取左子节点索引
+  //  获取左子节点索引
   _leftChild(index) {
     return index * 2 + 1
   }
-  // 🔢 获取右子节点索引
+  //  获取右子节点索引
   _rightChild(index) {
     return index * 2 + 2
   }
-  // 🔢 获取父节点索引
+  //  获取父节点索引
   _parent(index) {
     return Math.floor((index - 1) / 2)
   }
 
-  // 🔄 交换两个位置的值
+  //  交换两个位置的值
   _swap(i, j) {
     ;[this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]]
   }
 
-  // ⬆️ 上浮：新插入的元素向上调整
+  //  上浮：新插入的元素向上调整
   _siftUp(index) {
     while (index > 0 && this.heap[index] < this.heap[this._parent(index)]) {
       this._swap(index, this._parent(index))
@@ -67,7 +67,7 @@ class MinHeap {
     }
   }
 
-  // ⬇️ 下沉：删除顶部后，将新顶部向下调整
+  //  下沉：删除顶部后，将新顶部向下调整
   _siftDown(index) {
     const size = this.heap.length
     while (this._leftChild(index) < size) {
@@ -82,13 +82,13 @@ class MinHeap {
     }
   }
 
-  // ➕ 插入
+  //  插入
   insert(value) {
     this.heap.push(value)
     this._siftUp(this.heap.length - 1)
   }
 
-  // 🗑️ 删除堆顶（最小值/最大值）
+  //  删除堆顶（最小值/最大值）
   extract() {
     if (this.heap.length === 0) return null
     if (this.heap.length === 1) return this.heap.pop()
@@ -98,7 +98,7 @@ class MinHeap {
     return root
   }
 
-  // 👀 查看堆顶
+  //  查看堆顶
   peek() {
     return this.heap.length > 0 ? this.heap[0] : null
   }
@@ -142,18 +142,18 @@ class MaxHeap extends MinHeap {
 
 ---
 
-## ⏱ 复杂度分析
+##  复杂度分析
 
 | 操作        | 时间复杂度      | 说明              |
 | ----------- | --------------- | ----------------- |
-| `insert()`  | **O(log n)** ✅ | 上浮最多 log n 层 |
-| `extract()` | **O(log n)** ✅ | 下沉最多 log n 层 |
-| `peek()`    | **O(1)** ✅     | 直接取数组第一个  |
-| 建堆        | **O(n)** ✅     | 从底层开始下沉    |
+| `insert()`  | **O(log n)**  | 上浮最多 log n 层 |
+| `extract()` | **O(log n)**  | 下沉最多 log n 层 |
+| `peek()`    | **O(1)**      | 直接取数组第一个  |
+| 建堆        | **O(n)**      | 从底层开始下沉    |
 
 ---
 
-## 🧪 常见面试题
+##  常见面试题
 
 ### 1. 数组中的第 K 大元素
 
@@ -186,7 +186,7 @@ function topKFrequent(nums, k) {
 
 ---
 
-## 📚 总结
+##  总结
 
 | 特性       | 说明                                   |
 | ---------- | -------------------------------------- |
@@ -200,10 +200,10 @@ function topKFrequent(nums, k) {
 
 | 题号                                                                 | 题目                  | 难度    |
 | -------------------------------------------------------------------- | --------------------- | ------- |
-| [215](https://leetcode.cn/problems/kth-largest-element-in-an-array/) | 数组中的第K个最大元素 | 🟡 中等 |
-| [347](https://leetcode.cn/problems/top-k-frequent-elements/)         | 前 K 个高频元素       | 🟡 中等 |
-| [295](https://leetcode.cn/problems/find-median-from-data-stream/)    | 数据流的中位数        | 🔴 困难 |
+| [215](https://leetcode.cn/problems/kth-largest-element-in-an-array/) | 数组中的第K个最大元素 |  中等 |
+| [347](https://leetcode.cn/problems/top-k-frequent-elements/)         | 前 K 个高频元素       |  中等 |
+| [295](https://leetcode.cn/problems/find-median-from-data-stream/)    | 数据流的中位数        |  困难 |
 
 ---
 
-[⬅️ 返回图](/graph) · [返回首页](/)
+[ 返回图](/graph) · [返回首页](/)

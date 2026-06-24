@@ -55,7 +55,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from './composables/useI18n.js'
 import { useAnimation } from './composables/useAnimation.js'
-import { COLORS } from './visualizer-utils.js'
+import { COLORS, drawText } from './visualizer-utils.js'
 import { NODE_R, LEVEL_H, CANVAS_W, CANVAS_H } from '../lib/constants.js'
 
 const { t } = useI18n()
@@ -78,16 +78,16 @@ function createNode(val) {
 
 // ─── Insert ───
 function insert() {
-  if (animating) return
+  if (animating.value) return
   const val = parseInt(inputValue.value)
   if (isNaN(val)) {
-    lastOp.value = t('⚠️ Please enter a valid number', '⚠️ 请输入有效的数字')
+    lastOp.value = t('Please enter a valid number', '请输入有效的数字')
     return
   }
   inputValue.value = ''
 
   if (searchNode(tree.root, val)) {
-    lastOp.value = t(`⚠️ ${val} already exists`, `⚠️ ${val} 已存在`)
+    lastOp.value = t(`${val} already exists`, `${val} 已存在`)
     draw()
     return
   }
@@ -119,22 +119,22 @@ function insert() {
 
   layout(tree.root, 0, canvasWidth, 50)
   nodeCount.value = countNodes(tree.root)
-  lastOp.value = `✅ insert(${val})`
+  lastOp.value = ` insert(${val})`
   draw()
 }
 
 // ─── Delete ───
 function removeNode() {
-  if (animating) return
+  if (animating.value) return
   const val = parseInt(inputValue.value)
   if (isNaN(val)) {
-    lastOp.value = t('⚠️ Enter number to delete', '⚠️ 请输入要删除的数字')
+    lastOp.value = t('Enter number to delete', '请输入要删除的数字')
     return
   }
   inputValue.value = ''
 
   if (!tree.root || !searchNode(tree.root, val)) {
-    lastOp.value = t(`⚠️ ${val} not found`, `⚠️ ${val} 不存在`)
+    lastOp.value = t(`${val} not found`, `${val} 不存在`)
     draw()
     return
   }
@@ -142,7 +142,7 @@ function removeNode() {
   tree.root = deleteRec(tree.root, val)
   layout(tree.root, 0, canvasWidth, 50)
   nodeCount.value = countNodes(tree.root)
-  lastOp.value = `🗑️ delete(${val})`
+  lastOp.value = `delete(${val})`
   draw()
 }
 
@@ -175,10 +175,10 @@ function deleteRec(node, val) {
 
 // ─── Search with path highlight ───
 async function search() {
-  if (animating) return
+  if (animating.value) return
   const val = parseInt(inputValue.value)
   if (isNaN(val)) {
-    lastOp.value = t('⚠️ Enter number to search', '⚠️ 请输入要搜索的数字')
+    lastOp.value = t('Enter number to search', '请输入要搜索的数字')
     return
   }
   inputValue.value = ''
@@ -192,7 +192,7 @@ async function search() {
     if (val === node.val) {
       found = true
       draw(path, node)
-      lastOp.value = `🔍 ${val} → ${t('found', '已找到')}!`
+      lastOp.value = `${val} ${t('found', '已找到')}!`
       break
     } else if (val < node.val) {
       draw(path)
@@ -207,14 +207,14 @@ async function search() {
 
   if (!found) {
     draw(path)
-    lastOp.value = t(`🔍 ${val} → not found`, `🔍 ${val} → 未找到`)
+    lastOp.value = t(`${val} not found`, `${val} 未找到`)
   }
 }
 
 // ─── Traversal animation ───
 async function startTraversal(mode) {
-  if (animating || !tree.root) return
-  animating = true
+  if (animating.value || !tree.root) return
+  animating.value = true
   traverseMode.value = mode
 
   const order = []
@@ -236,12 +236,12 @@ async function startTraversal(mode) {
   for (let i = 0; i < order.length; i++) {
     drawHighlighted(order.slice(0, i + 1), order[i], pathMap.get(order[i]))
     const modeLabel = mode === 'pre' ? 'Pre' : mode === 'in' ? 'In' : 'Post'
-    lastOp.value = `${modeLabel}-order: ${order.slice(0, i + 1).join(' → ')}`
+    lastOp.value = `${modeLabel}-order: ${order.slice(0, i + 1).join(' ')}`
     await sleep(speed.value)
   }
 
   traverseMode.value = ''
-  animating = false
+  animating.value = false
   draw()
   lastOp.value = t(
     `${mode === 'pre' ? 'Pre' : mode === 'in' ? 'In' : 'Post'}-order traversal complete`,
@@ -339,11 +339,7 @@ function draw(highlightPath = [], highlightNode = null) {
     ctx.stroke()
 
     // Value
-    ctx.fillStyle = '#ffffff'
-    ctx.font = 'bold 14px monospace'
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-    ctx.fillText(node.val, node.x, node.y)
+    drawText(ctx, node.val, node.x, node.y)
   }
 
   if (tree.root) {
@@ -404,7 +400,7 @@ function buildTree(values) {
 
 function reset() {
   buildTree(defaultData)
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

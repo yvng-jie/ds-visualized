@@ -116,19 +116,19 @@ function add() {
   if (animating) return
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value', '⚠️ 请输入要添加的值')
+    lastOp.value = t('Please enter a value', '请输入要添加的值')
     return
   }
   inputValue.value = ''
 
   if (setValues.value.includes(val)) {
-    lastOp.value = t(`⚠️ ${val} already exists`, `⚠️ ${val} 已存在`)
+    lastOp.value = t(`${val} already exists`, `${val} 已存在`)
     draw()
     return
   }
 
   setValues.value.push(val)
-  lastOp.value = `✅ add(${val})`
+  lastOp.value = `add(${val})`
   draw(val)
 }
 
@@ -136,26 +136,26 @@ function remove() {
   if (animating) return
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Enter value to remove', '⚠️ 请输入要移除的值')
+    lastOp.value = t('Enter value to remove', '请输入要移除的值')
     return
   }
   inputValue.value = ''
 
   const idx = setValues.value.indexOf(val)
   if (idx === -1) {
-    lastOp.value = t(`⚠️ ${val} not found`, `⚠️ ${val} 不存在`)
+    lastOp.value = t(`${val} not found`, `${val} 不存在`)
     draw()
     return
   }
 
   setValues.value.splice(idx, 1)
-  lastOp.value = `🗑️ remove(${val})`
+  lastOp.value = `remove(${val})`
   draw()
 }
 
 function reset() {
   setValues.value = [...defaultData]
-  lastOp.value = t('↻ Reset to initial data', '↻ 已恢复初始示例数据')
+  lastOp.value = t('Reset to initial data', '已恢复初始示例数据')
   draw()
 }
 

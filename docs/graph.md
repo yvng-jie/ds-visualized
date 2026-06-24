@@ -3,19 +3,19 @@ title: Graph — BFS & DFS Traversal
 description: Learn Graph data structure in JavaScript with interactive BFS/DFS visualizer. Complete guide with code, complexity analysis, and interview questions.
 ---
 
-# 🕸️ Graph
+#  Graph
 
 > **A network of vertices (nodes) connected by edges** — Like a social network of friends
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🌐 Social network**: Each person is a "vertex", each friendship is an "edge". How many connections between you and someone famous? That's a graph traversal problem.
+** Social network**: Each person is a "vertex", each friendship is an "edge". How many connections between you and someone famous? That's a graph traversal problem.
 
 More examples:
 
@@ -50,7 +50,7 @@ Each vertex has a list of its neighbors. This is memory-efficient for sparse gra
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Graph {
@@ -87,7 +87,7 @@ class Graph {
     return colors
   }
 
-  // 🌊 BFS - Breadth-First Search (layer by layer)
+  //  BFS - Breadth-First Search (layer by layer)
   bfs(start, handler) {
     const colors = this._initColor()
     const queue = [start]
@@ -109,7 +109,7 @@ class Graph {
     }
   }
 
-  // 🧗 DFS - Depth-First Search (go deep first)
+  //  DFS - Depth-First Search (go deep first)
   dfs(start, handler) {
     const colors = this._initColor()
     this._dfsVisit(start, colors, handler)
@@ -152,7 +152,7 @@ Use: shortest path                      Use: connectivity, maze solving
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation | Time         | Notes                             |
 | --------- | ------------ | --------------------------------- |
@@ -163,13 +163,13 @@ Use: shortest path                      Use: connectivity, maze solving
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 <GraphVisualizer />
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. Has Path (BFS)
 
@@ -195,7 +195,7 @@ function hasPath(graph, start, target) {
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property     | Description                                              |
 | ------------ | -------------------------------------------------------- |
@@ -203,16 +203,16 @@ function hasPath(graph, start, target) {
 | Storage      | Adjacency list (or adjacency matrix)                     |
 | 2 traversals | BFS (queue, layer by layer) and DFS (recursion, go deep) |
 | 3 colors     | White = unvisited, Gray = discovered, Black = explored   |
-| 🎉           | **You've completed all the core data structures!**       |
+|            | **You've completed all the core data structures!**       |
 
 ### LeetCode Practice
 
 | #                                                       | Problem           | Difficulty |
 | ------------------------------------------------------- | ----------------- | ---------- |
-| [200](https://leetcode.com/problems/number-of-islands/) | Number of Islands | 🟡 Medium  |
-| [207](https://leetcode.com/problems/course-schedule/)   | Course Schedule   | 🟡 Medium  |
-| [133](https://leetcode.com/problems/clone-graph/)       | Clone Graph       | 🟡 Medium  |
+| [200](https://leetcode.com/problems/number-of-islands/) | Number of Islands |  Medium  |
+| [207](https://leetcode.com/problems/course-schedule/)   | Course Schedule   |  Medium  |
+| [133](https://leetcode.com/problems/clone-graph/)       | Clone Graph       |  Medium  |
 
 ---
 
-[⬅️ Back to BST](/binary-search-tree) · [Back to Home](/)
+[ Back to BST](/binary-search-tree) · [Back to Home](/)

@@ -1,16 +1,16 @@
-# 🔗 Doubly Linked List
+#  Doubly Linked List
 
 > **Each node points to both the next node and the previous one** — Like a two-way street
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### Real-Life Analogy
 
 <div class="analogy-box">
 
-**🎵 Music playlist**: You can skip to the next song OR go back to the previous one. Each song knows what comes before and after it.
+** Music playlist**: You can skip to the next song OR go back to the previous one. Each song knows what comes before and after it.
 
 More examples:
 
@@ -32,7 +32,7 @@ More examples:
 
 ---
 
-## 💻 Code
+##  Code
 
 ```javascript
 class Node {
@@ -116,7 +116,7 @@ class DoublyLinkedList {
     return current.element
   }
 
-  // 🎯 Smart traversal: walk from head or tail, whichever is closer
+  //  Smart traversal: walk from head or tail, whichever is closer
   _getNode(position) {
     if (position < 0 || position >= this.length) return null
     if (position < this.length / 2) {
@@ -193,17 +193,17 @@ class DoublyLinkedList {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation    | Singly | Doubly        | Notes                               |
 | ------------ | ------ | ------------- | ----------------------------------- |
-| `append()`   | O(n)   | **O(1) ✅**   | Tail pointer                        |
+| `append()`   | O(n)   | **O(1) **   | Tail pointer                        |
 | `removeAt()` | O(n)   | O(n)          | But pointer manipulation is cleaner |
-| `get()`      | O(n)   | **O(n/2) ✅** | Smart traversal                     |
+| `get()`      | O(n)   | **O(n/2) ** | Smart traversal                     |
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. LRU Cache (Core Logic)
 
@@ -243,7 +243,7 @@ class LRUCache {
 
 ---
 
-## 📚 Summary
+##  Summary
 
 | Property         | Description                                      |
 | ---------------- | ------------------------------------------------ |
@@ -251,15 +251,15 @@ class LRUCache {
 | Superpower       | Reverse traversal, O(1) tail operations          |
 | Trade-off        | More memory per node (extra pointer)             |
 | Use cases        | LRU Cache, music player, browser history         |
-| Next             | 👉 [Dictionary — Key-Value Storage](/dictionary) |
+| Next             |  [Dictionary — Key-Value Storage](/dictionary) |
 
 ### LeetCode Practice
 
 | #                                                                             | Problem                | Difficulty |
 | ----------------------------------------------------------------------------- | ---------------------- | ---------- |
-| [146](https://leetcode.com/problems/lru-cache/)                               | LRU Cache              | 🟡 Medium  |
-| [430](https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/) | Flatten Multilevel DLL | 🟡 Medium  |
+| [146](https://leetcode.com/problems/lru-cache/)                               | LRU Cache              |  Medium  |
+| [430](https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/) | Flatten Multilevel DLL |  Medium  |
 
 ---
 
-[⬅️ Back to Linked List](/linked-list) · [Back to Home](/)
+[ Back to Linked List](/linked-list) · [Back to Home](/)

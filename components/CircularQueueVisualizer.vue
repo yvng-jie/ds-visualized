@@ -150,19 +150,19 @@ function draw(highlightIdx = -1) {
     ctx.font = '10px sans-serif'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'top'
-    ctx.fillText(t('wrap around →', '循环 →'), startX + totalW / 2, wrapY + 4)
+    ctx.fillText(t('wrap around', '循环'), startX + totalW / 2, wrapY + 4)
   }
 }
 
 function enqueue() {
   if (animating) return
   if (count.value >= CAPACITY) {
-    lastOp.value = t('⚠️ Queue is full', '⚠️ 队列已满')
+    lastOp.value = t('Queue is full', '队列已满')
     return
   }
   const val = inputValue.value.trim()
   if (!val) {
-    lastOp.value = t('⚠️ Please enter a value', '⚠️ 请输入值')
+    lastOp.value = t('Please enter a value', '请输入值')
     return
   }
   inputValue.value = ''
@@ -178,14 +178,14 @@ function enqueue() {
   count.value++
   frontIdx.value = front.value
   rearIdx.value = rear.value
-  lastOp.value = `✅ enqueue(${val}) → [${rear.value}]`
+  lastOp.value = `enqueue(${val}) [${rear.value}]`
   draw(rear.value)
 }
 
 async function dequeue() {
   if (animating) return
   if (count.value === 0) {
-    lastOp.value = t('⚠️ Queue is empty', '⚠️ 队列为空')
+    lastOp.value = t('Queue is empty', '队列为空')
     return
   }
   animating = true
@@ -202,7 +202,7 @@ async function dequeue() {
   count.value--
   frontIdx.value = front.value === -1 ? '-' : front.value
   rearIdx.value = rear.value === -1 ? '-' : rear.value
-  lastOp.value = `⏏️ dequeue() → ${val}`
+  lastOp.value = `dequeue() ${val}`
   draw(front.value === -1 ? -1 : (front.value - 1 + CAPACITY) % CAPACITY)
   await new Promise((r) => setTimeout(r, speed.value))
   animating = false
@@ -215,7 +215,7 @@ function reset() {
   count.value = 0
   frontIdx.value = '-'
   rearIdx.value = '-'
-  lastOp.value = t('↻ Reset', '↻ 已重置')
+  lastOp.value = t('Reset', '已重置')
   draw()
 }
 

@@ -1,10 +1,10 @@
-# 📊 Graph Representation
+#  Graph Representation
 
 > **Adjacency Matrix vs Adjacency List** — Two ways to store a graph
 
 ---
 
-## 📖 Concept
+##  Concept
 
 ### The Trade-off
 
@@ -40,7 +40,7 @@ E  0  0  1  1  0
 
 ---
 
-## 💻 Code
+##  Code
 
 ### Adjacency Matrix
 
@@ -94,7 +94,7 @@ class AdjacencyList {
 
 ---
 
-## ⏱ Complexity
+##  Complexity
 
 | Operation         | Matrix |   List    |
 | ----------------- | :----: | :-------: |
@@ -106,7 +106,7 @@ class AdjacencyList {
 
 ---
 
-## 🧪 Interview Questions
+##  Interview Questions
 
 ### 1. When is a Matrix better than a List?
 
@@ -114,12 +114,12 @@ class AdjacencyList {
 
 ---
 
-## 💡 Decision Guide
+##  Decision Guide
 
 | Scenario                      | Recommendation                        |
 | ----------------------------- | ------------------------------------- |
-| Dense graph                   | ✅ Adjacency Matrix                   |
-| Sparse graph                  | ✅ Adjacency List                     |
-| Need fast edge checks         | ✅ Matrix                             |
-| Memory constrained            | ✅ List                               |
-| Need to iterate all neighbors | ✅ List (only touches existing edges) |
+| Dense graph                   |  Adjacency Matrix                   |
+| Sparse graph                  |  Adjacency List                     |
+| Need fast edge checks         |  Matrix                             |
+| Memory constrained            |  List                               |
+| Need to iterate all neighbors |  List (only touches existing edges) |
