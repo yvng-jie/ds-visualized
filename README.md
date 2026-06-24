@@ -2,7 +2,7 @@
   <img src="docs/public/logo.svg" width="120" alt="Logo"/>
   <h1>JS Data Structures Visualized</h1>
   <p><strong>Interactive Tutorial · Animated Visualizations · Live Code Playground</strong></p>
-  <p> Visual animations &bull;  Interactive playground &bull;  Zero to interview ready</p>
+  <p>Visual animations &bull; Interactive playground &bull; Zero to interview ready</p>
 
   <p>
     <a href="https://github.com/yvng-jie/ds-visualized/stargazers">
@@ -23,17 +23,17 @@
   </p>
 
   <p>
-    <a href="https://yvng-jie.github.io/ds-visualized/"> Live Demo</a>
+    <a href="https://yvng-jie.github.io/ds-visualized/">Live Demo</a>
     &nbsp;|&nbsp;
-    <a href="#-data-structures"> Contents</a>
+    <a href="#-data-structures">Contents</a>
     &nbsp;|&nbsp;
-    <a href="#-local-development"> Local Dev</a>
+    <a href="#-local-development">Local Dev</a>
   </p>
 </div>
 
 ---
 
-##  演示
+## Demo
 
 <p align="center">
   <picture>
@@ -50,45 +50,46 @@
   <br/>
   <em>Graph BFS traversal</em>
 </p>
+
 ---
 
-##  About
+## About
 
 An interactive tutorial website for learning data structures in JavaScript. Every chapter includes:
 
 | Module               | Description                                                   |
 | -------------------- | ------------------------------------------------------------- |
-|  **Concept**       | Real-life analogies, use cases — build intuition in 5 minutes |
-|  **Code**          | Complete implementation with teaching-style comments          |
-|  **Complexity**     | Big O time & space for every operation                        |
-|  **Visualization** | Interactive animations with speed control                     |
-|  **Interview Qs**  | LeetCode-style problems with runnable solutions               |
+| **Concept**          | Real-life analogies, use cases — build intuition in 5 minutes |
+| **Code**             | Complete implementation with teaching-style comments          |
+| **Complexity**       | Big O time & space for every operation                        |
+| **Visualization**    | Interactive animations with speed control                     |
+| **Interview Qs**     | LeetCode-style problems with runnable solutions               |
 
- **English** / 🇨🇳 **简体中文** — Switch languages from the nav bar.
+**English** / **简体中文** — Switch languages from the nav bar.
 
 ---
 
-##  Data Structures
+## Data Structures
 
 | #   | Structure                                           | Difficulty | One-liner                    |
 | --- | --------------------------------------------------- | ---------- | ---------------------------- |
-| 1   | [ Stack](docs/stack.md)                           |          | Last in, first out           |
-| 2   | [ Queue](docs/queue.md)                           |          | First in, first out          |
-| 3   | [ Priority Queue](docs/priority-queue.md)         |        | VIPs go first                |
-| 4   | [ Deque](docs/deque.md)                           |        | Insert/remove from both ends |
-| 5   | [ Dictionary](docs/dictionary.md)                 |          | Key-value storage            |
-| 6   | [ Set](docs/set.md)                               |        | Unique elements + set ops    |
-| 7   | [ Linked List](docs/linked-list.md)               |        | Nodes + pointers             |
-| 8   | [ Doubly Linked List](docs/doubly-linked-list.md) |      | Forward and backward         |
-| 9   | [ Hash Table](docs/hash-table.md)                 |      | O(1) lookups                 |
-| 10  | [ BST](docs/binary-search-tree.md)                |      | Sorted tree, binary search   |
-| 11  | [ Heap](docs/heap.md)                             |      | Priority queue done right    |
-| 12  | [ Trie](docs/trie.md)                             |      | Fast string prefix search    |
-| 13  | [ Graph](docs/graph.md)                           |    | BFS/DFS traversals           |
+| 1   | [Stack](docs/stack.md)                              | Beginner   | Last in, first out           |
+| 2   | [Queue](docs/queue.md)                              | Beginner   | First in, first out          |
+| 3   | [Priority Queue](docs/priority-queue.md)            | Intermediate | VIPs go first                |
+| 4   | [Deque](docs/deque.md)                              | Intermediate | Insert/remove from both ends |
+| 5   | [Dictionary](docs/dictionary.md)                    | Beginner   | Key-value storage            |
+| 6   | [Set](docs/set.md)                                  | Intermediate | Unique elements + set ops    |
+| 7   | [Linked List](docs/linked-list.md)                  | Intermediate | Nodes + pointers             |
+| 8   | [Doubly Linked List](docs/doubly-linked-list.md)    | Advanced   | Forward and backward         |
+| 9   | [Hash Table](docs/hash-table.md)                    | Advanced   | O(1) lookups                 |
+| 10  | [BST](docs/binary-search-tree.md)                   | Advanced   | Sorted tree, binary search   |
+| 11  | [Heap](docs/heap.md)                                | Advanced   | Priority queue done right    |
+| 12  | [Trie](docs/trie.md)                                | Advanced   | Fast string prefix search    |
+| 13  | [Graph](docs/graph.md)                              | Advanced   | BFS/DFS traversals           |
 
 ---
 
-##  Local Development
+## Local Development
 
 ```bash
 git clone https://github.com/yvng-jie/ds-visualized.git
@@ -101,7 +102,7 @@ pnpm run docs:preview # Preview built site
 
 ---
 
-##  Contributing
+## Contributing
 
 Contributions welcome! Here's how:
 
@@ -112,6 +113,6 @@ Contributions welcome! Here's how:
 
 ---
 
-##  License
+## License
 
 [MIT](LICENSE) © 2026 Jie Yang
