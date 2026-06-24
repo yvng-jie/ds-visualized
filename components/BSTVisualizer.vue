@@ -54,25 +54,22 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from './composables/useI18n.js'
+import { useAnimation } from './composables/useAnimation.js'
 import { COLORS } from './visualizer-utils.js'
+import { NODE_R, LEVEL_H, CANVAS_W, CANVAS_H } from '../lib/constants.js'
 
 const { t } = useI18n()
+const { animating, speed, sleep } = useAnimation()
 
 const canvas = ref(null)
 const inputValue = ref('')
-const speed = ref(300)
 const lastOp = ref('')
 const traverseMode = ref('')
-const canvasWidth = 600
-const canvasHeight = 380
+const canvasWidth = CANVAS_W
+const canvasHeight = CANVAS_H
 
 const tree = { root: null }
 const nodeCount = ref(0)
-
-const NODE_R = 20
-const LEVEL_H = 70
-
-let animating = false
 
 // ─── BST Node structure ───
 function createNode(val) {
@@ -225,8 +222,19 @@ async function startTraversal(mode) {
   else if (mode === 'in') inOrder(tree.root, order)
   else postOrder(tree.root, order)
 
+  // Pre-compute paths for O(1) lookup per frame
+  const pathMap = new Map()
+  function collectPaths(node, path) {
+    if (!node) return
+    const p = [...path, node]
+    pathMap.set(node.val, p)
+    collectPaths(node.left, p)
+    collectPaths(node.right, p)
+  }
+  collectPaths(tree.root, [])
+
   for (let i = 0; i < order.length; i++) {
-    drawHighlighted(order.slice(0, i + 1), order[i])
+    drawHighlighted(order.slice(0, i + 1), order[i], pathMap.get(order[i]))
     const modeLabel = mode === 'pre' ? 'Pre' : mode === 'in' ? 'In' : 'Post'
     lastOp.value = `${modeLabel}-order: ${order.slice(0, i + 1).join(' → ')}`
     await sleep(speed.value)
@@ -352,27 +360,7 @@ function draw(highlightPath = [], highlightNode = null) {
   }
 }
 
-function drawHighlighted(visitedVals, currentVal) {
-  // Find the current node by value
-  function findNode(node, val) {
-    if (!node) return null
-    if (node.val === val) return node
-    return val < node.val ? findNode(node.left, val) : findNode(node.right, val)
-  }
-
-  // Build path to current node
-  function buildPath(node, val, path) {
-    if (!node) return false
-    path.push(node)
-    if (node.val === val) return true
-    if (buildPath(node.left, val, path)) return true
-    if (buildPath(node.right, val, path)) return true
-    path.pop()
-    return false
-  }
-
-  const path = []
-  buildPath(tree.root, currentVal, path)
+function drawHighlighted(visitedVals, currentVal, path) {
   draw(path, path[path.length - 1])
 }
 
@@ -380,10 +368,6 @@ function searchNode(node, val) {
   if (!node) return false
   if (val === node.val) return true
   return val < node.val ? searchNode(node.left, val) : searchNode(node.right, val)
-}
-
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms))
 }
 
 // ─── Default data ───
@@ -453,77 +437,5 @@ onMounted(() => {
   background: #3b82f6;
   color: white;
   border-color: #3b82f6;
-}
-.visualizer {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 16px;
-  background: var(--vp-c-bg-soft);
-  margin: 24px 0;
-}
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-.input-group {
-  display: flex;
-  gap: 6px;
-}
-.input {
-  width: 100px;
-  padding: 6px 10px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 14px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.btn {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-primary {
-  background: #22c55e;
-  color: white;
-}
-.btn-primary:hover {
-  background: #16a34a;
-}
-.btn-secondary {
-  background: var(--vp-c-divider);
-  color: var(--vp-c-text);
-}
-.btn-secondary:hover {
-  background: var(--vp-c-bg);
-}
-.canvas-wrapper {
-  display: flex;
-  justify-content: center;
-  background: var(--vp-c-bg);
-  border-radius: 8px;
-  padding: 10px;
-  min-height: 360px;
-}
-canvas {
-  max-width: 100%;
-}
-.status-bar {
-  display: flex;
-  gap: 20px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-}
-.log {
-  color: var(--vp-c-brand-1);
-  font-weight: 500;
-  margin-left: auto;
 }
 </style>

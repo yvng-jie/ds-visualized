@@ -1,5 +1,6 @@
 // ESLint flat config
 import js from '@eslint/js'
+import pluginVue from 'eslint-plugin-vue'
 import globals from 'globals'
 
 export default [
@@ -9,7 +10,7 @@ export default [
     files: ['**/*.js'],
   },
   {
-    files: ['**/*.js'],
+    files: ['**/*.js', '**/*.vue'],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -24,4 +25,5 @@ export default [
       'prefer-const': 'warn',
     },
   },
+  ...pluginVue.configs['flat/essential'],
 ]

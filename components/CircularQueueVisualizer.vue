@@ -229,101 +229,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.visualizer {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 16px;
-  background: var(--vp-c-bg-soft);
-  margin: 24px 0;
-}
-.controls {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.input-group {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.input {
-  padding: 6px 10px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 13px;
-  width: 100px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.select {
-  padding: 6px 10px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 13px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.btn {
-  padding: 6px 14px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
-}
-.btn-primary:hover {
-  background: #2563eb;
-}
-.btn-danger {
-  background: #ef4444;
-  color: white;
-  border-color: #ef4444;
-}
-.btn-danger:hover {
-  background: #dc2626;
-}
-.btn-secondary {
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-  border-color: var(--vp-c-divider);
-}
-.btn-secondary:hover {
-  background: var(--vp-c-bg-soft);
-}
 .speed-control {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
-}
-.canvas-wrapper {
-  display: flex;
-  justify-content: center;
-}
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-.status-bar {
-  display: flex;
-  gap: 16px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-  flex-wrap: wrap;
-}
-.log {
-  color: var(--vp-c-brand-1);
-  font-weight: 500;
 }
 </style>

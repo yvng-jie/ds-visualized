@@ -21,9 +21,9 @@ const COLORS = {
 }
 
 /**
- * Draw a rounded rectangle on canvas
+ * Create a rounded rectangle path on canvas (does not fill/stroke)
  */
-export function drawRoundedRect(ctx, x, y, w, h, r) {
+export function createRoundedRectPath(ctx, x, y, w, h, r) {
   ctx.beginPath()
   ctx.roundRect(x, y, w, h, r)
 }
@@ -36,7 +36,7 @@ export function drawGradientBox(ctx, x, y, w, h, r, colorStart, colorEnd) {
   gradient.addColorStop(0, colorStart)
   gradient.addColorStop(1, colorEnd)
   ctx.fillStyle = gradient
-  drawRoundedRect(ctx, x, y, w, h, r)
+  createRoundedRectPath(ctx, x, y, w, h, r)
   ctx.fill()
 }
 

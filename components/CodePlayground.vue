@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, watch } from 'vue'
+  import { ref, computed } from 'vue'
   import { useRoute } from 'vitepress'
 
   const route = useRoute()
@@ -66,7 +66,6 @@
   const code = ref(props.initialCode + (props.testCode ? '\n\n// --- Test code ---\n' + props.testCode : ''))
   const output = ref('')
   const editor = ref(null)
-  const outputEl = ref(null)
 
   function runCode() {
     const logs = []
@@ -85,10 +84,10 @@
       fn()
     } catch (e) {
       logs.push((isZh.value ? '❌ 错误: ' : '❌ Error: ') + e.message)
+    } finally {
+      console.log = originalLog
+      console.error = originalError
     }
-
-    console.log = originalLog
-    console.error = originalError
 
     output.value = logs.join('\n')
   }
@@ -101,15 +100,15 @@
   async function copyCode() {
     try {
       await navigator.clipboard.writeText(code.value)
-      alert(isZh.value ? '已复制到剪贴板！' : 'Copied to clipboard!')
+      output.value = isZh.value ? '✅ 已复制到剪贴板' : '✅ Copied to clipboard'
     } catch {
-      // fallback
       const ta = document.createElement('textarea')
       ta.value = code.value
       document.body.appendChild(ta)
       ta.select()
       document.execCommand('copy')
       document.body.removeChild(ta)
+      output.value = isZh.value ? '✅ 已复制到剪贴板' : '✅ Copied to clipboard'
     }
   }
 </script>

@@ -67,25 +67,23 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
-  import { useRoute } from 'vitepress'
+  import { ref, onMounted } from 'vue'
+  import { useI18n } from './composables/useI18n.js'
+  import { useAnimation } from './composables/useAnimation.js'
+  import { COLORS } from './visualizer-utils.js'
 
-  const route = useRoute()
-  const isZh = computed(() => route.path.startsWith('/zh/'))
+  const { isZh } = useI18n()
+  const { animating, speed, sleep } = useAnimation()
 
   const canvas = ref(null)
   const inputValue = ref('')
-  const speed = ref(300)
   const lastOp = ref('')
   const canvasWidth = 500
   const canvasHeight = 380
   const MAX_ITEMS = 12
 
-  // Default sample data (restored on reset)
   const defaultData = [5, 10, 15]
   const items = ref([...defaultData])
-
-  let animating = false
 
   function drawStack() {
     const ctx = canvas.value?.getContext('2d')
@@ -99,13 +97,13 @@
     const startY = canvasHeight - 40
 
     // Draw base
-    ctx.fillStyle = '#94a3b8'
+    ctx.fillStyle = COLORS.muted
     ctx.fillRect(startX - 10, startY + 5, boxWidth + 20, 6)
     ctx.fillRect(startX - 10, startY + 5, 6, 12)
     ctx.fillRect(startX + boxWidth + 4, startY + 5, 6, 12)
 
     // Label: stack top direction
-    ctx.fillStyle = '#64748b'
+    ctx.fillStyle = COLORS.text
     ctx.font = '12px sans-serif'
     ctx.textAlign = 'center'
     ctx.fillText(isZh.value ? '⬆ 栈顶' : '⬆ Top', canvasWidth / 2, 18)
@@ -115,8 +113,8 @@
 
       // Draw box
       const gradient = ctx.createLinearGradient(startX, y, startX, y + boxHeight)
-      gradient.addColorStop(0, '#3b82f6')
-      gradient.addColorStop(1, '#2563eb')
+      gradient.addColorStop(0, COLORS.primary)
+      gradient.addColorStop(1, COLORS.primaryDark)
       ctx.fillStyle = gradient
       ctx.beginPath()
       ctx.roundRect(startX, y, boxWidth, boxHeight, 6)
@@ -124,7 +122,7 @@
 
       // Highlight border - top of stack
       if (i === items.value.length - 1) {
-        ctx.strokeStyle = '#f59e0b'
+        ctx.strokeStyle = COLORS.accent
         ctx.lineWidth = 3
         ctx.beginPath()
         ctx.roundRect(startX, y, boxWidth, boxHeight, 6)
@@ -132,7 +130,7 @@
       }
 
       // Draw text
-      ctx.fillStyle = '#ffffff'
+      ctx.fillStyle = COLORS.white
       ctx.font = 'bold 14px monospace'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
@@ -179,111 +177,10 @@
     drawStack()
   }
 
-  function sleep(ms) {
-    return new Promise((r) => setTimeout(r, ms))
-  }
-
   onMounted(() => {
     lastOp.value = isZh.value ? '点击 push/pop 试试' : 'Try clicking push/pop'
     drawStack()
   })
 </script>
 
-<style scoped>
-  .visualizer {
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 12px;
-    padding: 16px;
-    background: var(--vp-c-bg-soft);
-    margin: 24px 0;
-  }
-
-  .controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-
-  .input-group {
-    display: flex;
-    gap: 6px;
-  }
-
-  .input {
-    width: 100px;
-    padding: 6px 10px;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 6px;
-    font-size: 14px;
-    background: var(--vp-c-bg);
-    color: var(--vp-c-text);
-  }
-
-  .select {
-    padding: 6px 10px;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 6px;
-    font-size: 13px;
-    background: var(--vp-c-bg);
-    color: var(--vp-c-text);
-  }
-
-  .btn {
-    padding: 6px 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-primary {
-    background: #3b82f6;
-    color: white;
-  }
-  .btn-primary:hover {
-    background: #2563eb;
-  }
-  .btn-danger {
-    background: #ef4444;
-    color: white;
-  }
-  .btn-danger:hover {
-    background: #dc2626;
-  }
-  .btn-secondary {
-    background: var(--vp-c-divider);
-    color: var(--vp-c-text);
-  }
-  .btn-secondary:hover {
-    background: var(--vp-c-bg);
-  }
-
-  .canvas-wrapper {
-    display: flex;
-    justify-content: center;
-    background: var(--vp-c-bg);
-    border-radius: 8px;
-    padding: 10px;
-    min-height: 380px;
-  }
-
-  canvas {
-    max-width: 100%;
-  }
-
-  .status-bar {
-    display: flex;
-    gap: 20px;
-    margin-top: 12px;
-    font-size: 13px;
-    color: var(--vp-c-text-2);
-  }
-
-  .log {
-    color: var(--vp-c-brand-1);
-    font-weight: 500;
-    margin-left: auto;
-  }
-</style>
+<style scoped></style>

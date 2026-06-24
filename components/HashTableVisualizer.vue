@@ -30,6 +30,12 @@
         {{ t('Buckets:', '桶数:') }}
         <strong>{{ TABLE_SIZE }}</strong>
       </span>
+      <span>
+        {{ t('Load factor:', '负载因子:') }}
+        <strong :style="{ color: (itemCount / TABLE_SIZE) > 1 ? '#ef4444' : '#22c55e' }">
+          {{ (itemCount / TABLE_SIZE).toFixed(2) }}
+        </strong>
+      </span>
       <span class="log" v-if="lastOp">
         {{ lastOp }}
       </span>
@@ -40,7 +46,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from './composables/useI18n.js'
-import { COLORS, drawText, drawEmptyMessage } from './visualizer-utils.js'
+import { COLORS } from './visualizer-utils.js'
 
 const { t } = useI18n()
 
@@ -70,7 +76,7 @@ const defaultData = [
   ['city', 'NYC'],
 ]
 
-let animating = false
+const animating = false
 
 function draw(highlightBucket = -1) {
   const ctx = canvas.value?.getContext('2d')
@@ -246,89 +252,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-.visualizer {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 16px;
-  background: var(--vp-c-bg-soft);
-  margin: 24px 0;
-}
-.controls {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.input-group {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.input {
-  padding: 6px 10px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 13px;
-  width: 100px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.btn {
-  padding: 6px 14px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
-}
-.btn-primary:hover {
-  background: #2563eb;
-}
-.btn-danger {
-  background: #ef4444;
-  color: white;
-  border-color: #ef4444;
-}
-.btn-danger:hover {
-  background: #dc2626;
-}
-.btn-secondary {
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-  border-color: var(--vp-c-divider);
-}
-.btn-secondary:hover {
-  background: var(--vp-c-bg-soft);
-}
-.canvas-wrapper {
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-}
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-.status-bar {
-  display: flex;
-  gap: 16px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-  flex-wrap: wrap;
-}
-.log {
-  color: var(--vp-c-brand-1);
-  font-weight: 500;
-}
-</style>
+<style scoped></style>

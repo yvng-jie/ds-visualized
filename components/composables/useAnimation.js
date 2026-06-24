@@ -2,28 +2,26 @@
  * useAnimation — Unified animation composable
  *
  * Provides requestAnimationFrame-based animation loop with speed control.
- * Usage:
- *   const { animating, speed, animate, sleep } = useAnimation()
- *   await animate(() => { ... }, 300)   // animate with 300ms step delay
- *   await sleep(300)                     // simple delay
+ * Properly tracks setTimeout IDs for cleanup on unmount.
  */
-import { ref } from 'vue'
+import { ref, onUnmounted } from 'vue'
 
 export function useAnimation(defaultSpeed = 300) {
   const animating = ref(false)
   const speed = ref(defaultSpeed)
   let rafId = null
+  const timeouts = new Set()
 
-  /**
-   * Simple promise-based sleep
-   */
   function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
+    return new Promise((resolve) => {
+      const id = setTimeout(() => {
+        timeouts.delete(id)
+        resolve()
+      }, ms)
+      timeouts.add(id)
+    })
   }
 
-  /**
-   * Animate a step with optional delay, uses RAF for smooth rendering
-   */
   async function animate(stepFn, delay) {
     animating.value = true
     const ms = delay ?? speed.value
@@ -32,10 +30,12 @@ export function useAnimation(defaultSpeed = 300) {
       function frame() {
         stepFn()
         if (ms > 0) {
-          setTimeout(() => {
+          const id = setTimeout(() => {
+            timeouts.delete(id)
             animating.value = false
             resolve()
           }, ms)
+          timeouts.add(id)
         } else {
           animating.value = false
           resolve()
@@ -45,22 +45,21 @@ export function useAnimation(defaultSpeed = 300) {
     })
   }
 
-  /**
-   * Cancel any running animation
-   */
   function cancel() {
     if (rafId) {
       cancelAnimationFrame(rafId)
       rafId = null
     }
+    for (const id of timeouts) {
+      clearTimeout(id)
+    }
+    timeouts.clear()
     animating.value = false
   }
 
-  return {
-    animating,
-    speed,
-    sleep,
-    animate,
-    cancel,
-  }
+  onUnmounted(() => {
+    cancel()
+  })
+
+  return { animating, speed, sleep, animate, cancel }
 }

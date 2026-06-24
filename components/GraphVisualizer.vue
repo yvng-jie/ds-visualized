@@ -43,11 +43,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useI18n } from './composables/useI18n.js'
+import { useAnimation } from './composables/useAnimation.js'
 import { COLORS } from './visualizer-utils.js'
 
 const { t } = useI18n()
+const { animating, sleep } = useAnimation()
 
 const canvas = ref(null)
 const canvasWidth = 600
@@ -64,8 +66,11 @@ const graph = {
 }
 
 const vertexLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-let edgeCount = ref(0)
-let animating = false
+const edgeCount = computed(() => {
+  let count = 0
+  for (const v of graph.vertexes) count += graph.edges[v]?.length || 0
+  return isDirected.value ? count : count / 2
+})
 let selectedVertex = null
 
 function setUndirected() {
@@ -91,7 +96,6 @@ function addEdge(v1, v2) {
   if (!isDirected.value) {
     graph.edges[v2].push(v1)
   }
-  edgeCount.value++
   return true
 }
 
@@ -173,12 +177,12 @@ function autoLayout() {
   })
 
   // Run force-directed iterations
-  for (let iter = 0; iter < 50; iter++) {
-    const forces = {}
+  const forces = new Map()
+  for (const v of graph.vertexes) forces.set(v, { fx: 0, fy: 0 })
 
-    for (const v of graph.vertexes) {
-      forces[v] = { fx: 0, fy: 0 }
-    }
+  for (let iter = 0; iter < 50; iter++) {
+    // Reset forces each iteration
+    for (const f of forces.values()) { f.fx = 0; f.fy = 0 }
 
     // Repulsion between all pairs
     for (let i = 0; i < graph.vertexes.length; i++) {
@@ -193,10 +197,10 @@ function autoLayout() {
         const force = 3000 / (dist * dist)
         dx = (dx / dist) * force
         dy = (dy / dist) * force
-        forces[a].fx -= dx
-        forces[a].fy -= dy
-        forces[b].fx += dx
-        forces[b].fy += dy
+        forces.get(a).fx -= dx
+        forces.get(a).fy -= dy
+        forces.get(b).fx += dx
+        forces.get(b).fy += dy
       }
     }
 
@@ -211,17 +215,17 @@ function autoLayout() {
         const force = (dist - 100) * 0.01
         dx = (dx / dist) * force
         dy = (dy / dist) * force
-        forces[v].fx += dx
-        forces[v].fy += dy
-        forces[n].fx -= dx
-        forces[n].fy -= dy
+        forces.get(v).fx += dx
+        forces.get(v).fy += dy
+        forces.get(n).fx -= dx
+        forces.get(n).fy -= dy
       }
     }
 
     // Apply forces
     for (const v of graph.vertexes) {
-      graph.positions[v].x += Math.max(-5, Math.min(5, forces[v].fx))
-      graph.positions[v].y += Math.max(-5, Math.min(5, forces[v].fy))
+      graph.positions[v].x += Math.max(-5, Math.min(5, forces.get(v).fx))
+      graph.positions[v].y += Math.max(-5, Math.min(5, forces.get(v).fy))
       // Keep within bounds
       graph.positions[v].x = Math.max(30, Math.min(canvasWidth - 30, graph.positions[v].x))
       graph.positions[v].y = Math.max(30, Math.min(canvasHeight - 30, graph.positions[v].y))
@@ -406,7 +410,6 @@ function buildDefaultGraph() {
   graph.vertexes = []
   graph.edges = {}
   graph.positions = {}
-  edgeCount.value = 0
   defaultVertices.forEach(([label, x, y]) => addVertex(label, x, y))
   defaultEdges.forEach(([v1, v2]) => addEdge(v1, v2))
 }
@@ -421,10 +424,6 @@ function reset() {
   draw()
 }
 
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms))
-}
-
 onMounted(() => {
   buildDefaultGraph()
   lastOp.value = t(
@@ -436,20 +435,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.visualizer {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 16px;
-  background: var(--vp-c-bg-soft);
-  margin: 24px 0;
-}
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
 .btn-group {
   display: flex;
   gap: 4px;
@@ -469,50 +454,9 @@ onMounted(() => {
   color: white;
   border-color: #3b82f6;
 }
-.btn {
-  padding: 6px 14px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
 .btn.active {
   background: #6366f1;
   color: white;
   border-color: #6366f1;
-}
-.btn-secondary {
-  background: var(--vp-c-divider);
-  color: var(--vp-c-text);
-}
-.btn-secondary:hover {
-  background: var(--vp-c-bg);
-}
-.canvas-wrapper {
-  display: flex;
-  justify-content: center;
-  background: var(--vp-c-bg);
-  border-radius: 8px;
-  padding: 10px;
-  min-height: 400px;
-  cursor: pointer;
-}
-canvas {
-  max-width: 100%;
-}
-.status-bar {
-  display: flex;
-  gap: 20px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-}
-.log {
-  color: var(--vp-c-brand-1);
-  font-weight: 500;
-  margin-left: auto;
 }
 </style>

@@ -137,6 +137,8 @@ import { useI18n } from './composables/useI18n.js'
 
 const { t } = useI18n()
 
+const animating = false
+
 const inputValue = ref('')
 const positionValue = ref(0)
 const lastOp = ref('')
@@ -153,6 +155,7 @@ const defaultData = [10, 20, 30]
 const items = ref([...defaultData])
 
 function append() {
+  if (animating) return
   if (items.value.length >= MAX_ITEMS) {
     lastOp.value = t(`⚠️ List is full (max ${MAX_ITEMS} nodes)`, `⚠️ 链表已满（最多 ${MAX_ITEMS} 个节点）`)
     return
@@ -168,6 +171,7 @@ function append() {
 }
 
 function insert() {
+  if (animating) return
   const val = inputValue.value.trim()
   const pos = positionValue.value
 
@@ -242,84 +246,7 @@ onMounted(() => {
 .pos-input {
   width: 65px !important;
 }
-.visualizer {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 16px;
-  background: var(--vp-c-bg-soft);
-  margin: 24px 0;
-}
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-.input-group {
-  display: flex;
-  gap: 6px;
-}
-.input {
-  width: 100px;
-  padding: 6px 10px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 14px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text);
-}
-.btn {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-primary {
-  background: #6366f1;
-  color: white;
-}
-.btn-primary:hover {
-  background: #4f46e5;
-}
-.btn-danger {
-  background: #ef4444;
-  color: white;
-}
-.btn-danger:hover {
-  background: #dc2626;
-}
-.btn-secondary {
-  background: var(--vp-c-divider);
-  color: var(--vp-c-text);
-}
-.btn-secondary:hover {
-  background: var(--vp-c-bg);
-}
-.canvas-wrapper {
-  display: flex;
-  justify-content: center;
-  background: var(--vp-c-bg);
-  border-radius: 8px;
-  padding: 10px;
-  overflow-x: auto;
-  min-height: 140px;
-}
 .linked-list-svg {
   min-width: 400px;
-}
-.status-bar {
-  display: flex;
-  gap: 20px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-}
-.log {
-  color: var(--vp-c-brand-1);
-  font-weight: 500;
-  margin-left: auto;
 }
 </style>
