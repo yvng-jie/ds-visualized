@@ -31,7 +31,7 @@
     "vite": "^6.4.3",
     "vitepress": "^1.6.0",
     "vitest": "^4.1.0",
-    "vue": "^3.5.0"
+    "vue": "^3.5.40"
   },
   "dependencies": {
     "@vue/repl": "^4.7.2"
