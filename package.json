@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.8.0",
     "eslint-plugin-vue": "^10.9.2",
     "globals": "^17.0.0",
     "prettier": "^3.8.0",
